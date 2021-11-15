@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 특정외부 폴더 경로지정 -->
+    <external-path
+        name="sdcard"
+        path="."/>
+</paths>
