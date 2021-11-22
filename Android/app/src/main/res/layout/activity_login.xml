@@ -4,56 +4,164 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:minWidth="134dp"
+    android:minHeight="19dp"
     tools:context=".LoginActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:lineSpacingExtra="-10sp"
+        android:textColor="@color/dark"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="88dp"
+        tools:text="다이어트 플랜A"
+        tools:ignore="MissingConstraints"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:lineSpacingExtra="-10sp"
+        android:textColor="@color/dark"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="123dp"
+        tools:text="Sign In"
+        tools:ignore="MissingConstraints"/>
 
     <EditText
         android:id="@+id/et_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Montserrat15Pt2"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="id"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.383"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.311" />
+        android:background="@drawable/sign_rectangle"
+        android:text="@string/email"
+        android:paddingLeft="60dp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="189dp"
+        tools:ignore="MissingConstraints" />
+
 
     <EditText
         android:id="@+id/et_pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Montserrat15Pt2"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.383"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_id"
-        app:layout_constraintVertical_bias="0.071" />
+        android:background="@drawable/sign_rectangle"
+        android:text="@string/et_pass"
+        android:paddingLeft="60dp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="266dp"
+        tools:ignore="MissingConstraints"/>
+
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_forgot_pw"
+        style="@style/Montserrat15Pt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:text="로그인"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="229dp"
+        android:layout_marginRight="229dp"
+        android:background="@color/clear"
+        android:letterSpacing="0"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/btn_register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.427"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_pass" />
+        app:layout_constraintTop_toBottomOf="@+id/et_pass"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        tools:text="Forgot Password?" />
 
     <Button
         android:id="@+id/btn_register"
+        style="@style/Montserrat15Pt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="회원가입"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        android:background="@color/clear"
+        android:letterSpacing="0"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintTop_toBottomOf="@+id/et_pass"
+        tools:ignore="MissingConstraints"
+        tools:text="Create ACCOUNT" />
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/Montserrat20Pt"
+        android:layout_width="315dp"
+        android:layout_height="60.00030517578125dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/btn_login_rectangle"
+        android:text="@string/btn_login"
+        android:letterSpacing="0"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/dark"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login"
-        app:layout_constraintVertical_bias="0.055" />
+        app:layout_constraintTop_toBottomOf="@+id/et_pass"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/icon_mail"
+        android:layout_width="20dp"
+        android:layout_height="15dp"
+        app:srcCompat="@drawable/icon_mail"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="212dp"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/icon_password"
+        android:layout_width="20dp"
+        android:layout_height="22.1810302734375dp"
+        app:srcCompat="@drawable/icon_padlock"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="284.9dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="58dp"
+        android:background="@color/clear"
+        android:drawableTop="@drawable/icon_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
