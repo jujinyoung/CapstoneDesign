@@ -6,4 +6,125 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="58dp"
+        android:background="@color/clear"
+        android:drawableTop="@drawable/icon_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:lineSpacingExtra="-10sp"
+        android:textColor="@color/dark"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="130dp"
+        tools:layout_editor_absoluteY="87dp"
+        tools:text="WELCOME !"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:textColor="@color/dark"
+        android:lineSpacingExtra="-10sp"
+        android:gravity="center_horizontal"
+        tools:layout_editor_absoluteX="153dp"
+        tools:layout_editor_absoluteY="123dp"
+        tools:text="JOIN US"
+        tools:ignore="MissingConstraints"/>
+
+    <EditText
+        android:id="@+id/et_id"
+        style="@style/Montserrat15Pt2"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
+        android:inputType="textPersonName"
+        android:background="@drawable/sign_rectangle"
+        android:text="@string/email"
+        android:paddingLeft="60dp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="189dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/icon_mail"
+        android:layout_width="20dp"
+        android:layout_height="15dp"
+        app:srcCompat="@drawable/icon_mail"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="212dp"
+        tools:ignore="MissingConstraints"/>
+
+    <EditText
+        android:id="@+id/et_pass"
+        style="@style/Montserrat15Pt2"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
+        android:inputType="textPersonName"
+        android:background="@drawable/sign_rectangle"
+        android:text="@string/et_pass"
+        android:paddingLeft="60dp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="266dp"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/icon_password"
+        android:layout_width="20dp"
+        android:layout_height="22.1810302734375dp"
+        app:srcCompat="@drawable/icon_padlock"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="284.9dp"
+        tools:ignore="MissingConstraints"/>
+
+    <EditText
+        android:id="@+id/et_pass_confirm"
+        style="@style/Montserrat15Pt2"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
+        android:inputType="textPersonName"
+        android:background="@drawable/sign_rectangle"
+        android:text="@string/et_pass_confirm"
+        android:paddingLeft="60dp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="346dp"
+        tools:ignore="MissingConstraints"/>
+
+    <ImageView
+        android:id="@+id/icon_password_confirm"
+        android:layout_width="20dp"
+        android:layout_height="22.1810302734375dp"
+        app:srcCompat="@drawable/icon_padlock"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="364.9dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/Montserrat20Pt"
+        android:layout_width="315dp"
+        android:layout_height="60.00030517578125dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/btn_login_rectangle"
+        android:text="@string/btn_login"
+        android:letterSpacing="0"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/dark"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="426dp"
+        tools:ignore="MissingConstraints" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
