@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CalendarActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:lineSpacingExtra="-10sp"
+        android:text="@string/month"
+        android:textColor="@color/dark"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="270dp"
+        tools:layout_editor_absoluteY="57dp"
+        tools:ignore="MissingConstraints"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="378dp"
+        android:layout_height="441dp"
+        android:background="@drawable/box_rectangle"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="89dp"
+        tools:ignore="MissingConstraints"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/Montserrat15Pt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/summary"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="551dp"
+        tools:ignore="MissingConstraints"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

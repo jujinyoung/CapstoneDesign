@@ -8,28 +8,36 @@
 
     <Button
         android:id="@+id/btn_back"
-        android:layout_width="40dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="58dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginRight="81dp"
         android:background="@color/clear"
         android:drawableTop="@drawable/icon_back"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="139dp"
+        android:layout_marginRight="139dp"
+        android:layout_marginBottom="19dp"
         android:fontFamily="@font/montserrat"
         android:lineSpacingExtra="-10sp"
         android:textColor="@color/dark"
         android:textSize="25sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="149dp"
-        tools:layout_editor_absoluteY="57dp"
-        tools:text="오늘의 일기"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toTopOf="@+id/radioButton_lun"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        tools:ignore="MissingConstraints"
+        tools:text="오늘의 일기" />
 
 
     <RadioButton
@@ -37,67 +45,87 @@
         style="@style/Montserrat15Pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:text="@string/radiobutton_mor"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="111dp" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_back"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back"
+        tools:ignore="MissingConstraints" />
 
     <RadioButton
         android:id="@+id/radioButton_lun"
         style="@style/Montserrat15Pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginBottom="16dp"
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:text="@string/radiobutton_lun"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="110dp" />
+        app:layout_constraintBottom_toTopOf="@+id/cameraBtn"
+        app:layout_constraintStart_toEndOf="@+id/radioButton_mor"
+        tools:ignore="MissingConstraints" />
 
     <RadioButton
         android:id="@+id/radioButton_di"
         style="@style/Montserrat15Pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="16dp"
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:text="@string/radiobutton_di"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="220dp"
-        tools:layout_editor_absoluteY="110dp" />
+        app:layout_constraintBottom_toTopOf="@+id/cameraBtn"
+        app:layout_constraintStart_toEndOf="@+id/radioButton_lun"
+        tools:ignore="MissingConstraints" />
 
     <RadioButton
-        style="@style/Montserrat15Pt"
         android:id="@+id/radioButton_sna"
+        style="@style/Montserrat15Pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:layout_marginRight="59dp"
-        android:text="@string/radiobutton_sna"
+        android:layout_marginBottom="16dp"
         android:minWidth="0dp"
         android:minHeight="0dp"
+        android:text="@string/radiobutton_sna"
+        app:layout_constraintBottom_toTopOf="@+id/cameraBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="110dp"
-        tools:ignore="MissingConstraints"/>
+        tools:ignore="MissingConstraints" />
 
     <ImageButton
         android:id="@+id/cameraBtn"
-        android:layout_width="334dp"
+        android:layout_width="0dp"
         android:layout_height="207dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
         android:background="@drawable/box_rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioButton_mor"
         app:srcCompat="@drawable/icon_camera"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="40dp" />
+        tools:ignore="MissingConstraints" />
 
     <Button
-        style="@style/Montserrat15Pt3"
         android:id="@+id/btn_measure"
-        android:layout_width="162dp"
+        style="@style/Montserrat15Pt3"
+        android:layout_width="0dp"
         android:layout_height="31dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="270dp"
         android:background="@drawable/btn_login_rectangle"
         android:fontFamily="@font/montserrat"
         android:minWidth="0dp"
@@ -109,52 +137,94 @@
         android:text="@string/btn_measure"
         android:textAllCaps="false"
         app:backgroundTint="@color/dark"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="380dp" />
-
-    <EditText
-        android:id="@+id/et_food"
-        android:layout_width="164dp"
-        android:layout_height="31dp"
-        android:background="@drawable/box_rectangle"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="209dp"
-        tools:layout_editor_absoluteY="380dp"
-        android:importantForAutofill="no" />
-
-    <TextView
-        style="@style/Montserrat15Pt2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="434dp"
-        tools:text="식단 점수"
-        tools:ignore="MissingConstraints"/>
-
-    <SeekBar
-        android:id="@+id/seekbar_score"
-        android:thumb="@drawable/seekbar_score_thumb"
-        android:progressDrawable="@drawable/seekbar_score"
-        android:layout_width="270dp"
-        android:layout_height="5dp"
-        android:max="100"
-        android:splitTrack="false"
-        android:background="@color/cool_grey"
-        tools:layout_editor_absoluteX="102.5dp"
-        tools:layout_editor_absoluteY="444dp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_diary"
+        app:layout_constraintEnd_toStartOf="@+id/et_food"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/radioButton_lun"
         tools:ignore="MissingConstraints" />
 
     <EditText
+        android:id="@+id/et_food"
+        style="@style/Montserrat15Pt"
+        android:layout_width="0dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginRight="38dp"
+
+        android:background="@drawable/box_rectangle"
+        android:hint="@string/search_food"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_measure"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_measure"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/Montserrat15Pt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/seekbar_score"
+        app:layout_constraintStart_toStartOf="@+id/et_diary"
+        app:layout_constraintTop_toTopOf="@+id/seekbar_score"
+        tools:ignore="MissingConstraints"
+        tools:text="식단 점수" />
+
+    <!--시크바 수정중 (5단계 상태로 바꿀지 고민중 verygood good ...)-->
+    <SeekBar
+        android:id="@+id/seekbar_score"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/cool_grey"
+        android:max="100"
+        android:progressDrawable="@drawable/seekbar_score"
+        android:splitTrack="false"
+        android:thumb="@drawable/seekbar_score_thumb"
+        app:layout_constraintBottom_toTopOf="@+id/et_diary"
+        app:layout_constraintEnd_toEndOf="@+id/et_diary"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/et_food"
+        tools:ignore="MissingConstraints" />
+
+    <!--로드셀, 칼로리 데이터 받아오고, 사용자가 입력하는 칸
+    아예 로드셀/칼로리 데이터 받아오는 칸을 따로, 사용자 일기 칸 따로 만들지 고민
+    예를들어 식단점수 밑에 일기장 밑에 로드셀에서 받아온 데이터 표시 칸 그 밑에 칼로리 표시 칸-->
+    <EditText
         android:id="@+id/et_diary"
-        android:layout_width="334dp"
+        style="@style/Montserrat15Pt2"
+        android:layout_width="0dp"
         android:layout_height="207dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginBottom="188dp"
         android:background="@drawable/box_rectangle"
         android:inputType="text"
         android:text="@string/et_diary"
-        style="@style/Montserrat15Pt2"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="474dp"
-        tools:ignore="MissingConstraints"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Switch
+        android:id="@+id/btn_share"
+        style="@style/Montserrat15Pt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginBottom="76dp"
+        android:thumb="@drawable/btn_switch_thumb"
+        android:track="@drawable/btn_switch_track"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

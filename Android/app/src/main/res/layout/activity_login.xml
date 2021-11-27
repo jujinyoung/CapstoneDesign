@@ -42,13 +42,15 @@
         android:layout_width="315dp"
         android:layout_height="60dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:background="@drawable/sign_rectangle"
-        android:text="@string/email"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/sign_et"
+        android:hint="@string/email"
+        android:textColorHint="@color/dark"
         android:paddingLeft="60dp"
         tools:layout_editor_absoluteX="49dp"
         tools:layout_editor_absoluteY="189dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:paddingStart="60dp" />
 
 
     <EditText
@@ -57,13 +59,15 @@
         android:layout_width="315dp"
         android:layout_height="60dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:background="@drawable/sign_rectangle"
-        android:text="@string/et_pass"
+        android:inputType="textPassword"
+        android:hint="@string/et_pass"
+        android:textColorHint="@color/dark"
+        android:background="@drawable/sign_et"
         android:paddingLeft="60dp"
         tools:layout_editor_absoluteX="49dp"
         tools:layout_editor_absoluteY="266dp"
-        tools:ignore="MissingConstraints"/>
+        tools:ignore="MissingConstraints"
+        android:paddingStart="60dp" />
 
 
     <Button
@@ -79,7 +83,7 @@
         android:background="@color/clear"
         android:letterSpacing="0"
         android:minWidth="0dp"
-        android:minHeight="0dp"
+        android:minHeight="48dp"
         android:paddingLeft="0dp"
         android:paddingTop="0dp"
         android:paddingRight="0dp"
@@ -105,7 +109,7 @@
         android:background="@color/clear"
         android:letterSpacing="0"
         android:minWidth="0dp"
-        android:minHeight="0dp"
+        android:minHeight="48dp"
         android:paddingLeft="0dp"
         android:paddingTop="0dp"
         android:paddingRight="0dp"
@@ -152,8 +156,8 @@
 
     <Button
         android:id="@+id/btn_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="58dp"

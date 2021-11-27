@@ -19,5 +19,12 @@
     <string name="et_pass">Password</string>
     <string name="et_pass_confirm">Password Confirm</string>
     <string name="btn_login">login</string>
+    <string name="month">month</string>
+    <string name="camera">Camera</string>
+    <string name="percent">%</string>
+    <string name="todo">TODO</string>
+    <string name="loading">Loading</string>
+    <string name="summary">요약</string>
+    <string name="search_food">음식 검색</string>
 
 </resources>
