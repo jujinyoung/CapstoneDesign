@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--sign rectangle shape-->
+<!--sign2 rectangle shape-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="0dp"
     android:layout_width="315dp"
     android:layout_height="60dp"
     android:shape="rectangle" >
-    <solid android:color="@color/very_light_blue" />
+    <solid android:color="@color/cool_grey" />
     <corners
         android:bottomLeftRadius="12dp"
         android:bottomRightRadius="12dp"
@@ -14,6 +13,5 @@
         android:topRightRadius="12dp" />
     <stroke
         android:width="1dp"
-        android:color="@color/light_grey_blue" />
+        android:color="@color/cool_grey" />
 </shape>
-
