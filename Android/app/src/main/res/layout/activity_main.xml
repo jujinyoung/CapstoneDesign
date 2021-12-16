@@ -118,7 +118,7 @@
     <Button
         android:id="@+id/btn_measure"
         style="@style/Montserrat15Pt3"
-        android:layout_width="0dp"
+        android:layout_width="162dp"
         android:layout_height="31dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
@@ -139,26 +139,24 @@
         app:backgroundTint="@color/dark"
         app:layout_constraintBottom_toBottomOf="@+id/et_diary"
         app:layout_constraintEnd_toStartOf="@+id/et_food"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/radioButton_lun"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/et_food"
         style="@style/Montserrat15Pt"
-        android:layout_width="0dp"
+        android:layout_width="164dp"
         android:layout_height="31dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
-
         android:background="@drawable/box_rectangle"
         android:hint="@string/search_food"
         android:importantForAutofill="no"
         android:inputType="text"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_measure"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_measure"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="209dp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -171,7 +169,7 @@
         tools:ignore="MissingConstraints"
         tools:text="식단 점수" />
 
-    <!--시크바 수정중 (5단계 상태로 바꿀지 고민중 verygood good ...)-->
+    <!--시크바 수정중 (5단계 상태로 바꿀지 고민중 very_good good ...)-->
     <SeekBar
         android:id="@+id/seekbar_score"
         android:layout_width="0dp"
@@ -214,6 +212,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
+    <!--스위치 수정중-->
     <Switch
         android:id="@+id/btn_share"
         style="@style/Montserrat15Pt"
@@ -222,9 +221,30 @@
         android:layout_marginStart="39dp"
         android:layout_marginLeft="39dp"
         android:layout_marginBottom="76dp"
+        android:switchMinWidth="78dp"
         android:thumb="@drawable/btn_switch_thumb"
         android:track="@drawable/btn_switch_track"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/save_diary"
+        style="@style/Montserrat15Pt3"
+        android:layout_width="256dp"
+        android:layout_height="31dp"
+        android:background="@drawable/btn_save_rectangle"
+        android:fontFamily="@font/montserrat"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:text="식단일기 저장하기"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/dark"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="763dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
