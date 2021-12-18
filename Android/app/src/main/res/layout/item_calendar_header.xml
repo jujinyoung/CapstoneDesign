@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:id="@+id/item_header_layout"
+    android:layout_width="378dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="17dp"
+    android:layout_marginStart="17dp">
+
+    <TextView
+        android:id="@+id/item_header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textColor="@color/dark"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="25sp"
+        tool:text="2021년 12월"
+        />
+
+</LinearLayout>

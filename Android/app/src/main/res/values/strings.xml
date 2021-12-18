@@ -31,5 +31,12 @@
     <string name="recommend_cal">일일 권장</string>
     <string name="cancel">취소</string>
     <string name="save_food">음식 저장하기</string>
+    <string name="fri">FRI</string>
+    <string name="sun">SUN</string>
+    <string name="mon">MON</string>
+    <string name="tue">TUE</string>
+    <string name="wed">WED</string>
+    <string name="thur">THUR</string>
+    <string name="sat">SAT</string>
 
 </resources>
