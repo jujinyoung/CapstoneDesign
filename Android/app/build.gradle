@@ -55,6 +55,7 @@ dependencies {
     //graph
     implementation 'com.github.blackfizz:eazegraph:1.2.2@aar'
     implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.mysugr.MPAndroidChart:MPAndroidChart:3.1.0-mysugr-1'
 
     //CALENDAR 관련
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
