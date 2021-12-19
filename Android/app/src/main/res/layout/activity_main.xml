@@ -217,9 +217,9 @@
         style="@style/Montserrat15Pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="70dp"
         android:switchMinWidth="78dp"
         android:thumb="@drawable/btn_switch_thumb"
         android:track="@drawable/btn_switch_track"
@@ -234,15 +234,20 @@
         android:background="@drawable/btn_save_rectangle"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp"
-        android:paddingRight="0dp"
-        android:paddingBottom="0dp"
+        android:padding="0dp"
         android:text="식단일기 저장하기"
         android:textAllCaps="false"
         app:backgroundTint="@color/dark"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="124dp"
-        tools:layout_editor_absoluteY="763dp" />
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="767dp" />
+
+    <!--탄단지 수정-->
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/bar"
+        android:layout_width="345dp"
+        android:layout_height="79dp"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="681dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
