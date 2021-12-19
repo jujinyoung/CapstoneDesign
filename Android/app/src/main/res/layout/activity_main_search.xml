@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -42,16 +43,17 @@
         android:layout_width="378dp"
         android:layout_height="31dp"
         android:background="@drawable/btn_save_rectangle"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp"
-        android:paddingRight="0dp"
-        android:paddingBottom="0dp"
+        android:padding="0dp"
         android:text="@string/save_food"
         android:textAllCaps="false"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="17dp"
         tools:layout_editor_absoluteY="761dp" />
 
+    <Button
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/btn_add2"
+        tools:layout_editor_absoluteX="350dp"
+        tools:layout_editor_absoluteY="116dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
