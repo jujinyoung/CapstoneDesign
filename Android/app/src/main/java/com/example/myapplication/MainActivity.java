@@ -125,3 +125,4 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         Toast.makeText(this,"permissions granted : " + permissions.length, Toast.LENGTH_LONG).show();
     }
 }
+

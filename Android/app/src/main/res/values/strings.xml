@@ -19,5 +19,24 @@
     <string name="et_pass">Password</string>
     <string name="et_pass_confirm">Password Confirm</string>
     <string name="btn_login">login</string>
+    <string name="month">month</string>
+    <string name="camera">Camera</string>
+    <string name="percent">%</string>
+    <string name="todo">TODO</string>
+    <string name="loading">Loading</string>
+    <string name="summary">요약</string>
+    <string name="search_food">음식 검색</string>
+    <string name="left_cal">남은 칼로리</string>
+    <string name="consumed_cal">소비한 칼로리</string>
+    <string name="recommend_cal">일일 권장</string>
+    <string name="cancel">취소</string>
+    <string name="save_food">음식 저장하기</string>
+    <string name="fri">FRI</string>
+    <string name="sun">SUN</string>
+    <string name="mon">MON</string>
+    <string name="tue">TUE</string>
+    <string name="wed">WED</string>
+    <string name="thur">THUR</string>
+    <string name="sat">SAT</string>
 
 </resources>
