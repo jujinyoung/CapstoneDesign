@@ -7,5 +7,4 @@
     <item
         android:drawable="@drawable/btn_switch_on"
         android:state_checked="true"/>
-
 </selector>
