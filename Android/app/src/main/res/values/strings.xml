@@ -38,5 +38,11 @@
     <string name="wed">WED</string>
     <string name="thur">THUR</string>
     <string name="sat">SAT</string>
+    <string name="setting_goal">목표 설정하기</string>
+    <string name="setting_info">회원정보 수정하기</string>
+    <string name="setting_data">데이터 초기화</string>
+    <string name="setting">설정</string>
+    <string name="library">library</string>
+    <string name="save_diary">식단일기 저장하기</string>
 
 </resources>

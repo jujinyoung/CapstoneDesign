@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/clear"
     tools:context=".CalendarActivity">
-
 
     <View
         android:id="@+id/view"
@@ -99,29 +99,32 @@
         tools:layout_editor_absoluteY="767dp" />
 
 
-    <!--그래프 수정중-->
+    <!--그래프 수정할 예정-->
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/bar"
         android:layout_width="345dp"
         android:layout_height="79dp"
         tools:layout_editor_absoluteX="32dp"
         tools:layout_editor_absoluteY="681dp"
-        />
+        tools:ignore="MissingConstraints" />
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pie"
         android:layout_width="100dp"
         android:layout_height="100dp"
         tools:layout_editor_absoluteX="260dp"
-        tools:layout_editor_absoluteY="551dp"/>
+        tools:layout_editor_absoluteY="551dp"
+        tools:ignore="MissingConstraints" />
 
     <!--calendar-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <!--헤더-->
         <LinearLayout
@@ -219,3 +222,5 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

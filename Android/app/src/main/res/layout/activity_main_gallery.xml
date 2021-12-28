@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity_gallery">
+
+    <!--수정중, 리사이클러뷰 사용-->
+    <View
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_library"
+        android:layout_marginTop="77dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        style="@style/Montserrat15Pt"
+        android:id="@+id/gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/library"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="58dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/clear"
+        android:drawableTop="@drawable/icon_back"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="48dp"
+        tools:ignore="MissingConstraints"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="325dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="117dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gallery" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

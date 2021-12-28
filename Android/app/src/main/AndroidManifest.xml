@@ -19,6 +19,21 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".BoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_search"
+            android:exported="false" />
+        <activity
+            android:name=".SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_gallery"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_camera"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_loadc"
             android:exported="false" />
         <activity

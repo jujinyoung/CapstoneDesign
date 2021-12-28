@@ -2,11 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <!--액티비티 필요 레이아웃 이름에 일단 숫자 붙여둠.-->
-    tools:context=".Activity">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity_camera">
+
+    <!--카메라 커스텀 수정중-->
+    <View
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_library"
+        android:layout_marginTop="77dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
+        android:id="@+id/camera"
         style="@style/Montserrat15Pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,7 +31,7 @@
         android:background="@color/clear"
         android:drawableTop="@drawable/icon_back"
         tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="58dp"
+        tools:layout_editor_absoluteY="48dp"
         tools:ignore="MissingConstraints"/>
 
     <!-- 사진찍기 버튼 -->
@@ -35,14 +44,6 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="155dp"
         tools:layout_editor_absoluteY="720dp" />
-
-    <FrameLayout
-        android:id="@+id/previewFrame"
-        android:layout_width="match_parent"
-        android:layout_height="793dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="77dp"
-        tools:ignore="MissingConstraints" />
 
     <!--화면 전환 버튼-->
     <Button

@@ -82,12 +82,7 @@
         android:layout_marginRight="229dp"
         android:background="@color/clear"
         android:letterSpacing="0"
-        android:minWidth="0dp"
-        android:minHeight="48dp"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp"
-        android:paddingRight="0dp"
-        android:paddingBottom="0dp"
+        android:padding="0dp"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/btn_register"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,12 +103,7 @@
         android:layout_marginRight="48dp"
         android:background="@color/clear"
         android:letterSpacing="0"
-        android:minWidth="0dp"
-        android:minHeight="48dp"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp"
-        android:paddingRight="0dp"
-        android:paddingBottom="0dp"
+        android:padding='0dp'
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_pass"
@@ -165,7 +155,5 @@
         android:drawableTop="@drawable/icon_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
