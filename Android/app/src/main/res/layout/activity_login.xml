@@ -164,7 +164,8 @@
         android:background="@color/clear"
         android:drawableTop="@drawable/icon_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 

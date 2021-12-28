@@ -52,17 +52,14 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.github.pedroSG94:AutoPermissions:1.0.3'
 
-    //graph
-    implementation 'com.github.blackfizz:eazegraph:1.2.2@aar'
-    implementation 'com.nineoldandroids:library:2.4.0'
-    implementation 'com.mysugr.MPAndroidChart:MPAndroidChart:3.1.0-mysugr-1'
+//    //graph
+//    implementation 'com.github.blackfizz:eazegraph:1.2.2@aar'
+//    implementation 'com.nineoldandroids:library:2.4.0'
+//    implementation 'com.mysugr.MPAndroidChart:MPAndroidChart:3.1.0-mysugr-1'
 
-    //CALENDAR 관련
-    implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
-    implementation "androidx.recyclerview:recyclerview:1.2.1"
-    // For control over item selection of both touch and mouse driven selection
-    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
-
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
-
+//    //CALENDAR 관련
+//    implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
+//    implementation "androidx.recyclerview:recyclerview:1.2.1"
+//    // For control over item selection of both touch and mouse driven selection
+//    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
 }

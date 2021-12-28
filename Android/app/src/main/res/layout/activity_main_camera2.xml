@@ -6,65 +6,65 @@
     <!--액티비티 필요 레이아웃 이름에 일단 숫자 붙여둠.-->
     tools:context=".Activity">
 
-    <TextView
-        style="@style/Montserrat15Pt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/camera"
-        tools:layout_editor_absoluteX="175dp"
-        tools:layout_editor_absoluteY="58dp"
-        tools:ignore="MissingConstraints"/>
+<!--    <TextView-->
+<!--        style="@style/Montserrat15Pt"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/camera"-->
+<!--        tools:layout_editor_absoluteX="175dp"-->
+<!--        tools:layout_editor_absoluteY="58dp"-->
+<!--        tools:ignore="MissingConstraints"/>-->
 
-    <Button
-        android:id="@+id/btn_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@color/clear"
-        android:drawableTop="@drawable/icon_back"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="58dp"
-        tools:ignore="MissingConstraints"/>
+<!--    <Button-->
+<!--        android:id="@+id/btn_back"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:background="@color/clear"-->
+<!--        android:drawableTop="@drawable/icon_back"-->
+<!--        tools:layout_editor_absoluteX="28dp"-->
+<!--        tools:layout_editor_absoluteY="58dp"-->
+<!--        tools:ignore="MissingConstraints"/>-->
 
-    <!-- 사진찍기 버튼 -->
-    <Button
-        android:id="@+id/btn_camera"
-        android:layout_width="100dp"
-        android:layout_height="120dp"
-        android:background="@color/clear"
-        android:drawableTop="@drawable/icon_btn_camera"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="720dp" />
+<!--    &lt;!&ndash; 사진찍기 버튼 &ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/btn_camera"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="120dp"-->
+<!--        android:background="@color/clear"-->
+<!--        android:drawableTop="@drawable/icon_btn_camera"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:layout_editor_absoluteX="155dp"-->
+<!--        tools:layout_editor_absoluteY="720dp" />-->
 
-    <FrameLayout
-        android:id="@+id/previewFrame"
-        android:layout_width="match_parent"
-        android:layout_height="793dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="77dp"
-        tools:ignore="MissingConstraints" />
+<!--    <FrameLayout-->
+<!--        android:id="@+id/previewFrame"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="793dp"-->
+<!--        tools:layout_editor_absoluteX="0dp"-->
+<!--        tools:layout_editor_absoluteY="77dp"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
-    <!--화면 전환 버튼-->
-    <Button
-        android:id="@+id/btn_trans"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@color/clear"
-        android:drawableTop="@drawable/icon_trans"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="255dp"
-        tools:layout_editor_absoluteY="730dp" />
+<!--    &lt;!&ndash;화면 전환 버튼&ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/btn_trans"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:background="@color/clear"-->
+<!--        android:drawableTop="@drawable/icon_trans"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:layout_editor_absoluteX="255dp"-->
+<!--        tools:layout_editor_absoluteY="730dp" />-->
 
-    <!--갤러리 버튼-->
-    <Button
-        android:id="@+id/btn_gallery"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@color/clear"
-        android:drawableTop="@drawable/icon_gallery"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="730dp" />
+<!--    &lt;!&ndash;갤러리 버튼&ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/btn_gallery"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:background="@color/clear"-->
+<!--        android:drawableTop="@drawable/icon_gallery"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:layout_editor_absoluteX="75dp"-->
+<!--        tools:layout_editor_absoluteY="730dp" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

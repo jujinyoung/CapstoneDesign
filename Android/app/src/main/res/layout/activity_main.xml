@@ -9,7 +9,7 @@
     <Button
         android:id="@+id/btn_back"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="58dp"
@@ -19,7 +19,8 @@
         android:drawableTop="@drawable/icon_back"
         app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView"
@@ -47,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:minWidth="0dp"
-        android:minHeight="0dp"
+        android:minHeight="48dp"
         android:text="@string/radiobutton_mor"
         app:layout_constraintEnd_toEndOf="@+id/btn_back"
         app:layout_constraintStart_toEndOf="@+id/btn_back"
@@ -63,7 +64,7 @@
         android:layout_marginLeft="31dp"
         android:layout_marginBottom="16dp"
         android:minWidth="0dp"
-        android:minHeight="0dp"
+        android:minHeight="48dp"
         android:text="@string/radiobutton_lun"
         app:layout_constraintBottom_toTopOf="@+id/cameraBtn"
         app:layout_constraintStart_toEndOf="@+id/radioButton_mor"
@@ -78,7 +79,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="16dp"
         android:minWidth="0dp"
-        android:minHeight="0dp"
+        android:minHeight="48dp"
         android:text="@string/radiobutton_di"
         app:layout_constraintBottom_toTopOf="@+id/cameraBtn"
         app:layout_constraintStart_toEndOf="@+id/radioButton_lun"
@@ -93,7 +94,7 @@
         android:layout_marginRight="59dp"
         android:layout_marginBottom="16dp"
         android:minWidth="0dp"
-        android:minHeight="0dp"
+        android:minHeight="48dp"
         android:text="@string/radiobutton_sna"
         app:layout_constraintBottom_toTopOf="@+id/cameraBtn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -113,13 +114,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioButton_mor"
         app:srcCompat="@drawable/icon_camera"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btn_measure"
         style="@style/Montserrat15Pt3"
         android:layout_width="162dp"
-        android:layout_height="31dp"
+        android:layout_height="48dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="270dp"
@@ -148,7 +149,7 @@
         android:id="@+id/et_food"
         style="@style/Montserrat15Pt"
         android:layout_width="164dp"
-        android:layout_height="31dp"
+        android:layout_height="48dp"
         android:background="@drawable/box_rectangle"
         android:hint="@string/search_food"
         android:importantForAutofill="no"
@@ -220,34 +221,35 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="70dp"
+        android:minHeight="48dp"
         android:switchMinWidth="78dp"
         android:thumb="@drawable/btn_switch_thumb"
         android:track="@drawable/btn_switch_track"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/save_diary"
-        style="@style/Montserrat15Pt3"
-        android:layout_width="256dp"
-        android:layout_height="31dp"
-        android:background="@drawable/btn_save_rectangle"
-        android:fontFamily="@font/montserrat"
-        android:gravity="center"
-        android:padding="0dp"
-        android:text="식단일기 저장하기"
-        android:textAllCaps="false"
-        app:backgroundTint="@color/dark"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="767dp" />
+<!--    <Button-->
+<!--        android:id="@+id/save_diary"-->
+<!--        style="@style/Montserrat15Pt3"-->
+<!--        android:layout_width="256dp"-->
+<!--        android:layout_height="31dp"-->
+<!--        android:background="@drawable/btn_save_rectangle"-->
+<!--        android:fontFamily="@font/montserrat"-->
+<!--        android:gravity="center"-->
+<!--        android:padding="0dp"-->
+<!--        android:text="식단일기 저장하기"-->
+<!--        android:textAllCaps="false"-->
+<!--        app:backgroundTint="@color/dark"-->
+<!--        tools:layout_editor_absoluteX="121dp"-->
+<!--        tools:layout_editor_absoluteY="767dp" />-->
 
-    <!--탄단지 수정-->
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/bar"
-        android:layout_width="345dp"
-        android:layout_height="79dp"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="681dp"
-        />
+<!--    &lt;!&ndash;탄단지 수정&ndash;&gt;-->
+<!--    <com.github.mikephil.charting.charts.BarChart-->
+<!--        android:id="@+id/bar"-->
+<!--        android:layout_width="345dp"-->
+<!--        android:layout_height="79dp"-->
+<!--        tools:layout_editor_absoluteX="32dp"-->
+<!--        tools:layout_editor_absoluteY="681dp"-->
+<!--        />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
