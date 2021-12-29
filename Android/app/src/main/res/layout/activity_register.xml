@@ -111,7 +111,7 @@
         android:layout_height="60.00030517578125dp"
         android:background="@drawable/btn_login_rectangle"
         android:letterSpacing="0"
-        android:text="@string/btn_login"
+        android:text="@string/create_account"
         android:textAllCaps="false"
         app:backgroundTint="@color/dark"
         android:layout_marginTop="38.9dp"

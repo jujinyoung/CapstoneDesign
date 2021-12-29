@@ -44,15 +44,16 @@
         <entry key="..\:/Users/Public/Documents/CapstoneDesign/Android/app/src/main/res/layout/item_recycler2.xml" value="0.2" />
         <entry key="app/src/main/res/drawable/box_login.xml" value="0.20592105263157895" />
         <entry key="app/src/main/res/drawable/box_rectangle.xml" value="0.20592105263157895" />
+        <entry key="app/src/main/res/drawable/sign_rectangle.xml" value="0.20592105263157895" />
         <entry key="app/src/main/res/layout/activity_board.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_board_acitivity.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.21315970890154706" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.19572368421052633" />
-        <entry key="app/src/main/res/layout/activity_main_camera.xml" value="0.15361842105263157" />
+        <entry key="app/src/main/res/layout/activity_main_camera.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main_camera2.xml" value="0.15361842105263157" />
-        <entry key="app/src/main/res/layout/activity_main_gallery.xml" value="0.3128930456429531" />
+        <entry key="app/src/main/res/layout/activity_main_gallery.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main_gallery2.xml" value="0.15361842105263157" />
         <entry key="app/src/main/res/layout/activity_main_loadc.xml" value="0.15361842105263157" />
         <entry key="app/src/main/res/layout/activity_main_search.xml" value="0.165" />

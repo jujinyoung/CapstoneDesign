@@ -65,4 +65,7 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
+    // main 시크바 관련
+    implementation 'com.github.channguyen:rsv:1.0.1'
+
 }
