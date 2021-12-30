@@ -22,7 +22,7 @@
             android:name=".SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_serarch"
+            android:name=".MainActivity_search"
             android:exported="false" />
         <activity
             android:name=".MainActivity_gallery"
