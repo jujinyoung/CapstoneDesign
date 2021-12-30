@@ -1,9 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SettingActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="58dp"
+        android:background="@color/clear"
+        android:drawableTop="@drawable/icon_back"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/setting"
+        android:textColor="@color/dark"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="-40dp"
+        android:layout_marginLeft="185dp"/>
+
+    <Button
+        android:id="@+id/setting_goal"
+        style="@style/Montserrat15Pt3"
+        android:layout_width="356dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="55dp"
+        android:background="@drawable/btn_save_rectangle"
+        android:fontFamily="@font/montserrat"
+        android:padding="0dp"
+        android:text="@string/setting_goal"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        app:backgroundTint="@color/dark" />
+
+    <Button
+        android:id="@+id/setting_info"
+        style="@style/Montserrat15Pt3"
+        android:layout_width="356dp"
+        android:layout_height="42dp"
+        android:background="@drawable/btn_save_rectangle"
+        android:fontFamily="@font/montserrat"
+        android:padding="0dp"
+        android:text="@string/setting_info"
+        android:textAllCaps="false"
+        android:layout_marginTop="29dp"
+        android:layout_gravity="center"
+        app:backgroundTint="@color/dark" />
+
+    <Button
+        android:id="@+id/setting_data"
+        style="@style/Montserrat15Pt3"
+        android:layout_width="356dp"
+        android:layout_height="42dp"
+        android:background="@drawable/btn_save_rectangle"
+        android:fontFamily="@font/montserrat"
+        android:padding="0dp"
+        android:text="@string/setting_data"
+        android:textAllCaps="false"
+        android:layout_marginTop="29dp"
+        android:layout_gravity="center"
+        app:backgroundTint="@color/dark" />
+
+
+
+</LinearLayout>

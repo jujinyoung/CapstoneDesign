@@ -1,158 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minWidth="134dp"
-    android:minHeight="19dp"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
-        android:lineSpacingExtra="-10sp"
-        android:textColor="@color/dark"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="88dp"
-        tools:text="다이어트 플랜A"
-        tools:ignore="MissingConstraints"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
-        android:lineSpacingExtra="-10sp"
-        android:textColor="@color/dark"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="123dp"
-        tools:text="Sign In"
-        tools:ignore="MissingConstraints"/>
-
-    <EditText
-        android:id="@+id/et_id"
-        style="@style/Montserrat15Pt2"
-        android:layout_width="315dp"
-        android:layout_height="60dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:background="@drawable/sign_et"
-        android:hint="@string/email"
-        android:textColorHint="@color/dark"
-        android:paddingLeft="60dp"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="189dp"
-        tools:ignore="MissingConstraints"
-        android:paddingStart="60dp" />
-
-
-    <EditText
-        android:id="@+id/et_pass"
-        style="@style/Montserrat15Pt2"
-        android:layout_width="315dp"
-        android:layout_height="60dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="@string/et_pass"
-        android:textColorHint="@color/dark"
-        android:background="@drawable/sign_et"
-        android:paddingLeft="60dp"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="266dp"
-        tools:ignore="MissingConstraints"
-        android:paddingStart="60dp" />
-
-
-    <Button
-        android:id="@+id/btn_forgot_pw"
-        style="@style/Montserrat15Pt2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="229dp"
-        android:layout_marginRight="229dp"
-        android:background="@color/clear"
-        android:letterSpacing="0"
-        android:minWidth="0dp"
-        android:minHeight="48dp"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp"
-        android:paddingRight="0dp"
-        android:paddingBottom="0dp"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/btn_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_pass"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        tools:text="Forgot Password?" />
-
-    <Button
-        android:id="@+id/btn_register"
-        style="@style/Montserrat15Pt2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
-        android:background="@color/clear"
-        android:letterSpacing="0"
-        android:minWidth="0dp"
-        android:minHeight="48dp"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp"
-        android:paddingRight="0dp"
-        android:paddingBottom="0dp"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_pass"
-        tools:ignore="MissingConstraints"
-        tools:text="Create ACCOUNT" />
-
-    <Button
-        android:id="@+id/btn_login"
-        style="@style/Montserrat20Pt"
-        android:layout_width="315dp"
-        android:layout_height="60.00030517578125dp"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/btn_login_rectangle"
-        android:text="@string/btn_login"
-        android:letterSpacing="0"
-        android:textAllCaps="false"
-        app:backgroundTint="@color/dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_pass"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/icon_mail"
-        android:layout_width="20dp"
-        android:layout_height="15dp"
-        app:srcCompat="@drawable/icon_mail"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="212dp"
-        tools:ignore="MissingConstraints"/>
-
-    <ImageView
-        android:id="@+id/icon_password"
-        android:layout_width="20dp"
-        android:layout_height="22.1810302734375dp"
-        app:srcCompat="@drawable/icon_padlock"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="284.9dp"
-        tools:ignore="MissingConstraints"/>
 
     <Button
         android:id="@+id/btn_back"
@@ -162,11 +15,118 @@
         android:layout_marginLeft="28dp"
         android:layout_marginTop="58dp"
         android:background="@color/clear"
-        android:drawableTop="@drawable/icon_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:drawableTop="@drawable/icon_back" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="128dp"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/montserrat"
+        android:lineSpacingExtra="-10sp"
+        android:textColor="@color/dark"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:text="다이어트 플랜A" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="161dp"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/montserrat"
+        android:lineSpacingExtra="-10sp"
+        android:textColor="@color/dark"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:text="Sign In" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/et_id"
+        style="@style/Montserrat15Pt2"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/sign_et"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="60dp"
+        android:textColorHint="@color/dark" />
+
+    <ImageView
+        android:id="@+id/icon_mail"
+        android:layout_width="20dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="74dp"
+        android:layout_marginTop="-37dp"
+        app:srcCompat="@drawable/icon_mail" />
+
+    <EditText
+        android:id="@+id/et_pass"
+        style="@style/Montserrat15Pt2"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="39dp"
+        android:background="@drawable/sign_et"
+        android:hint="@string/et_pass"
+        android:inputType="textPassword"
+        android:paddingLeft="60dp"
+        android:textColorHint="@color/dark" />
+
+    <ImageView
+        android:id="@+id/icon_password"
+        android:layout_width="20dp"
+        android:layout_height="22.1810302734375dp"
+        android:layout_marginLeft="74dp"
+        android:layout_marginTop="-41dp"
+        app:srcCompat="@drawable/icon_padlock" />
+
+    <Button
+        android:id="@+id/btn_forgot_pw"
+        style="@style/Montserrat15Pt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/clear"
+        android:letterSpacing="0"
+        android:padding="0dp"
+        android:textAllCaps="false"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="49dp"
+        tools:text="Forgot Password?" />
+
+    <Button
+        android:id="@+id/btn_register"
+        style="@style/Montserrat15Pt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/clear"
+        android:letterSpacing="0"
+        android:padding='0dp'
+        android:textAllCaps="false"
+        tools:text="Create ACCOUNT"
+        android:layout_marginTop="-47dp"
+        android:layout_marginLeft="234dp"/>
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/Montserrat20Pt"
+        android:layout_width="315dp"
+        android:layout_height="60.00030517578125dp"
+        android:background="@drawable/btn_login_rectangle"
+        android:letterSpacing="0"
+        android:text="@string/btn_login"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/dark"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="49dp"/>
+
+    <View
+        android:layout_width="355dp"
+        android:layout_height="305dp"
+        android:layout_marginLeft="28.5dp"
+        android:layout_marginTop="-285.5dp"
+        android:background="@drawable/box_login"></View>
+
+</LinearLayout>

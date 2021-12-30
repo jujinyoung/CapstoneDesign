@@ -1,72 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity_search">
-    <!--액티비티 필요 tools:context=".MainActivity_search">  -->
 
     <EditText
         android:id="@+id/et_food"
         style="@style/Montserrat20Pt"
         android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="56dp"
+        android:layout_height="31dp"
         android:background="@drawable/box_rectangle"
         android:hint="@string/search_food"
         android:importantForAutofill="no"
         android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginTop="57dp"
+        android:layout_marginLeft="17dp"/>
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
         android:background="@color/clear"
         android:fontFamily="@font/montserrat_bold"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp"
-        android:paddingRight="0dp"
-        android:paddingBottom="0dp"
+        android:padding="0dp"
         android:text="@string/cancel"
         android:textColor="@color/dark"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/et_food"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginTop="57dp" />
 
     <Button
         android:id="@+id/save_food"
         style="@style/Montserrat15Pt3"
-        android:layout_width="378dp"
+        android:layout_width="377dp"
         android:layout_height="31dp"
         android:background="@drawable/btn_save_rectangle"
         android:padding="0dp"
+        android:layout_marginLeft="-378dp"
+        android:layout_marginTop="761dp"
         android:text="@string/save_food"
         android:textAllCaps="false"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="761dp" />
+        app:backgroundTint="@color/dark"/>
 
-    <Button
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/btn_add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        tools:ignore="SpeakableTextPresentCheck" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

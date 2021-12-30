@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,23 +15,18 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/todo"
         app:srcCompat="@drawable/icon_loadc"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="375dp" />
+        android:layout_gravity="center"
+        android:layout_marginLeft="147dp"/>
 
     <ProgressBar
         android:id="@+id/progressBar_loadc"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="121dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="146dp"
-        android:layout_marginLeft="146dp"
-        android:layout_marginBottom="356dp"
         android:max="100"
         android:progressDrawable="@drawable/progessbar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="-120dp" />
 
     <TextView
         android:id="@+id/loading_percent"
@@ -38,9 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/percent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="253dp"
-        tools:layout_editor_absoluteY="511dp" />
+        android:layout_marginLeft="-100dp"
+        android:layout_marginTop="515dp"/>
 
     <TextView
         android:id="@+id/loading"
@@ -48,8 +43,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/loading"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="511dp"
-        tools:ignore="MissingConstraints"/>
+        android:layout_marginTop="515dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

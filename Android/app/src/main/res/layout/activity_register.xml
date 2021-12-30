@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".RegisterActivity">
 
     <Button
@@ -14,121 +15,114 @@
         android:layout_marginLeft="28dp"
         android:layout_marginTop="58dp"
         android:background="@color/clear"
-        android:drawableTop="@drawable/icon_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:drawableTop="@drawable/icon_back" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="128dp"
+        android:layout_marginTop="6dp"
         android:fontFamily="@font/montserrat"
         android:lineSpacingExtra="-10sp"
         android:textColor="@color/dark"
         android:textSize="25sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="87dp"
-        tools:text="WELCOME !"
-        tools:ignore="MissingConstraints" />
+        tools:text="WELCOME !" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="161dp"
+        android:layout_marginTop="3dp"
         android:fontFamily="@font/montserrat"
-        android:textStyle="bold"
-        android:textSize="25sp"
-        android:textColor="@color/dark"
         android:lineSpacingExtra="-10sp"
-        android:gravity="center_horizontal"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="123dp"
-        tools:text="JOIN US"
-        tools:ignore="MissingConstraints"/>
+        android:textColor="@color/dark"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:text="JOIN US" />
 
     <EditText
         android:id="@+id/et_id"
         style="@style/Montserrat15Pt2"
         android:layout_width="315dp"
         android:layout_height="60dp"
-        android:inputType="textEmailAddress"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/sign_et"
         android:hint="@string/email"
-        android:textColorHint="@color/dark"
+        android:inputType="textEmailAddress"
         android:paddingLeft="60dp"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="189dp"
-        tools:ignore="MissingConstraints" />
+        android:textColorHint="@color/dark" />
 
     <ImageView
         android:id="@+id/icon_mail"
         android:layout_width="20dp"
         android:layout_height="15dp"
-        app:srcCompat="@drawable/icon_mail"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="212dp"
-        tools:ignore="MissingConstraints"/>
+        android:layout_marginLeft="74dp"
+        android:layout_marginTop="-37dp"
+        app:srcCompat="@drawable/icon_mail" />
 
     <EditText
         android:id="@+id/et_pass"
         style="@style/Montserrat15Pt2"
         android:layout_width="315dp"
         android:layout_height="60dp"
-        android:inputType="textPassword"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="39dp"
         android:background="@drawable/sign_et"
         android:hint="@string/et_pass"
-        android:textColorHint="@color/dark"
+        android:inputType="textPassword"
         android:paddingLeft="60dp"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="266dp"
-        tools:ignore="MissingConstraints"/>
+        android:textColorHint="@color/dark" />
 
     <ImageView
         android:id="@+id/icon_password"
         android:layout_width="20dp"
         android:layout_height="22.1810302734375dp"
-        app:srcCompat="@drawable/icon_padlock"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="284.9dp"
-        tools:ignore="MissingConstraints"/>
+        android:layout_marginLeft="74dp"
+        android:layout_marginTop="-41dp"
+        app:srcCompat="@drawable/icon_padlock" />
 
     <EditText
         android:id="@+id/et_pass_confirm"
         style="@style/Montserrat15Pt2"
         android:layout_width="315dp"
         android:layout_height="60dp"
-        android:inputType="textPassword"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="37dp"
         android:background="@drawable/sign_et"
         android:hint="@string/et_pass_confirm"
-        android:textColorHint="@color/dark"
+        android:inputType="textPassword"
         android:paddingLeft="60dp"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="346dp"
-        tools:ignore="MissingConstraints"/>
+        android:textColorHint="@color/dark" />
 
     <ImageView
         android:id="@+id/icon_password_confirm"
         android:layout_width="20dp"
         android:layout_height="22.1810302734375dp"
         app:srcCompat="@drawable/icon_padlock"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="364.9dp"
-        tools:ignore="MissingConstraints"/>
+        android:layout_marginLeft="74dp"
+        android:layout_marginTop="-41dp"/>
 
     <Button
         android:id="@+id/btn_login"
         style="@style/Montserrat20Pt"
         android:layout_width="315dp"
         android:layout_height="60.00030517578125dp"
-        android:layout_marginTop="70dp"
         android:background="@drawable/btn_login_rectangle"
-        android:text="@string/btn_login"
         android:letterSpacing="0"
+        android:text="@string/create_account"
         android:textAllCaps="false"
         app:backgroundTint="@color/dark"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="426dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginTop="38.9dp"
+        android:layout_marginLeft="49dp"/>
+
+    <View
+        android:layout_width="355dp"
+        android:layout_height="334dp"
+        android:background="@drawable/box_login"
+        android:layout_marginLeft="28.5dp"
+        android:layout_marginTop="-315.5dp"></View>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
