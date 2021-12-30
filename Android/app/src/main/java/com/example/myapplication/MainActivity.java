@@ -1,10 +1,15 @@
 package com.example.myapplication;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,10 +19,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.myapplication.databinding.ActivityMainBinding;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
@@ -67,9 +74,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         }
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT,fileUri);
-        if(intent.resolveActivity((getPackageManager())) != null){
-            startActivityForResult(intent, 101);
-        }
+        startActivityResult.launch(intent);
     }
 
     private File createFile() {
@@ -80,25 +85,44 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         return outFile;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode){
-            case 101:
-                if(resultCode==RESULT_OK) {
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-                    if (bitmap == null) {
-                        Toast.makeText(this, "할당 안됨", Toast.LENGTH_LONG).show();
-                    } else {
-                        rotatedBitmap = rotateImage(bitmap);
-                        cameraBtn.setImageBitmap(rotatedBitmap);
+    ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode() == Activity.RESULT_OK){
+                        BitmapFactory.Options options = new BitmapFactory.Options();
+                        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+                        if (bitmap == null) {
+                            Toast.makeText(getApplicationContext(), "할당 안됨", Toast.LENGTH_LONG).show();
+                        } else {
+                            rotatedBitmap = rotateImage(bitmap);
+                            cameraBtn.setImageBitmap(rotatedBitmap);
+                        }
                     }
                 }
-                break;
-        }
-    }
+            }
+    );
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        switch (requestCode){
+//            case 101:
+//                if(resultCode==RESULT_OK) {
+//                    BitmapFactory.Options options = new BitmapFactory.Options();
+//                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+//                    if (bitmap == null) {
+//                        Toast.makeText(this, "할당 안됨", Toast.LENGTH_LONG).show();
+//                    } else {
+//                        rotatedBitmap = rotateImage(bitmap);
+//                        cameraBtn.setImageBitmap(rotatedBitmap);
+//                    }
+//                }
+//                break;
+//        }
+//    }
 
     //이미지 회전
     public static Bitmap rotateImage(Bitmap source){
