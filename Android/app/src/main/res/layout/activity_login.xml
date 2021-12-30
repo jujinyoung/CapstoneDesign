@@ -83,31 +83,32 @@
         android:layout_marginTop="-41dp"
         app:srcCompat="@drawable/icon_padlock" />
 
-    <Button
-        android:id="@+id/btn_forgot_pw"
-        style="@style/Montserrat15Pt2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/clear"
-        android:letterSpacing="0"
-        android:padding="0dp"
-        android:textAllCaps="false"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="49dp"
-        tools:text="Forgot Password?" />
+        <Button
+            android:id="@+id/btn_forgot_pw"
+            style="@style/Montserrat15Pt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/clear"
+            android:letterSpacing="0"
+            android:padding="0dp"
+            android:textAllCaps="false"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="49dp"
+            tools:text="Forgot Password?" />
 
-    <Button
-        android:id="@+id/btn_register"
-        style="@style/Montserrat15Pt2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/clear"
-        android:letterSpacing="0"
-        android:padding='0dp'
-        android:textAllCaps="false"
-        tools:text="Create ACCOUNT"
-        android:layout_marginTop="-47dp"
-        android:layout_marginLeft="234dp"/>
+        <Button
+            android:id="@+id/btn_register"
+            style="@style/Montserrat15Pt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/clear"
+            android:letterSpacing="0"
+            android:padding='0dp'
+            android:textAllCaps="false"
+            tools:text="Create ACCOUNT"
+            android:layout_marginTop="-47dp"
+            android:layout_marginLeft="234dp"/>
+
 
     <Button
         android:id="@+id/btn_login"
