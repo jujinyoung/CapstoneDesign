@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <Button
@@ -78,7 +79,7 @@
         android:background="@drawable/box_rectangle"
         app:srcCompat="@drawable/icon_camera"
         android:layout_marginTop="18dp"
-        android:layout_marginLeft="39dp"/>
+        android:layout_marginLeft="39dp" />
 
     <Button
         android:id="@+id/btn_measure"

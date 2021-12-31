@@ -213,12 +213,12 @@
 
         </LinearLayout>
         <!--달력 리사이클러뷰 이상있음..-->
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/calendar"
-            android:layout_width="378dp"
-            android:layout_height="415dp"
-            android:layout_marginStart="17dp"
-            android:layout_marginLeft="17dp" />
+<!--        <android.support.v7.widget.RecyclerView-->
+<!--            android:id="@+id/calendar"-->
+<!--            android:layout_width="378dp"-->
+<!--            android:layout_height="415dp"-->
+<!--            android:layout_marginStart="17dp"-->
+<!--            android:layout_marginLeft="17dp" />-->
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
