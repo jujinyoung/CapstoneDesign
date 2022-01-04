@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activity;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.myapplication.R;
 import com.example.myapplication.databinding.ActivityMainBinding;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
@@ -49,11 +50,13 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //카메라 기능
                 TakePicture();
             }
         });
     }
 
+    //region 카메라
     private void TakePicture() {
         try {
             if (file == null) {
@@ -166,7 +169,9 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
 
         return  Bitmap.createScaledBitmap(bitmap, (int) bmpWidth, (int) bmpHeight, true);
     }
+    //endregion
 
+    //region 권한 요청
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -184,5 +189,6 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     public void onGranted(int i, String[] permissions) {
         Toast.makeText(this,"permissions granted : " + permissions.length, Toast.LENGTH_LONG).show();
     }
+    //endregion
 }
 
