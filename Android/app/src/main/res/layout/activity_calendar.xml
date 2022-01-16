@@ -17,107 +17,12 @@
 <!--        tools:layout_editor_absoluteX="16dp"-->
 <!--        tools:layout_editor_absoluteY="91dp" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/summary"-->
-<!--        style="@style/Montserrat15Pt"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/summary"-->
-<!--        tools:ignore="MissingConstraints"-->
-<!--        tools:layout_editor_absoluteX="32dp"-->
-<!--        tools:layout_editor_absoluteY="551dp" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/left_cal"-->
-<!--        style="@style/Montserrat15Pt2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/left_cal"-->
-<!--        tools:ignore="MissingConstraints"-->
-<!--        tools:layout_editor_absoluteX="32dp"-->
-<!--        tools:layout_editor_absoluteY="634dp" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/consumed_cal"-->
-<!--        style="@style/Montserrat15Pt2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/consumed_cal"-->
-<!--        tools:ignore="MissingConstraints"-->
-<!--        tools:layout_editor_absoluteX="32dp"-->
-<!--        tools:layout_editor_absoluteY="602dp" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/recommend_cal"-->
-<!--        style="@style/Montserrat15Pt2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/recommend_cal"-->
-<!--        tools:ignore="MissingConstraints"-->
-<!--        tools:layout_editor_absoluteX="32dp"-->
-<!--        tools:layout_editor_absoluteY="576dp" />-->
-
-
-<!--    <Button-->
-<!--        android:id="@+id/btn_search"-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:background="@color/clear"-->
-<!--        android:drawableTop="@drawable/icon_search"-->
-<!--        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"-->
-<!--        tools:layout_editor_absoluteX="29dp"-->
-<!--        tools:layout_editor_absoluteY="767dp" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/btn_diary"-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:background="@color/clear"-->
-<!--        android:drawableTop="@drawable/icon_diary"-->
-<!--        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"-->
-<!--        tools:layout_editor_absoluteX="132dp"-->
-<!--        tools:layout_editor_absoluteY="767dp" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/btn_graph"-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:background="@color/clear"-->
-<!--        android:drawableTop="@drawable/icon_graph"-->
-<!--        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"-->
-<!--        tools:layout_editor_absoluteX="235dp"-->
-<!--        tools:layout_editor_absoluteY="767dp" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/btn_setting"-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:background="@color/clear"-->
-<!--        android:drawableTop="@drawable/icon_setting"-->
-<!--        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"-->
-<!--        tools:layout_editor_absoluteX="332dp"-->
-<!--        tools:layout_editor_absoluteY="767dp" />-->
-
-
-<!--    &lt;!&ndash;그래프 수정할 예정&ndash;&gt;-->
-<!--    <com.github.mikephil.charting.charts.BarChart-->
-<!--        android:id="@+id/bar"-->
-<!--        android:layout_width="345dp"-->
-<!--        android:layout_height="79dp"-->
-<!--        tools:layout_editor_absoluteX="32dp"-->
-<!--        tools:layout_editor_absoluteY="681dp"-->
-<!--        tools:ignore="MissingConstraints" />-->
-
-<!--    <com.github.mikephil.charting.charts.PieChart-->
-<!--        android:id="@+id/pie"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        tools:layout_editor_absoluteX="260dp"-->
-<!--        tools:layout_editor_absoluteY="551dp"-->
-<!--        tools:ignore="MissingConstraints" />-->
+    <!--그래프 수정할 예정-->
 
     <!--calendar-->
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -143,9 +48,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:padding="26dp"
-                android:textSize="18sp"
-                android:text="2022sus 11d"
-                android:textColor="@color/black"/>
+                android:text="2022년 1월"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
         </LinearLayout>
         <!--요일-->
@@ -218,9 +123,117 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/calendar"
             android:layout_width="378dp"
-            android:layout_height="415dp"
+            android:layout_height="331dp"
             android:layout_marginStart="17dp"
-            android:layout_marginLeft="17dp"/>
+            android:layout_marginLeft="17dp" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/summary"
+                    style="@style/Montserrat15Pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/summary"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/left_cal"
+                    style="@style/Montserrat15Pt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/left_cal"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/consumed_cal"
+                    style="@style/Montserrat15Pt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/consumed_cal"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/recommend_cal"
+                    style="@style/Montserrat15Pt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recommend_cal"
+                    tools:ignore="MissingConstraints" />
+            </LinearLayout>
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pie_chart"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="180dp"
+                tools:ignore="MissingConstraints">
+
+            </com.github.mikephil.charting.charts.PieChart>
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bar_chart"
+            android:layout_width="345dp"
+            android:layout_height="79dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            tools:ignore="MissingConstraints">
+
+        </com.github.mikephil.charting.charts.BarChart>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/clear"
+                android:drawableTop="@drawable/icon_search"
+                tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/btn_diary"
+                android:layout_width="50dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:background="@color/clear"
+                android:drawableTop="@drawable/icon_diary"
+                tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/btn_graph"
+                android:layout_width="50dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:background="@color/clear"
+                android:drawableTop="@drawable/icon_graph"
+                tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/btn_setting"
+                android:layout_width="50dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:background="@color/clear"
+                android:drawableTop="@drawable/icon_setting"
+                tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

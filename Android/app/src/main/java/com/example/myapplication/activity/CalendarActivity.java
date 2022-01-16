@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 import com.example.myapplication.calendar.CalendarAdapter;
 import com.example.myapplication.calendar.CalendarViewHolder;
+import com.github.mikephil.charting.charts.PieChart;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -22,10 +23,13 @@ import java.util.ArrayList;
 
 public class CalendarActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener {
 
-
+    //캘린더
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private LocalDate selectedDate;
+
+    //그래프
+    private PieChart pieChart;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -36,8 +40,13 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         //현재날짜
         selectedDate = LocalDate.now();
         setMonthView();
+
+        //그래프
+        pieChart = findViewById(R.id.pie_chart);
+        SetPieChart(pieChart);
     }
 
+    //region 캘린더
     //초기화
     private void initWidgets()
     {
@@ -121,5 +130,11 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 //            String message = "Selected Date " + dayText + " " + monthYearFromDate(selectedDate);
 //            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         }
+    }
+    //endregion
+
+
+    public void SetPieChart(PieChart pieChart) {
+
     }
 }
