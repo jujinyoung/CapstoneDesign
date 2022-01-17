@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +15,15 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 import com.example.myapplication.calendar.CalendarAdapter;
 import com.example.myapplication.calendar.CalendarViewHolder;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -28,8 +37,11 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     private RecyclerView calendarRecyclerView;
     private LocalDate selectedDate;
 
-    //그래프
+    //차트
     private PieChart pieChart;
+    private HorizontalBarChart barChart;
+    private int[] colorArray;
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -41,9 +53,13 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         selectedDate = LocalDate.now();
         setMonthView();
 
-        //그래프
+        //파이차트
         pieChart = findViewById(R.id.pie_chart);
         SetPieChart(pieChart);
+
+        //막대차트
+        barChart = findViewById(R.id.bar_chart);
+        SetBarChart(barChart);
     }
 
     //region 캘린더
@@ -133,8 +149,82 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     }
     //endregion
 
-
+    //region 파이차트
     public void SetPieChart(PieChart pieChart) {
+        //파이차트 밸류 색상
+        colorArray = new int[]{Color.parseColor("#263545")};
 
+        ArrayList<PieEntry> dataValue = new ArrayList<>();
+
+        dataValue.add(new PieEntry(1000,"탄수화물"));
+        dataValue.add(new PieEntry(400,"단백질"));
+        dataValue.add(new PieEntry(600,"지방"));
+
+        PieDataSet pieDataSet = new PieDataSet(dataValue,"하루 칼로리 파이차트");
+        pieDataSet.setColors(colorArray);
+        pieDataSet.setValueTextColor(Color.BLACK);
+        pieDataSet.setValueTextSize(16f);
+        //경계선
+        pieDataSet.setSliceSpace(3f);
+
+        PieData pieData = new PieData(pieDataSet);
+
+        pieChart.setData(pieData);
+        pieChart.getDescription().setEnabled(false);
+        //유저에 맞는 칼로리 넣기
+        pieChart.setCenterText("kcal");
+        //중앙 텍스트 크기
+        pieChart.setCenterTextSize(16f);
     }
+    //endregion
+
+    //region 막대차트
+    public void SetBarChart(HorizontalBarChart barChart){
+        //내부 데이터
+        ArrayList<BarEntry> dataValue = new ArrayList<>();
+        dataValue.add(new BarEntry(0,200));
+        dataValue.add(new BarEntry(1,100));
+        dataValue.add(new BarEntry(2,50));
+
+//        //라벨 데이터
+//        ArrayList<String> getXAxisValues = new ArrayList<>();
+//        getXAxisValues.add("탄수화물");
+//        getXAxisValues.add("단백질");
+//        getXAxisValues.add("지방");
+
+        BarDataSet barDataSet = new BarDataSet(dataValue,"");
+        barDataSet.setColors(colorArray);
+        barDataSet.setValueTextColor(Color.BLACK);
+        barDataSet.setValueTextSize(16f);
+
+        BarData barData = new BarData(barDataSet);
+
+        //데이터 값 넓이 설정
+        barData.setBarWidth(0.35f);
+
+        barChart.setFitBars(true);
+        barChart.setData(barData);
+        barChart.getDescription().setEnabled(false);
+        //격자 선 제거
+        barChart.getXAxis().setEnabled(false);
+        barChart.getAxisLeft().setEnabled(false);
+        barChart.getAxisRight().setEnabled(false);
+
+        //상호작용 제거
+        barChart.setScaleEnabled(false);
+        barChart.setPinchZoom(false);
+
+//        //세로축 이름
+//        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(getXAxisValues));
+
+        //데이터 내부에 표시
+        barChart.setDrawValueAboveBar(true);
+
+        // Hide graph legend
+        barChart.getLegend().setEnabled(false);
+
+        //적용
+        barChart.invalidate();
+    }
+    //endregion
 }
