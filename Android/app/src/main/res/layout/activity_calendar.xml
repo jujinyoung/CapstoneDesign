@@ -123,16 +123,17 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/calendar"
             android:layout_width="378dp"
-            android:layout_height="331dp"
+            android:layout_height="337dp"
             android:layout_marginStart="17dp"
-            android:layout_marginLeft="17dp" >
+            android:layout_marginLeft="17dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="17dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -174,32 +175,71 @@
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pie_chart"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="180dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="150dp"
                 tools:ignore="MissingConstraints">
 
             </com.github.mikephil.charting.charts.PieChart>
         </LinearLayout>
 
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/bar_chart"
-            android:layout_width="345dp"
-            android:layout_height="79dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            tools:ignore="MissingConstraints">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="17dp">
 
-        </com.github.mikephil.charting.charts.BarChart>
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/Montserrat15Pt2"
+                    android:gravity="left|center"
+                    android:text="@string/tansuwhamul" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Montserrat15Pt2"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:text="@string/danbakjil" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Montserrat15Pt2"
+                    android:gravity="left|center"
+                    android:layout_weight="1"
+
+                    android:text="@string/jibang" />
+            </LinearLayout>
+
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:id="@+id/bar_chart"
+                android:layout_width="291dp"
+                android:layout_height="79dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                tools:ignore="MissingConstraints">
+
+            </com.github.mikephil.charting.charts.HorizontalBarChart>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom">
 
             <Button
                 android:id="@+id/btn_search"
-                android:layout_width="50dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@color/clear"
@@ -208,16 +248,16 @@
 
             <Button
                 android:id="@+id/btn_diary"
-                android:layout_width="50dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
+                android:layout_weight="1"
                 android:background="@color/clear"
                 android:drawableTop="@drawable/icon_diary"
                 tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/btn_graph"
-                android:layout_width="50dp"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="50dp"
                 android:background="@color/clear"
@@ -226,7 +266,7 @@
 
             <Button
                 android:id="@+id/btn_setting"
-                android:layout_width="50dp"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="50dp"
                 android:background="@color/clear"

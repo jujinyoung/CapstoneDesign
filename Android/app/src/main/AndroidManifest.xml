@@ -29,7 +29,7 @@
             android:name=".MainActivity_search"
             android:exported="false" />
         <activity
-            android:name=".SettingActivity"
+            android:name=".activity.SettingActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity_gallery"

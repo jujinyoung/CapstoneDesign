@@ -175,10 +175,10 @@
         android:id="@+id/et_diary"
         style="@style/Montserrat15Pt2"
         android:layout_width="335dp"
-        android:layout_height="207dp"
-        android:background="@drawable/box_rectangle"
+        android:layout_height="69dp"
         android:layout_marginLeft="39dp"
         android:layout_marginTop="17dp"
+        android:background="@drawable/box_rectangle"
         android:inputType="text"
         android:text="@string/et_diary" />
 

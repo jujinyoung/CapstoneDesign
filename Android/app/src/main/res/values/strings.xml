@@ -46,5 +46,8 @@
     <string name="save_diary">식단일기 저장하기</string>
     <string name="create_account">create account</string>
     <string name="send_email">이메일 전송</string>
+    <string name="tansuwhamul">탄수화물</string>
+    <string name="danbakjil">단백질</string>
+    <string name="jibang">지방</string>
 
 </resources>
