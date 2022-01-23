@@ -49,5 +49,6 @@
     <string name="tansuwhamul">탄수화물</string>
     <string name="danbakjil">단백질</string>
     <string name="jibang">지방</string>
+    <string name="search">검색</string>
 
 </resources>

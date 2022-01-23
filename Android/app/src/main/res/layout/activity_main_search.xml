@@ -5,21 +5,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
     tools:context=".MainActivity_search">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
     <EditText
-        android:id="@+id/et_food"
+        android:id="@+id/editTextSearch"
         style="@style/Montserrat20Pt"
-        android:layout_width="326dp"
+        android:layout_width="280dp"
         android:layout_height="31dp"
         android:background="@drawable/box_rectangle"
         android:hint="@string/search_food"
+        android:layout_marginStart="0dp"
         android:importantForAutofill="no"
         android:inputType="text"
-        android:layout_marginTop="57dp"
-        android:layout_marginLeft="17dp"/>
+        android:layout_marginTop="49dp"
+        android:layout_marginLeft="17dp"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp" />
 
     <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:background="@color/clear"
+        android:fontFamily="@font/montserrat_bold"
+        android:padding="0dp"
+        android:text="@string/search"
+        android:textColor="@color/dark"
+        android:textSize="20sp"
+        android:layout_marginTop="49dp"
+        android:layout_marginLeft="5dp"/>
+
+    <Button
+        android:id="@+id/btn_cancel"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:background="@color/clear"
@@ -28,20 +52,38 @@
         android:text="@string/cancel"
         android:textColor="@color/dark"
         android:textSize="20sp"
-        android:layout_marginTop="57dp" />
+        android:layout_marginTop="49dp"
+        android:layout_marginLeft="5dp"/></LinearLayout>
+
+<FrameLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewResult"
+        android:layout_width="match_parent"
+        android:layout_height="630dp"
+        android:layout_marginTop="20dp"
+        style="@style/Montserrat20Pt2"
+        tools:text="신라면\n열랑:---"/>
 
     <Button
         android:id="@+id/save_food"
         style="@style/Montserrat15Pt3"
-        android:layout_width="377dp"
+        android:layout_width="match_parent"
         android:layout_height="31dp"
         android:background="@drawable/btn_save_rectangle"
-        android:padding="0dp"
-        android:layout_marginLeft="-378dp"
-        android:layout_marginTop="761dp"
+        android:layout_marginTop="700dp"
         android:text="@string/save_food"
         android:textAllCaps="false"
-        app:backgroundTint="@color/dark"/>
+        app:backgroundTint="@color/dark"
+        android:padding="0dp"/>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_gravity="center" /></FrameLayout>
 
-</LinearLayout>
+    </LinearLayout>
