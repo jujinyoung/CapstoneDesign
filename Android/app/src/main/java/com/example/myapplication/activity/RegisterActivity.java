@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText et_id, et_pass,userPass_confirm;
+    private EditText et_id, et_pass,userpass_confirm;
     private Button btn_register;
 
     @Override
@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         et_id = findViewById(R.id.et_id);
         et_pass = findViewById(R.id.et_pass);
-        userPass_confirm = findViewById(R.id.et_pass_confirm);
+        userpass_confirm = findViewById(R.id.et_pass_confirm);
 
         //회원가입 버튼클릭
         btn_register = findViewById(R.id.btn_login);
@@ -39,10 +39,10 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String userID = et_id.getText().toString();
                 String userPass = et_pass.getText().toString();
-                String userPass_confirm = et_pass.getText().toString();
+                String userPass_confirm = userpass_confirm.getText().toString();
 
-                if(userPass != userPass_confirm) {
-                    Toast.makeText(getApplicationContext(),"비밀번호를 확인해주세요",Toast.LENGTH_LONG).show();
+                if(!userPass.equals(userPass_confirm)) {
+                    Toast.makeText(getApplicationContext(),userPass + "\n" + userPass_confirm,Toast.LENGTH_LONG).show();
                     return;
                 }
 

@@ -10,7 +10,7 @@ import java.util.Map;
 public class LoginRequest extends StringRequest {
 
     //서버 URl 설정
-    final static private String URL = "라즈베리파이ip주소/로그인js파일";
+    final static private String URL = "http://121.127.86.101:80/Login.php";
     private Map<String,String> map;
 
     public LoginRequest(String userID, String userPassword, Response.Listener<String> listener){
@@ -18,7 +18,7 @@ public class LoginRequest extends StringRequest {
 
         map = new HashMap<>();
         map.put("userID",userID);
-        map.put("userPassword",userPassword);
+        map.put("userPass",userPassword);
     }
 
     //서버에서 요청하는 파라미터 전송

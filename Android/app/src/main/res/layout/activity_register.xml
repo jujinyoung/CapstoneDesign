@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.RegisterActivity">
+    tools:context=".activity.RegisterActivity"
+    android:background="@color/white">
 
     <Button
         android:id="@+id/btn_back"

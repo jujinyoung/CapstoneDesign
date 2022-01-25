@@ -22,8 +22,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
-        android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_config">
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name=".activity.PasswordActivity"

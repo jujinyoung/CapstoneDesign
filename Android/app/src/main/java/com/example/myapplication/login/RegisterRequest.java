@@ -10,7 +10,7 @@ import java.util.Map;
 public class RegisterRequest extends StringRequest {
 
     //서버 URl 설정
-    final static private String URL = "URL";
+    final static private String URL = "http://121.127.86.101:80/Register.php";
     private Map<String,String> map;
 
     public RegisterRequest(String userID, String userPassword, Response.Listener<String> listener){
@@ -18,7 +18,7 @@ public class RegisterRequest extends StringRequest {
 
         map = new HashMap<>();
         map.put("userID",userID);
-        map.put("userPassword",userPassword);
+        map.put("userPass",userPassword);
     }
 
     @Override
