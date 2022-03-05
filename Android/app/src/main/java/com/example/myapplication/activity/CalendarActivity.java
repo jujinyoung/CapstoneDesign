@@ -41,6 +41,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CalendarActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener {
 
@@ -139,11 +140,12 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         return  daysInMonthArray;
     }
 
-    //년도 월 파싱
+    //월 파싱
     @RequiresApi(api = Build.VERSION_CODES.O)
     private String monthYearFromDate(LocalDate date)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MMMM");
+        //언어 설정
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM").withLocale(Locale.forLanguageTag("En"));
         return date.format(formatter);
     }
     //달 전환 버튼
@@ -172,7 +174,6 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
             String message = monthYearFromDate(selectedDate) + " " + dayText;
             intent.putExtra("날짜",message);
             startActivity(intent);
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         }
     }
 

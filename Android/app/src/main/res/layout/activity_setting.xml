@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.SettingActivity">
+    tools:context=".activity.SettingActivity"
+    android:background="@color/white">
 
     <Button
         android:id="@+id/btn_back"

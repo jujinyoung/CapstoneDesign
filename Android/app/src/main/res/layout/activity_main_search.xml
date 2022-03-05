@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
-    tools:context=".MainActivity_search">
+    android:background="@color/white"
+    tools:context=".activity.MainActivity_search">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,11 +27,12 @@
         android:inputType="text"
         android:layout_marginTop="49dp"
         android:layout_marginLeft="17dp"
+        android:textColor="@color/black"
         android:paddingStart="10dp"
         android:paddingLeft="10dp" />
 
     <Button
-        android:id="@+id/buttonSearch"
+        android:id="@+id/button_Search"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:background="@color/clear"
@@ -57,12 +59,12 @@
 
 <FrameLayout
 android:layout_width="match_parent"
-android:layout_height="match_parent">
+android:layout_height="600dp">
 
     <TextView
         android:id="@+id/textViewResult"
         android:layout_width="match_parent"
-        android:layout_height="630dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         style="@style/Montserrat20Pt2"
         tools:text="신라면\n열랑:---"/>
@@ -73,7 +75,7 @@ android:layout_height="match_parent">
         android:layout_width="match_parent"
         android:layout_height="31dp"
         android:background="@drawable/btn_save_rectangle"
-        android:layout_marginTop="700dp"
+        android:layout_marginTop="550dp"
         android:text="@string/save_food"
         android:textAllCaps="false"
         app:backgroundTint="@color/dark"

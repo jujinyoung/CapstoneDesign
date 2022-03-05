@@ -34,7 +34,7 @@
         <!--헤더-->
         <LinearLayout
             android:layout_width="378dp"
-            android:layout_height="89dp"
+            android:layout_height="50dp"
             android:layout_marginStart="17dp"
             android:layout_marginLeft="17dp"
             android:animateLayoutChanges="true"
@@ -43,14 +43,27 @@
 
             <!-- 수정중 -->
             <TextView
+                android:id="@+id/goal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="30dp"
+                android:hint="GOAL(D-day,-3kg)"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <TextView
+                style="@style/Montserrat15Pt"
                 android:id="@+id/title"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="26dp"
-                android:text="2022년 1월"
+                android:layout_marginTop="30dp"
+                android:text="march"
+                android:gravity="center"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
         </LinearLayout>
         <!--요일-->

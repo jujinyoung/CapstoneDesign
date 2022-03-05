@@ -50,5 +50,9 @@
     <string name="danbakjil">단백질</string>
     <string name="jibang">지방</string>
     <string name="search">검색</string>
+    <string name="login_title">다이어트 플랜A</string>
+    <string name="login_title2">Sign In</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login_create_account">Create ACCOUNT</string>
 
 </resources>

@@ -30,9 +30,7 @@
         <activity
             android:name=".BoardActivity"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity_search"
-            android:exported="false" />
+        <activity android:name=".activity.MainActivity_search"/>
         <activity
             android:name=".activity.SettingActivity"
             android:exported="false" />
