@@ -1,10 +1,12 @@
 package com.example.myapplication.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -48,11 +50,11 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.InputStream;
 import java.util.Date;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AutoPermissionsListener{
     private static final String TAG = "MainActivity";
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
 
     Button save_diary;          //저장하기 버튼
 
+    //데이터
     EditText[] et_diary;
     ImageView[] cameraImage;
     TextView[] et_food;
@@ -84,13 +87,18 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     RangeSliderView[] moodSlider;
     int[] moodIndex;
 
+    //Dialog
+    public static final int Image_Photo = 101;
+    public static final int Image_Album = 102;
+    public static final int Image_Delete = 103;
+    int selectImageDialog;
+
     //DB
     public static DBHelper mDatabase = null;
     Diary item;
     public static final int MODE_INSERT = 1;
     public static final int MODE_MODIFY = 2;
-    int dbmode = MODE_INSERT;
-    public List<Diary> diaryList;
+    int dbMode = MODE_INSERT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,9 +128,9 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         save_diary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(dbmode == MODE_INSERT){
+                if(dbMode == MODE_INSERT){
                     saveNote();
-                } else if(dbmode == MODE_MODIFY){
+                } else if(dbMode == MODE_MODIFY){
                     modifyNote();
                 }
 
@@ -209,7 +217,9 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                 @Override
                 public void onClick(View v) {
                     image_num = num;
-                    TakePicture();
+                    ImageDialog();
+//                    TakeAlbum();
+//                    TakePicture();
                 }
             });
         }
@@ -380,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     public void applyItem(){
         if (item != null){
             Toast.makeText(getApplicationContext(),"item not null",Toast.LENGTH_SHORT).show();
-            dbmode = MODE_MODIFY;
+            dbMode = MODE_MODIFY;
 
             String[] picturePath = new String[4];
             picturePath[0] = item.getPicture0();
@@ -429,7 +439,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         }else{
 
             Toast.makeText(getApplicationContext(),"item null",Toast.LENGTH_SHORT).show();
-            dbmode = MODE_INSERT;
+            dbMode = MODE_INSERT;
 
             cameraImage[0].setImageResource(R.drawable.icon_camera);
             cameraImage[1].setImageResource(R.drawable.icon_camera);
@@ -453,8 +463,78 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         }
     }
 
+    //endregion
 
+    //region Dialog
+    public void ImageDialog(){
+        String[] menu = new String[]{"사진 촬영하기","앨범에서 선택하기","사진 삭제하기"};
 
+        AlertDialog.Builder imageBuilder = new AlertDialog.Builder(MainActivity.this);
+        imageBuilder.setTitle("사진 메뉴 선택").setSingleChoiceItems(menu, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                selectImageDialog = which;
+                Toast.makeText(getApplicationContext(),"사진 촬영선택",Toast.LENGTH_SHORT).show();
+            }
+        }).setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(selectImageDialog == 101){
+                    TakePicture();
+                }else if(selectImageDialog == 102){
+                    TakeAlbum();
+                }else if(selectImageDialog == 103){
+                    cameraImage[image_num].setImageResource(R.drawable.icon_camera);
+                }
+            }
+        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        imageBuilder.create();
+        imageBuilder.show();
+
+    }
+    //endregion
+
+    //region 앨범
+    public void TakeAlbum(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        AlbumResult.launch(intent);
+    }
+
+    ActivityResultLauncher<Intent> AlbumResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode() == Activity.RESULT_OK){
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        fileUri = intent.getData();
+
+                        try {
+                            InputStream in = getApplicationContext().getContentResolver().openInputStream(fileUri);
+
+                            Bitmap img = BitmapFactory.decodeStream(in);
+                            in.close();
+
+                            cameraImage[image_num].setImageBitmap(img);
+
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+    );
 
     //endregion
 
