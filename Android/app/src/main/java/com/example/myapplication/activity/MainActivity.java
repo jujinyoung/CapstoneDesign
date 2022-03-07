@@ -397,19 +397,19 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
             if (picturePath[1] == null || picturePath[1].equals("")){
                 cameraImage[1].setImageResource(R.drawable.icon_camera);
             } else{
-                setPicture1(item.getPicture0(),1);
+                setPicture1(item.getPicture1(),1);
             }
 
             if (picturePath[2] == null || picturePath[2].equals("")){
                 cameraImage[2].setImageResource(R.drawable.icon_camera);
             } else{
-                setPicture2(item.getPicture0(),1);
+                setPicture2(item.getPicture2(),1);
             }
 
             if (picturePath[3] == null || picturePath[3].equals("")){
                 cameraImage[3].setImageResource(R.drawable.icon_camera);
             } else{
-                setPicture3(item.getPicture0(),1);
+                setPicture3(item.getPicture3(),1);
             }
 
             setFood0(item.getFood0());
@@ -618,7 +618,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
 
         String sql = "insert into " + DBHelper.TABLE_NAME +
                 "(_id, PICTURE0, FOOD0, MOOD0, COMMENT0, PICTURE1, FOOD1, MOOD1, COMMENT1, PICTURE2, FOOD2, MOOD2, COMMENT2, PICTURE3, FOOD3, MOOD3, COMMENT3) values(" +
-                "'"+ today_date + "', " +
+                "'"+ today_date.replace(" ","")  + "', " +
                 "'"+ savePicture(0) + "', " +
                 "'"+ foodName[0] + "', " +
                 "'"+ moodIndex[0] + "', " +
@@ -660,20 +660,20 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                     "   ,FOOD0 = '" + foodName[0] + "'" +
                     "   ,MOOD0 = '" + moodIndex[0] + "'" +
                     "   ,COMMENT0 = '" + comment[0] + "'" +
-                    "   PICTURE1 = '" + savePicture(1) + "'" +
+                    "   ,PICTURE1 = '" + savePicture(1) + "'" +
                     "   ,FOOD1 = '" + foodName[1] + "'" +
                     "   ,MOOD1 = '" + moodIndex[1] + "'" +
                     "   ,COMMENT1 = '" + comment[1] + "'" +
-                    "   PICTURE2 = '" + savePicture(2) + "'" +
+                    "   ,PICTURE2 = '" + savePicture(2) + "'" +
                     "   ,FOOD2 = '" + foodName[2] + "'" +
                     "   ,MOOD2 = '" + moodIndex[2] + "'" +
                     "   ,COMMENT2 = '" + comment[2] + "'" +
-                    "   PICTURE3 = '" + savePicture(3) + "'" +
+                    "   ,PICTURE3 = '" + savePicture(3) + "'" +
                     "   ,FOOD3 = '" + foodName[3] + "'" +
                     "   ,MOOD3 = '" + moodIndex[3] + "'" +
                     "   ,COMMENT3 = '" + comment[3] + "'" +
                     " where " +
-                    "   _id = " + today_date;
+                    "   _id " + "like '" + today_date.replace(" ","") + "'";
 
             DBHelper database = DBHelper.getInstance(getApplicationContext());
             database.execSQL(sql);
@@ -688,7 +688,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
             // delete note
             String sql = "delete from " + DBHelper.TABLE_NAME +
                     " where " +
-                    "   _id = " + today_date;
+                    "   _id = " + today_date.replace(" ","");
 
             DBHelper database = DBHelper.getInstance(getApplicationContext());
             database.execSQL(sql);
@@ -700,7 +700,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     private Diary getTableData(){
         try {
             mDatabase.db = mDatabase.Readdb();
-            String sql = "SELECT * FROM " + DBHelper.TABLE_NAME + " WHERE _id='" + today_date +"'";
+            String sql = "SELECT * FROM " + DBHelper.TABLE_NAME + " WHERE _id='" + today_date.replace(" ","") +"'";
 
             Diary diary = null;
 
@@ -746,7 +746,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
 
     private String savePicture(int i) {
         if (resultPhotoBitmap[i] == null) {
-            Toast.makeText(getApplicationContext(), "No picture to be saved.", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "No picture to be saved.", Toast.LENGTH_SHORT).show();
             return "";
         }
 
