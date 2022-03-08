@@ -3,15 +3,20 @@ package com.example.myapplication.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ImageDecoder;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -38,10 +43,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
+import com.example.myapplication.UserData;
 import com.example.myapplication.database.DBHelper;
 import com.example.myapplication.database.Diary;
 import com.example.myapplication.login.ImageRequest;
+import com.example.myapplication.login.ImageRequest2;
+import com.example.myapplication.utils.BitmapUtils;
 import com.github.channguyen.rsv.RangeSliderView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
@@ -81,17 +90,15 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     File file;
     Uri fileUri;
     Bitmap[] resultPhotoBitmap = new Bitmap[4];
-    int image_num;
+    int image_num,food_num;
+
 
     //slider
     RangeSliderView[] moodSlider;
     int[] moodIndex;
 
     //Dialog
-    public static final int Image_Photo = 101;
-    public static final int Image_Album = 102;
-    public static final int Image_Delete = 103;
-    int selectImageDialog;
+    FloatingActionButton fabTakeButton[];
 
     //DB
     public static DBHelper mDatabase = null;
@@ -99,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     public static final int MODE_INSERT = 1;
     public static final int MODE_MODIFY = 2;
     int dbMode = MODE_INSERT;
+
+    //외부DB
+    String[] resultPhotoBitmap_request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,10 +143,15 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                 } else if(dbMode == MODE_MODIFY){
                     modifyNote();
                 }
+//                resultPhotoBitmap_request = new String[4];
+//                for(int i = 0; i<4; i++){
+//                    resultPhotoBitmap_request[i] = bitmapToByteArray(resultPhotoBitmap[i]);
+//                }
 
-//                String image_lun = mainfragment_di.getView().findViewById(R.id.cameraImage);
-//                changeProfileImageToDB(image);
-
+//                changeProfileImageToDB(resultPhotoBitmap_request[0],resultPhotoBitmap_request[1],resultPhotoBitmap_request[2],resultPhotoBitmap_request[3]);
+//                resultPhotoBitmap[0] = resize(resultPhotoBitmap[0]);
+//                resultPhotoBitmap_request[0] = bitmapToByteArray(resultPhotoBitmap[0]);
+//                changeProfileImageToDB(resultPhotoBitmap_request[0]);
             }
         });
 
@@ -195,8 +210,16 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
             et_food[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    food_num = num;
                     Intent intent = new Intent(getApplicationContext(), MainActivity_search.class);
-                    intent.putExtra("num_i",num);
+                    intent.putExtra("num_i",food_num);
+                    if(cameraImage[food_num] != null){
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//                        Bitmap bitmap = ((BitmapDrawable)cameraImage[food_num].getDrawable()).getBitmap();
+                        resultPhotoBitmap[food_num].compress(Bitmap.CompressFormat.JPEG,100,stream);
+                        byte[] byteArray = stream.toByteArray();
+                        intent.putExtra("image",byteArray);
+                    }
                     foodNameResult.launch(intent);
                 }
             });
@@ -210,14 +233,32 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
 
         cameraImage = new ImageView[4];
         for(int i = 0; i<cameraImage.length; i++){
-            int num = i;
+//            int num = i;
             String cameraImage_id = "cameraImage_"+i;
             cameraImage[i] = findViewById(getResources().getIdentifier(cameraImage_id,"id",getPackageName()));
-            cameraImage[i].setOnClickListener(new View.OnClickListener() {
+//            cameraImage[i].setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    image_num = num;
+//                    showImageDialog();
+////                    ImageDialog();
+////                    TakeAlbum();
+////                    TakePicture();
+//                }
+//            });
+        }
+
+        fabTakeButton =  new FloatingActionButton[4];
+        for(int i = 0; i<fabTakeButton.length; i++){
+            int num = i;
+            String fabTakeButton_id = "fabTakePicture"+i;
+            fabTakeButton[i] = findViewById(getResources().getIdentifier(fabTakeButton_id,"id",getPackageName()));
+            fabTakeButton[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     image_num = num;
-                    ImageDialog();
+                    showImageDialog();
+//                    ImageDialog();
 //                    TakeAlbum();
 //                    TakePicture();
                 }
@@ -263,8 +304,6 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         moodSlider[2].setInitialIndex(2);
         moodSlider[3].setOnSlideListener(listener3);
         moodSlider[3].setInitialIndex(2);
-
-
     }
 
     ActivityResultLauncher<Intent> foodNameResult = registerForActivityResult(
@@ -389,7 +428,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
 
     public void applyItem(){
         if (item != null){
-            Toast.makeText(getApplicationContext(),"item not null",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(),"item not null",Toast.LENGTH_SHORT).show();
             dbMode = MODE_MODIFY;
 
             String[] picturePath = new String[4];
@@ -438,7 +477,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
             setComment3(item.getComment3());
         }else{
 
-            Toast.makeText(getApplicationContext(),"item null",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(),"item null",Toast.LENGTH_SHORT).show();
             dbMode = MODE_INSERT;
 
             cameraImage[0].setImageResource(R.drawable.icon_camera);
@@ -466,75 +505,110 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     //endregion
 
     //region Dialog
-    public void ImageDialog(){
-        String[] menu = new String[]{"사진 촬영하기","앨범에서 선택하기","사진 삭제하기"};
+//    public void ImageDialog(){
+//        String[] menu = new String[]{"사진 촬영하기","앨범에서 선택하기","사진 삭제하기"};
+//
+//        AlertDialog.Builder imageBuilder = new AlertDialog.Builder(MainActivity.this);
+//        imageBuilder.setTitle("사진 메뉴 선택").setSingleChoiceItems(menu, 0, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                selectImageDialog = which;
+//                Toast.makeText(getApplicationContext(),"사진 촬영선택",Toast.LENGTH_SHORT).show();
+//            }
+//        }).setPositiveButton("확인", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                if(selectImageDialog == 101){
+//                    TakePicture();
+//                }else if(selectImageDialog == 102){
+//                    TakeAlbum();
+//                }else if(selectImageDialog == 103){
+//                    cameraImage[image_num].setImageResource(R.drawable.icon_camera);
+//                }
+//            }
+//        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//            }
+//        });
+//
+//        imageBuilder.create();
+//        imageBuilder.show();
+//
+//    }
 
-        AlertDialog.Builder imageBuilder = new AlertDialog.Builder(MainActivity.this);
-        imageBuilder.setTitle("사진 메뉴 선택").setSingleChoiceItems(menu, 0, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                selectImageDialog = which;
-                Toast.makeText(getApplicationContext(),"사진 촬영선택",Toast.LENGTH_SHORT).show();
-            }
-        }).setPositiveButton("확인", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if(selectImageDialog == 101){
-                    TakePicture();
-                }else if(selectImageDialog == 102){
-                    TakeAlbum();
-                }else if(selectImageDialog == 103){
-                    cameraImage[image_num].setImageResource(R.drawable.icon_camera);
-                }
-            }
-        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+    private void showImageDialog() {
 
-            }
-        });
-
-        imageBuilder.create();
-        imageBuilder.show();
-
+        // 업로드 방법 선택 대화상자 보이기
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent chooser = Intent.createChooser(galleryIntent, "사진 업로드");
+        chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{cameraIntent});
+        imageActivityLauncher.launch(chooser);
     }
-    //endregion
 
-    //region 앨범
-    public void TakeAlbum(){
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        AlbumResult.launch(intent);
-    }
-
-    ActivityResultLauncher<Intent> AlbumResult = registerForActivityResult(
+    ActivityResultLauncher<Intent> imageActivityLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        Intent intent = new Intent();
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        fileUri = intent.getData();
-
-                        try {
-                            InputStream in = getApplicationContext().getContentResolver().openInputStream(fileUri);
-
-                            Bitmap img = BitmapFactory.decodeStream(in);
-                            in.close();
-
-                            cameraImage[image_num].setImageBitmap(img);
-
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                        if (result.getData().getExtras() != null) {
+                            // 카메라 결과 획득
+                            resultPhotoBitmap[image_num] = (Bitmap) result.getData().getExtras().get("data");
+                        } else {
+                            // 갤러리(포토) 결과 획득
+                            Uri uri = result.getData().getData();
+                            if (uri != null) {
+                                resultPhotoBitmap[image_num] = BitmapUtils.getBitmapFromUri(MainActivity.this, uri);
+                            }
                         }
+                        cameraImage[image_num].setImageBitmap(resultPhotoBitmap[image_num]);
                     }
                 }
             }
     );
+
+
+
+    //endregion
+
+    //region 앨범
+//    public void TakeAlbum(){
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        AlbumResult.launch(intent);
+//    }
+//
+//    ActivityResultLauncher<Intent> AlbumResult = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            new ActivityResultCallback<ActivityResult>() {
+//                @Override
+//                public void onActivityResult(ActivityResult result) {
+//                    if(result.getResultCode() == Activity.RESULT_OK){
+//                        Intent intent = new Intent();
+//                        intent.setAction(Intent.ACTION_GET_CONTENT);
+//                        fileUri = intent.getData();
+//
+//                        try {
+//                            InputStream in = getApplicationContext().getContentResolver().openInputStream(fileUri);
+//
+//                            Bitmap img = BitmapFactory.decodeStream(in);
+//                            in.close();
+//
+//                            cameraImage[image_num].setImageBitmap(img);
+//
+//                        } catch (FileNotFoundException e) {
+//                            e.printStackTrace();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
+//            }
+//    );
 
     //endregion
 
@@ -609,7 +683,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                         }
 
                         if (bitmap == null) {
-                            Toast.makeText(getApplicationContext(), "할당 안됨", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getApplicationContext(), "할당 안됨", Toast.LENGTH_LONG).show();
                         } else {
                             resultPhotoBitmap[image_num] = resizeImage(rotateImage(bitmap,exifDegree));
                             cameraImage[image_num].setImageBitmap(resultPhotoBitmap[image_num]);
@@ -718,8 +792,9 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
 
         DBHelper database = DBHelper.getInstance(getApplicationContext());
         database.execSQL(sql);
+        finish();
 
-        Toast.makeText(getApplicationContext(),"DB저장 완료",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(),"DB저장 완료",Toast.LENGTH_SHORT).show();
     }
 
     private void modifyNote() {
@@ -757,8 +832,8 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
 
             DBHelper database = DBHelper.getInstance(getApplicationContext());
             database.execSQL(sql);
-
-            Toast.makeText(getApplicationContext(),"DB저장 변경",Toast.LENGTH_SHORT).show();
+            finish();
+//            Toast.makeText(getApplicationContext(),"DB저장 변경",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -773,7 +848,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
             DBHelper database = DBHelper.getInstance(getApplicationContext());
             database.execSQL(sql);
 
-            Toast.makeText(getApplicationContext(),"DB삭제",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(),"DB삭제",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -812,7 +887,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                     diary.setMood3(mCur.getString(15));
                     diary.setComment3(mCur.getString(16));
 
-                    Toast.makeText(getApplicationContext(),"레코드 #" + i + " : " + diary.get_id(),Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(),"레코드 #" + i + " : " + diary.get_id(),Toast.LENGTH_SHORT).show();
                 }
             }
             return diary;
@@ -892,7 +967,22 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         return sb.toString();
     }
 
-    private void changeProfileImageToDB(String image) {
+    private Bitmap resize(Bitmap bm){
+        Configuration config=getResources().getConfiguration();
+        if(config.smallestScreenWidthDp>=800)
+            bm = Bitmap.createScaledBitmap(bm, 400, 240, true);
+        else if(config.smallestScreenWidthDp>=600)
+            bm = Bitmap.createScaledBitmap(bm, 300, 180, true);
+        else if(config.smallestScreenWidthDp>=400)
+            bm = Bitmap.createScaledBitmap(bm, 200, 120, true);
+        else if(config.smallestScreenWidthDp>=360)
+            bm = Bitmap.createScaledBitmap(bm, 180, 108, true);
+        else
+            bm = Bitmap.createScaledBitmap(bm, 160, 96, true);
+        return bm;
+    }
+
+    private void changeProfileImageToDB(String picture0,String picture1,String picture2,String picture3) {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -902,9 +992,9 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                     //서버통신 성공여부
                     boolean success = jsonObject.getBoolean("success");
                     if (success) {
-                        Toast.makeText(MainActivity.this, "이미지 저장에 성공하였습니다", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "외부 DB success");
                     } else {
-                        Toast.makeText(MainActivity.this, "이미지 저장에 실패하였습니다", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "외부 DB failed");
                         return;
                     }
                 } catch (JSONException e) {
@@ -914,9 +1004,42 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         };
 
         //vollyer를 이용해서 서버에 요청
-        ImageRequest imageRequest = new ImageRequest(image,responseListener);
+        ImageRequest imageRequest = new ImageRequest(UserData.userID,picture0 ,et_food[0].toString(), String.valueOf(moodIndex[0]), et_diary[0].toString(),
+                picture1 ,et_food[1].toString(), String.valueOf(moodIndex[1]), et_diary[1].toString(),
+                picture2,et_food[2].toString(), String.valueOf(moodIndex[2]), et_diary[2].toString(),
+                picture3,et_food[3].toString(), String.valueOf(moodIndex[3]), et_diary[3].toString(),responseListener);
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         queue.add(imageRequest);
+        Log.e(TAG, "외부 DB 연결 성공");
+    }
+
+    private void changeProfileImageToDB(String picture0) {
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    //서버에 로그인 요청을 하면 결과값을 json타입으로 받음
+                    JSONObject jsonObject = new JSONObject(response);
+                    //서버통신 성공여부
+                    boolean success = jsonObject.getBoolean("success");
+                    if (success) {
+                        Log.e(TAG, "외부 DB success");
+                    } else {
+                        Log.e(TAG, "외부 DB failed");
+                        return;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        //vollyer를 이용해서 서버에 요청
+        ImageRequest2 imageRequest = new ImageRequest2(UserData.userID,picture0,responseListener);
+        Log.e(TAG, UserData.userID + picture0);
+        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+        queue.add(imageRequest);
+        Log.e(TAG, "외부 DB 연결 성공");
     }
     //endregion
 

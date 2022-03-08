@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
+import com.example.myapplication.UserData;
 import com.example.myapplication.login.LoginRequest;
 
 import org.json.JSONException;
@@ -20,7 +22,8 @@ import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText et_id, et_pass;    //아이디,패스워드 텍스트
-    private Button btn_login,btn_register,btn_forgot_pw;  //로그인,회원가입 버튼
+    private TextView btn_register,btn_forgot_pw,Title1,Title2;    //회원가입,비밀번호 찾기
+    private Button btn_login;  //로그인
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,12 @@ public class LoginActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
         btn_forgot_pw = findViewById(R.id.btn_forgot_pw);
+        Title1 = findViewById(R.id.Title1);
+        Title2 = findViewById(R.id.Title2);
+        btn_register.setText("Create ACCOUNT");
+        btn_forgot_pw.setText("Forgot Password?");
+        Title1.setText("다이어트 플랜A");
+        Title2.setText("Sign In");
 
         //region 로그인
 
@@ -40,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //id,password 값저장
-                String userID = et_id.getText().toString();
+                UserData.userID = et_id.getText().toString();
                 String userPass = et_pass.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -54,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (success) {
 //                                String userID = jsonObject.getString("userID");
 //                                String userPass = jsonObject.getString("userPassword");
-                                Toast.makeText(getApplicationContext(), "로그인에 성공하였습니다", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplicationContext(), "로그인에 성공하였습니다", Toast.LENGTH_SHORT).show();
                                 //메인화면으로 이동
                                 Intent intent = new Intent(LoginActivity.this, CalendarActivity.class);
                                 startActivity(intent);
@@ -72,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 };
                 //vollyer를 이용해서 서버에 요청
-                LoginRequest loginRequest = new LoginRequest(userID,userPass,responseListener);
+                LoginRequest loginRequest = new LoginRequest(UserData.userID,userPass,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                 queue.add(loginRequest);
             }

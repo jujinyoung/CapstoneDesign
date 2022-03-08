@@ -2,9 +2,12 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 
+import java.util.Locale;
+
 public class Food {
+
     private final String name;              // 식품이름, DESC_KOR
-    private final double servingSize;       // 총내용량, SERVING_SIZE
+    private final String servingSize;       // 총내용량, SERVING_SIZE
     private final double calories;          // 칼로리(kcal), NUTR_CONT1
     private final double carbohydrate;      // 탄수화물(g), NUTR_CONT2
     private final double protein;           // 단백질(g), NUTR_CONT3
@@ -15,7 +18,7 @@ public class Food {
     private final double sfa;               // 포화지방산(g), NUTR_CONT8
     private final double transFat;          // 트랜스지방(g), NUTR_CONT9
 
-    public Food(String name, double servingSize, double calories, double carbohydrate, double protein, double fat, double sugar, double sodium, double cholesterol, double sfa, double transFat) {
+    public Food(String name, String servingSize, double calories, double carbohydrate, double protein, double fat, double sugar, double sodium, double cholesterol, double sfa, double transFat) {
         this.name = name;
         this.servingSize = servingSize;
         this.calories = calories;
@@ -33,7 +36,7 @@ public class Food {
         return name;
     }
 
-    public double getServingSize() {
+    public String getServingSize() {
         return servingSize;
     }
 
@@ -78,8 +81,8 @@ public class Food {
     @Override
     public String toString() {
         return name +
-                "\n\n총내용량: " + servingSize + "g" +
-                "\n열량: " + calories + "kcal" +
+                "\n\n총내용량: " + servingSize +
+                "\n열량: " + String.format(Locale.getDefault(), "%.1f kcal", calories) +
                 "\n탄수화물: " + carbohydrate + "g" +
                 "\n단백질: " + protein + "g" +
                 "\n지방: " + fat + "g" +
@@ -90,4 +93,3 @@ public class Food {
                 "\n트랜스지방: " + transFat + "g";
     }
 }
-

@@ -48,7 +48,7 @@ public class FoodXmlParser {
     private static Food readRow(XmlPullParser parser) throws XmlPullParserException, IOException {
 
         String name = "";
-        double servingSize = 0;
+        String servingSize = "";
         double calories = 0;
         double carbohydrate = 0;
         double protein = 0;
@@ -70,7 +70,7 @@ public class FoodXmlParser {
                     name = readText(parser);
                     break;
                 case "SERVING_SIZE":
-                    servingSize = readDouble(parser);
+                    servingSize = readText(parser);
                     break;
                 case "NUTR_CONT1":
                     calories = readDouble(parser);
@@ -107,6 +107,7 @@ public class FoodXmlParser {
 
         return new Food(name, servingSize, calories, carbohydrate, protein, fat, sugar, sodium, cholesterol, sfa, transFat);
     }
+
 
     // 태그 안의 텍스트 읽기
     private static String readText(XmlPullParser parser) throws IOException, XmlPullParserException {

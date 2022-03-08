@@ -57,9 +57,24 @@
         android:layout_marginTop="49dp"
         android:layout_marginLeft="5dp"/></LinearLayout>
 
+    <ImageView
+        android:id="@+id/search_image"
+        android:layout_width="335dp"
+        android:layout_height="207dp"
+        app:srcCompat="@drawable/icon_camera"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/textViewIdentifiedFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="300dp"
+        android:text=""/>
+
 <FrameLayout
 android:layout_width="match_parent"
-android:layout_height="600dp">
+android:layout_height="400dp">
 
     <TextView
         android:id="@+id/textViewResult"
@@ -67,7 +82,7 @@ android:layout_height="600dp">
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         style="@style/Montserrat20Pt2"
-        tools:text="신라면\n열랑:---"/>
+        tools:text=""/>
 
     <Button
         android:id="@+id/save_food"
@@ -75,7 +90,7 @@ android:layout_height="600dp">
         android:layout_width="match_parent"
         android:layout_height="31dp"
         android:background="@drawable/btn_save_rectangle"
-        android:layout_marginTop="550dp"
+        android:layout_marginTop="350dp"
         android:text="@string/save_food"
         android:textAllCaps="false"
         app:backgroundTint="@color/dark"
@@ -86,6 +101,8 @@ android:layout_height="600dp">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        android:layout_gravity="center" /></FrameLayout>
+        android:layout_gravity="center" />
+
+</FrameLayout>
 
     </LinearLayout>

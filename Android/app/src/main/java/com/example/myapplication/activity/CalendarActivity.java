@@ -23,18 +23,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.UserData;
 import com.example.myapplication.calendar.CalendarAdapter;
 import com.example.myapplication.calendar.CalendarViewHolder;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -58,6 +62,9 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 
     //하단바 버튼
     private Button btn_setting;
+
+    //목표
+    TextView goal;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -86,6 +93,20 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
                 startActivity(intent);
             }
         });
+
+        //목표
+        goal = findViewById(R.id.goal);
+        goal.setHint("목표를 설정해주세요");
+        goal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //목표 설정 인텐트 이동
+            }
+        });
+        //내부 DB조회 후 목표 확인 후 있으면
+//        if(goal.toString() == ""){
+//            goal.setHint("GOAL(" + UserData.goal_day +"-day," + UserData.goal_weight+ "kg)");
+//        }
     }
 
     //region 캘린더
@@ -186,9 +207,9 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 
         ArrayList<PieEntry> dataValue = new ArrayList<>();
 
-        dataValue.add(new PieEntry(1000));
-        dataValue.add(new PieEntry(400));
-        dataValue.add(new PieEntry(600));
+        dataValue.add(new PieEntry(1500));
+        dataValue.add(new PieEntry(375));
+        dataValue.add(new PieEntry(625));
 
         PieDataSet pieDataSet = new PieDataSet(dataValue,null);
         //그래프 색상 결정
@@ -207,9 +228,9 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(0,0,0,0);
         //유저에 맞는 칼로리 넣기
-        pieChart.setCenterText("kcal");
+        pieChart.setCenterText("2500kcal");
         //중앙 텍스트 크기
-        pieChart.setCenterTextSize(8f);
+        pieChart.setCenterTextSize(12f);
         //하단 라벨 제거
         pieChart.getLegend().setEnabled(false);
         //상호작용 제거
@@ -222,11 +243,12 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     public void SetBarChart(HorizontalBarChart barChart){
         //내부 데이터
         ArrayList<BarEntry> dataValue = new ArrayList<>();
-        dataValue.add(new BarEntry(0,200));
-        dataValue.add(new BarEntry(1,100));
-        dataValue.add(new BarEntry(2,50));
+        dataValue.add(new BarEntry(0,375));
+        dataValue.add(new BarEntry(1,625));
+        dataValue.add(new BarEntry(2,1500));
 
-//        //라벨 데이터
+
+        //라벨 데이터
 //        ArrayList<String> getXAxisValues = new ArrayList<>();
 //        getXAxisValues.add("탄수화물");
 //        getXAxisValues.add("단백질");
@@ -235,14 +257,22 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         BarDataSet barDataSet = new BarDataSet(dataValue,"");
         barDataSet.setColors(colorArray);
         barDataSet.setValueTextColor(Color.BLACK);
-        barDataSet.setValueTextSize(8f);
+        barDataSet.setValueTextSize(12f);
+        barDataSet.setDrawValues(true);
 //        //경계선
 //        barDataSet.setBarBorderWidth(2f);
+        barDataSet.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return (String.valueOf((int) value)) + "kcal";
+            }
+        });
 
         BarData barData = new BarData(barDataSet);
 
 //        //데이터 값 넓이 설정
-//        barData.setBarWidth(1f);
+        barData.setBarWidth(0.7f);
+//        barData.setValueTextSize(12);
 
 //        barChart.setFitBars(true);
         barChart.setData(barData);
@@ -251,7 +281,12 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         barChart.getXAxis().setEnabled(false);
         barChart.getAxisLeft().setEnabled(false);
         barChart.getAxisRight().setEnabled(false);
-
+        //최대,최소,차트 개수
+        barChart.getAxisLeft().setAxisMaximum(1500);
+        barChart.getAxisLeft().setAxisMinimum(0);
+        barChart.setMaxVisibleValueCount(3);
+        //간격
+//        barChart.setExtraOffsets(0f,0f,0f,0f);
         //상호작용 제거
         barChart.setScaleEnabled(false);
         barChart.setPinchZoom(false);
@@ -261,7 +296,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 //        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(getXAxisValues));
 
         //데이터 내부에 표시
-        barChart.setDrawValueAboveBar(true);
+//        barChart.setDrawValueAboveBar(true);
 
         // Hide graph legend
         barChart.getLegend().setEnabled(false);

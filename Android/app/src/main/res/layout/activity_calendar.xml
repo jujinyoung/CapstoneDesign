@@ -136,7 +136,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/calendar"
             android:layout_width="378dp"
-            android:layout_height="337dp"
+            android:layout_height="350dp"
             android:layout_marginStart="17dp"
             android:layout_marginLeft="17dp">
 
@@ -149,48 +149,96 @@
             android:layout_marginLeft="17dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/summary"
-                    style="@style/Montserrat15Pt"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/summary"
-                    tools:ignore="MissingConstraints" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/left_cal"
-                    style="@style/Montserrat15Pt2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/left_cal"
-                    tools:ignore="MissingConstraints" />
+                    <TextView
+                        android:id="@+id/summary"
+                        style="@style/Montserrat15Pt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/summary"
+                        tools:ignore="MissingConstraints" />
 
-                <TextView
-                    android:id="@+id/consumed_cal"
-                    style="@style/Montserrat15Pt2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/consumed_cal"
-                    tools:ignore="MissingConstraints" />
+                    <TextView
+                        style="@style/Montserrat15Pt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/left_cal"
+                        tools:ignore="MissingConstraints" />
 
-                <TextView
-                    android:id="@+id/recommend_cal"
-                    style="@style/Montserrat15Pt2"
+                    <TextView
+                        style="@style/Montserrat15Pt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/consumed_cal"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        style="@style/Montserrat15Pt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/recommend_cal"
+                        tools:ignore="MissingConstraints" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/recommend_cal"
-                    tools:ignore="MissingConstraints" />
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Montserrat15Pt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/left_cal"
+                        style="@style/Montserrat15Pt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2500kcal"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/consumed_cal"
+                        style="@style/Montserrat15Pt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0kcal"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/recommend_cal"
+                        style="@style/Montserrat15Pt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2500kcal"
+                        tools:ignore="MissingConstraints" />
+                </LinearLayout>
             </LinearLayout>
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pie_chart"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginLeft="150dp"
+                android:layout_marginLeft="40dp"
                 tools:ignore="MissingConstraints">
 
             </com.github.mikephil.charting.charts.PieChart>
@@ -200,18 +248,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="17dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
                 android:layout_width="100dp"
-                android:layout_height="match_parent"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     style="@style/Montserrat15Pt2"
+                    android:layout_marginTop="5dp"
                     android:gravity="left|center"
                     android:text="@string/tansuwhamul" />
 
@@ -219,7 +270,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Montserrat15Pt2"
-                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
                     android:gravity="left|center"
                     android:text="@string/danbakjil" />
 
@@ -227,16 +278,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Montserrat15Pt2"
+                    android:layout_marginTop="5dp"
                     android:gravity="left|center"
-                    android:layout_weight="1"
 
                     android:text="@string/jibang" />
             </LinearLayout>
 
             <com.github.mikephil.charting.charts.HorizontalBarChart
                 android:id="@+id/bar_chart"
-                android:layout_width="291dp"
-                android:layout_height="79dp"
+                android:layout_width="250dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 tools:ignore="MissingConstraints">
@@ -248,7 +299,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="bottom">
+            android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true">
+
 
             <Button
                 android:id="@+id/btn_search"
