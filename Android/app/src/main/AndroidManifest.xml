@@ -29,7 +29,7 @@
             android:name=".activity.PasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".BoardActivity"
+            android:name=".activity.BoardActivity"
             android:exported="false" />
         <activity android:name=".activity.MainActivity_search"/>
         <activity
@@ -42,7 +42,7 @@
             android:name=".MainActivity_camera"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_loadc"
+            android:name=".activity.MainActivity_loadc"
             android:exported="false" />
         <activity android:name=".activity.LoginActivity">
 

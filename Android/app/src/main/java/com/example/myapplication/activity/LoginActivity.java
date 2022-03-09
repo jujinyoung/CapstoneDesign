@@ -15,14 +15,14 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
 import com.example.myapplication.UserData;
-import com.example.myapplication.login.LoginRequest;
+import com.example.myapplication.request.LoginRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText et_id, et_pass;    //아이디,패스워드 텍스트
-    private TextView btn_register,btn_forgot_pw,Title1,Title2;    //회원가입,비밀번호 찾기
+    private TextView btn_register,btn_forgot_pw;
     private Button btn_login;  //로그인
 
     @Override
@@ -35,12 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
         btn_forgot_pw = findViewById(R.id.btn_forgot_pw);
-        Title1 = findViewById(R.id.Title1);
-        Title2 = findViewById(R.id.Title2);
-        btn_register.setText("Create ACCOUNT");
-        btn_forgot_pw.setText("Forgot Password?");
-        Title1.setText("다이어트 플랜A");
-        Title2.setText("Sign In");
+
 
         //region 로그인
 

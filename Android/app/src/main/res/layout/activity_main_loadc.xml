@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity_loadc">
+    tools:context=".activity.MainActivity_loadc">
 
     <!--로드셀 프로그레스 페이지-->
 

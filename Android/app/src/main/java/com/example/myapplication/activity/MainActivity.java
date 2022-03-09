@@ -1,22 +1,15 @@
 package com.example.myapplication.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.ImageDecoder;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -28,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -46,8 +38,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.UserData;
 import com.example.myapplication.database.DBHelper;
 import com.example.myapplication.database.Diary;
-import com.example.myapplication.login.ImageRequest;
-import com.example.myapplication.login.ImageRequest2;
+import com.example.myapplication.request.ImageRequest;
+import com.example.myapplication.request.ImageRequest2;
 import com.example.myapplication.utils.BitmapUtils;
 import com.github.channguyen.rsv.RangeSliderView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -59,10 +51,8 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements AutoPermissionsListener{
@@ -213,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                     food_num = num;
                     Intent intent = new Intent(getApplicationContext(), MainActivity_search.class);
                     intent.putExtra("num_i",food_num);
-                    if(cameraImage[food_num] != null){
+                    if(resultPhotoBitmap[food_num] != null){
                         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 //                        Bitmap bitmap = ((BitmapDrawable)cameraImage[food_num].getDrawable()).getBitmap();
                         resultPhotoBitmap[food_num].compress(Bitmap.CompressFormat.JPEG,100,stream);

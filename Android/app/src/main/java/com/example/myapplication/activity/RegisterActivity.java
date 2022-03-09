@@ -13,7 +13,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
-import com.example.myapplication.login.RegisterRequest;
+import com.example.myapplication.request.RegisterRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;

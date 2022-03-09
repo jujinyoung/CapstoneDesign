@@ -66,6 +66,9 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     //목표
     TextView goal;
 
+    //게시판
+    Button btn_search;
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -107,6 +110,16 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 //        if(goal.toString() == ""){
 //            goal.setHint("GOAL(" + UserData.goal_day +"-day," + UserData.goal_weight+ "kg)");
 //        }
+
+        //게시판
+        btn_search = findViewById(R.id.btn_search);
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CalendarActivity.this,BoardActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //region 캘린더

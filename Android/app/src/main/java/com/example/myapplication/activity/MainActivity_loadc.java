@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.myapplication.R;
 
 
 public class MainActivity_loadc extends AppCompatActivity {

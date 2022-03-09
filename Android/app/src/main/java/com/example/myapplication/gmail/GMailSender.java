@@ -1,4 +1,4 @@
-package com.example.myapplication.login;
+package com.example.myapplication.gmail;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

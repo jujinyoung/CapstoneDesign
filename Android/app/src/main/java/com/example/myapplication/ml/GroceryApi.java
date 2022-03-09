@@ -1,12 +1,13 @@
-package com.example.myapplication;
+package com.example.myapplication.ml;
 
 import android.util.Log;
 
 import androidx.annotation.WorkerThread;
 
+import com.example.myapplication.food.Food;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;

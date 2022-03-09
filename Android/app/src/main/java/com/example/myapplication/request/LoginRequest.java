@@ -1,4 +1,4 @@
-package com.example.myapplication.login;
+package com.example.myapplication.request;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
@@ -7,17 +7,18 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ImageRequest2 extends StringRequest {
-    //서버 URl 설정
-    final static private String URL = "http://121.127.86.101:80/test00.php";
-    private Map<String, String> map;
+public class LoginRequest extends StringRequest {
 
-    public ImageRequest2(String _id, String picture0, Response.Listener<String> listener) {
+    //서버 URl 설정
+    final static private String URL = "http://121.127.86.101:80/Login.php";
+    private Map<String,String> map;
+
+    public LoginRequest(String userID, String userPassword, Response.Listener<String> listener){
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("_id", _id);
-        map.put("picture0", picture0);
+        map.put("userID",userID);
+        map.put("userPass",userPassword);
     }
 
     //서버에서 요청하는 파라미터 전송
