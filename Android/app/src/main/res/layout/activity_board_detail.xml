@@ -97,6 +97,15 @@
                 android:layout_height="200dp"
                 android:layout_gravity="center" />
 
+            <TextView
+                android:id="@+id/total_kcal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                style="@style/Montserrat20Pt3"
+                tools:text="total:---"/>
+
         </LinearLayout>
 
     </ScrollView>
