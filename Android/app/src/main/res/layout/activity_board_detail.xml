@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -19,7 +17,6 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="28dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="50dp"
             android:background="@color/clear"
             android:drawableTop="@drawable/icon_back" />
@@ -27,11 +24,11 @@
 
         <TextView
             android:layout_width="wrap_content"
-            style="@style/Montserrat20Pt2"
+            style="@style/Montserrat20Pt3"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="120dp"
-            android:text="게시판"/>
+            android:layout_marginStart="100dp"
+            android:text="@string/board"/>
     </LinearLayout>
 
     <ScrollView
@@ -41,14 +38,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/morning"
-                android:text="아침"
+                android:text="@string/morning"
                 style="@style/Montserrat20Pt3"
                 android:layout_gravity="center" />
 
@@ -61,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/lunch"
-                android:text="점심"
+                android:text="@string/lunch"
                 style="@style/Montserrat20Pt3"
                 android:layout_gravity="center" />
 
@@ -74,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/dinner"
-                android:text="저녁"
+                android:text="@string/dinner"
                 style="@style/Montserrat20Pt3"
                 android:layout_gravity="center" />
 
@@ -88,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/snack"
-                android:text="간식"
+                android:text="@string/snack"
                 style="@style/Montserrat20Pt3"
                 android:layout_gravity="center" />
 
@@ -101,10 +98,10 @@
                 android:id="@+id/total_kcal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 style="@style/Montserrat20Pt3"
-                android:text="total:---"/>
+                android:text="@string/total"
+                android:layout_gravity="center"/>
 
         </LinearLayout>
 

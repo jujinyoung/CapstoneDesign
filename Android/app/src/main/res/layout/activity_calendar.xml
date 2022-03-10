@@ -8,18 +8,6 @@
     android:background="@color/white"
     tools:context=".activity.CalendarActivity">
 
-<!--    <View-->
-<!--        android:id="@+id/view"-->
-<!--        android:layout_width="378dp"-->
-<!--        android:layout_height="441dp"-->
-<!--        android:background="@drawable/box_rectangle"-->
-<!--        tools:ignore="MissingConstraints"-->
-<!--        tools:layout_editor_absoluteX="16dp"-->
-<!--        tools:layout_editor_absoluteY="91dp" />-->
-
-
-    <!--그래프 수정할 예정-->
-
     <!--calendar-->
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -164,32 +152,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/summary"
-                        tools:ignore="MissingConstraints" />
+                        android:text="@string/summary" />
 
                     <TextView
                         style="@style/Montserrat15Pt2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/left_cal"
-                        tools:ignore="MissingConstraints" />
+                        android:text="@string/left_cal" />
 
                     <TextView
                         style="@style/Montserrat15Pt2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/consumed_cal"
-                        tools:ignore="MissingConstraints" />
+                        android:text="@string/consumed_cal" />
 
                     <TextView
                         style="@style/Montserrat15Pt2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/recommend_cal"
-                        tools:ignore="MissingConstraints" />
+                        android:text="@string/recommend_cal" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -202,8 +186,7 @@
                         style="@style/Montserrat15Pt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        tools:ignore="MissingConstraints" />
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/left_cal"
@@ -211,8 +194,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="2500kcal"
-                        tools:ignore="MissingConstraints" />
+                        android:text="2500kcal" />
 
                     <TextView
                         android:id="@+id/consumed_cal"
@@ -220,8 +202,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="0kcal"
-                        tools:ignore="MissingConstraints" />
+                        android:text="0kcal" />
 
                     <TextView
                         android:id="@+id/recommend_cal"
@@ -229,8 +210,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="2500kcal"
-                        tools:ignore="MissingConstraints" />
+                        android:text="2500kcal" />
                 </LinearLayout>
             </LinearLayout>
 

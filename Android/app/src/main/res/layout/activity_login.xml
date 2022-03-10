@@ -124,6 +124,6 @@
         android:layout_height="305dp"
         android:layout_marginLeft="28.5dp"
         android:layout_marginTop="-285.5dp"
-        android:background="@drawable/box_login"></View>
+        android:background="@drawable/box_login"/>
 
 </LinearLayout>
