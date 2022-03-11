@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Diet Plan A</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -55,5 +55,22 @@
     <string name="login_title2">Sign In</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="login_create_account">Create ACCOUNT</string>
+    <string name="setup_pw">비밀번호 재설정</string>
+    <string name="setup_goal">목표 설정하기</string>
+    <string name="cm">신장(cm)</string>
+    <string name="PVkg">현재 체중(kg)</string>
+    <string name="FVkg">목표 체중(kg)</string>
+    <string name="board">게시판</string>
+    <string name="morning">아침</string>
+    <string name="lunch">점심</string>
+    <string name="dinner">저녁</string>
+    <string name="snack">간식</string>
+    <string name="total">total:---</string>
+    <string name="score">식단 점수</string>
+    <string name="setup_message">목표를 설정하세요.\n목표 설정시 하루 권장 칼로리를 제공합니다.</string>
+    <string name="setting_reset">데이터 초기화</string>
+    <string name="setting_reset_pre"><![CDATA[아래의 <데이터 초기화> 버튼 클릭 시\n기록된 모든 데이터가 삭제됩니다.]]></string>
+    <string name="stats">통계</string>
+    <string name="blank" />
 
 </resources>

@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity_camera">
 
-    <!--카메라 커스텀 수정중-->
     <View
         android:id="@+id/view2"
         android:layout_width="wrap_content"

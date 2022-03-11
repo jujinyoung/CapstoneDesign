@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <!--수정중, 리사이클러뷰 사용-->
+
     <Button
         android:id="@+id/btn_back"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="58dp"
         android:background="@color/clear"
         android:drawableTop="@drawable/icon_back" />
@@ -23,14 +21,14 @@
         android:layout_height="match_parent"
         android:background="@drawable/shape_library"
         android:layout_marginTop="85dp"
-        android:layout_marginLeft="-68dp"/>
+        android:layout_marginStart="-68dp"/>
 
     <TextView
         android:id="@+id/gallery"
         style="@style/Montserrat15Pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="-230dp"
+        android:layout_marginStart="-230dp"
         android:layout_marginTop="30dp"
         android:text="@string/library" />
 
@@ -41,7 +39,7 @@
         android:layout_marginTop="117dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:layout_marginLeft="-190dp"/>
+        android:layout_marginStart="-190dp"/>
 
 
 </LinearLayout>

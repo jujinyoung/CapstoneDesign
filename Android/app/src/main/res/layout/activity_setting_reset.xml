@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SettingActivity"
+    android:background="@color/white">
+
+    <!--설정-초기화 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/clear"
+            android:drawableTop="@drawable/icon_back" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            style="@style/Montserrat25Pt2"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="60dp"
+            android:text="@string/setting_reset"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/setting_reset_pre"
+        style="@style/Montserrat15Pt2"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btn_reset"
+        style="@style/Montserrat20Pt"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@drawable/btn_setting"
+        android:letterSpacing="0"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="데이터 초기화" />
+
+
+
+</LinearLayout>
