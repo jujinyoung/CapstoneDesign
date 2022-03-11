@@ -18,7 +18,7 @@
         android:drawableTop="@drawable/icon_back"/>
 
     <TextView
-        style="@style/Montserrat25"
+        style="@style/Montserrat25Pt"
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -707,30 +707,58 @@
     </FrameLayout>
 
     <!--스위치 내 문구 추가할 예정(공유/비공유)-->
-    <Switch
-        android:id="@+id/btn_share"
-        style="@style/Montserrat15Pt"
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="39dp"
-        android:layout_marginTop="17dp"
-        android:switchMinWidth="78dp"
-        android:thumb="@drawable/btn_switch_thumb"
-        android:track="@drawable/btn_switch_track"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/save_diary"
-        style="@style/Montserrat15Pt3"
-        android:layout_width="256dp"
-        android:layout_height="31dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="-31dp"
-        android:background="@drawable/btn_save_rectangle"
-        android:fontFamily="@font/montserrat"
-        android:gravity="center"
-        android:padding="0dp"
-        android:text="@string/save_diary"
-        android:textAllCaps="false"
-        app:backgroundTint="@color/dark" />
+
+        <Switch
+            android:id="@+id/btn_share"
+            style="@style/Montserrat15Pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="39dp"
+            android:layout_marginTop="17dp"
+            android:switchMinWidth="78dp"
+            android:thumb="@drawable/btn_switch_thumb"
+            android:track="@drawable/btn_switch_track"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <TextView
+            android:id="@+id/noshare_text"
+            style="@style/Montserrat15Pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="20dp"
+            android:text="비공유" />
+
+        <TextView
+            android:id="@+id/share_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:text="공 유"
+            android:visibility="invisible"
+            style="@style/Montserrat15Pt"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/save_diary"
+            style="@style/Montserrat15Pt3"
+            android:layout_width="256dp"
+            android:layout_height="31dp"
+            android:layout_marginLeft="124dp"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/btn_save_rectangle"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:padding="0dp"
+            android:text="@string/save_diary"
+            android:textAllCaps="false"
+            app:backgroundTint="@color/dark" />
+    </FrameLayout>
+
+
 </LinearLayout>
