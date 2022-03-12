@@ -24,7 +24,6 @@
             android:layout_width="378dp"
             android:layout_height="50dp"
             android:layout_marginStart="17dp"
-            android:layout_marginLeft="17dp"
             android:animateLayoutChanges="true"
             android:background="@color/clear"
             android:orientation="horizontal">
@@ -49,7 +48,7 @@
                 android:layout_weight="1"
                 android:layout_marginTop="30dp"
                 android:text="march"
-                android:gravity="center"
+                android:gravity="end"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -59,7 +58,6 @@
             android:layout_width="378dp"
             android:layout_height="25.5dp"
             android:layout_marginStart="17dp"
-            android:layout_marginLeft="17dp"
             android:background="@color/clear"
             android:orientation="horizontal">
 
@@ -125,8 +123,7 @@
             android:id="@+id/calendar"
             android:layout_width="378dp"
             android:layout_height="350dp"
-            android:layout_marginStart="17dp"
-            android:layout_marginLeft="17dp">
+            android:layout_marginStart="17dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -134,7 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="17dp">
+            android:layout_marginStart="17dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -179,7 +176,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="150dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -218,7 +215,7 @@
                 android:id="@+id/pie_chart"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp"
                 tools:ignore="MissingConstraints">
 
             </com.github.mikephil.charting.charts.PieChart>
@@ -229,7 +226,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="17dp"
+            android:layout_marginStart="17dp"
             android:layout_marginBottom="10dp">
 
             <LinearLayout
@@ -243,7 +240,6 @@
                     android:layout_height="wrap_content"
                     style="@style/Montserrat15Pt2"
                     android:layout_marginTop="5dp"
-                    android:gravity="left|center"
                     android:text="@string/tansuwhamul" />
 
                 <TextView
@@ -251,7 +247,6 @@
                     android:layout_height="wrap_content"
                     style="@style/Montserrat15Pt2"
                     android:layout_marginTop="5dp"
-                    android:gravity="left|center"
                     android:text="@string/danbakjil" />
 
                 <TextView
@@ -259,8 +254,6 @@
                     android:layout_height="wrap_content"
                     style="@style/Montserrat15Pt2"
                     android:layout_marginTop="5dp"
-                    android:gravity="left|center"
-
                     android:text="@string/jibang" />
             </LinearLayout>
 
@@ -269,10 +262,9 @@
                 android:layout_width="250dp"
                 android:layout_height="100dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
                 tools:ignore="MissingConstraints">
-
             </com.github.mikephil.charting.charts.HorizontalBarChart>
+
         </LinearLayout>
 
         <LinearLayout

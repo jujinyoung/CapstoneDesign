@@ -94,7 +94,7 @@
         android:background="@drawable/sign_et"
         android:hint="@string/et_pass_confirm"
         android:inputType="textPassword"
-        android:paddingLeft="60dp"
+        android:paddingStart="60dp"
         android:textColorHint="@color/dark" />
 
     <ImageView

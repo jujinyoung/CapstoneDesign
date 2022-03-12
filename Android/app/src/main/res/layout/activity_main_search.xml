@@ -22,11 +22,10 @@
         android:layout_height="31dp"
         android:background="@drawable/box_rectangle"
         android:hint="@string/search_food"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="17dp"
         android:importantForAutofill="no"
         android:inputType="text"
         android:layout_marginTop="49dp"
-        android:layout_marginLeft="17dp"
         android:textColor="@color/black"
         android:paddingStart="10dp"
         android:paddingLeft="10dp" />
@@ -42,7 +41,7 @@
         android:textColor="@color/dark"
         android:textSize="20sp"
         android:layout_marginTop="49dp"
-        android:layout_marginLeft="5dp"/>
+        android:layout_marginStart="5dp"/>
 
     <Button
         android:id="@+id/btn_cancel"
@@ -55,9 +54,11 @@
         android:textColor="@color/dark"
         android:textSize="20sp"
         android:layout_marginTop="49dp"
-        android:layout_marginLeft="5dp"/></LinearLayout>
+        android:layout_marginStart="5dp"/>
+    </LinearLayout>
 
     <ImageView
+        android:layout_marginTop="10dp"
         android:id="@+id/search_image"
         android:layout_width="335dp"
         android:layout_height="207dp"
@@ -70,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:textStyle="bold"
-        android:layout_marginLeft="300dp"
+        android:layout_marginStart="300dp"
         android:text=""/>
 
 <FrameLayout
