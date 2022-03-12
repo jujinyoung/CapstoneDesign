@@ -7,19 +7,18 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.media.ExifInterface;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResult;
@@ -29,7 +28,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -38,8 +36,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.UserData;
 import com.example.myapplication.database.DBHelper;
 import com.example.myapplication.database.Diary;
-import com.example.myapplication.request.ImageRequest;
-import com.example.myapplication.request.ImageRequest2;
+import com.example.myapplication.request.SaveImageRequest;
 import com.example.myapplication.utils.BitmapUtils;
 import com.github.channguyen.rsv.RangeSliderView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -52,7 +49,6 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements AutoPermissionsListener{
@@ -82,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     Bitmap[] resultPhotoBitmap = new Bitmap[4];
     int image_num,food_num;
 
+    //switch
+    Switch btn_share;
+    TextView noshare_text,share_text;
 
     //slider
     RangeSliderView[] moodSlider;
@@ -133,15 +132,9 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                 } else if(dbMode == MODE_MODIFY){
                     modifyNote();
                 }
-//                resultPhotoBitmap_request = new String[4];
-//                for(int i = 0; i<4; i++){
-//                    resultPhotoBitmap_request[i] = bitmapToByteArray(resultPhotoBitmap[i]);
-//                }
-
-//                changeProfileImageToDB(resultPhotoBitmap_request[0],resultPhotoBitmap_request[1],resultPhotoBitmap_request[2],resultPhotoBitmap_request[3]);
-//                resultPhotoBitmap[0] = resize(resultPhotoBitmap[0]);
-//                resultPhotoBitmap_request[0] = bitmapToByteArray(resultPhotoBitmap[0]);
-//                changeProfileImageToDB(resultPhotoBitmap_request[0]);
+                if(btn_share.isChecked()){
+                    changeProfileImageToDB();
+                }
             }
         });
 
@@ -192,6 +185,22 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     }
 
     private void initUI() {
+        noshare_text = findViewById(R.id.noshare_text);
+        share_text = findViewById(R.id.share_Text);
+        btn_share = findViewById(R.id.btn_share);
+        btn_share.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    share_text.setVisibility(View.VISIBLE);
+                    noshare_text.setVisibility(View.INVISIBLE);
+                }else{
+                    share_text.setVisibility(View.INVISIBLE);
+                    noshare_text.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         et_food = new TextView[4];
         for(int i = 0;i<et_food.length;i++){
             int num = i;
@@ -495,39 +504,6 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     //endregion
 
     //region Dialog
-//    public void ImageDialog(){
-//        String[] menu = new String[]{"사진 촬영하기","앨범에서 선택하기","사진 삭제하기"};
-//
-//        AlertDialog.Builder imageBuilder = new AlertDialog.Builder(MainActivity.this);
-//        imageBuilder.setTitle("사진 메뉴 선택").setSingleChoiceItems(menu, 0, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                selectImageDialog = which;
-//                Toast.makeText(getApplicationContext(),"사진 촬영선택",Toast.LENGTH_SHORT).show();
-//            }
-//        }).setPositiveButton("확인", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                if(selectImageDialog == 101){
-//                    TakePicture();
-//                }else if(selectImageDialog == 102){
-//                    TakeAlbum();
-//                }else if(selectImageDialog == 103){
-//                    cameraImage[image_num].setImageResource(R.drawable.icon_camera);
-//                }
-//            }
-//        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//
-//            }
-//        });
-//
-//        imageBuilder.create();
-//        imageBuilder.show();
-//
-//    }
-
     private void showImageDialog() {
 
         // 업로드 방법 선택 대화상자 보이기
@@ -564,164 +540,120 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
 
     //endregion
 
-    //region 앨범
-//    public void TakeAlbum(){
-//        Intent intent = new Intent();
-//        intent.setType("image/*");
-//        intent.setAction(Intent.ACTION_GET_CONTENT);
-//        AlbumResult.launch(intent);
+    //region 카메라
+//    private void TakePicture() {
+//        try {
+//            if (file == null) {
+//                file = createFile();
+//            }else{
+//                file.delete();
+//            }
+//
+//            file.createNewFile();
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        if(Build.VERSION.SDK_INT >= 24) {
+//            fileUri = FileProvider.getUriForFile(getApplicationContext(), "org.techtown.caps.fileprovider", file);
+//        }else{
+//            fileUri = Uri.fromFile(file);
+//        }
+//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        intent.putExtra(MediaStore.EXTRA_OUTPUT,fileUri);
+//
+//        startActivityResult.launch(intent);
 //    }
 //
-//    ActivityResultLauncher<Intent> AlbumResult = registerForActivityResult(
+//    private File createFile() {
+//        String filename = "capture.jpg";
+//
+//        File storageDir = getApplicationContext().getExternalCacheDir();
+//        File outFile = null;
+//        try {
+//            outFile = File.createTempFile("android_upload", ".jpg", storageDir);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return outFile;
+//    }
+//
+//
+//    ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(
 //            new ActivityResultContracts.StartActivityForResult(),
 //            new ActivityResultCallback<ActivityResult>() {
 //                @Override
 //                public void onActivityResult(ActivityResult result) {
 //                    if(result.getResultCode() == Activity.RESULT_OK){
-//                        Intent intent = new Intent();
-//                        intent.setAction(Intent.ACTION_GET_CONTENT);
-//                        fileUri = intent.getData();
+//                        BitmapFactory.Options options = new BitmapFactory.Options();
+//                        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
 //
+//                        ExifInterface exif = null;
 //                        try {
-//                            InputStream in = getApplicationContext().getContentResolver().openInputStream(fileUri);
-//
-//                            Bitmap img = BitmapFactory.decodeStream(in);
-//                            in.close();
-//
-//                            cameraImage[image_num].setImageBitmap(img);
-//
-//                        } catch (FileNotFoundException e) {
-//                            e.printStackTrace();
+//                            exif = new ExifInterface(file.getAbsolutePath());
 //                        } catch (IOException e) {
 //                            e.printStackTrace();
+//                        }
+//                        int exifOrientation;
+//                        int exifDegree;
+//
+//                        if (exif != null) {
+//                            exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+//                            exifDegree = exifOrientationToDegrees(exifOrientation);
+//                        } else {
+//                            exifDegree = 0;
+//                        }
+//
+//                        if (bitmap == null) {
+////                            Toast.makeText(getApplicationContext(), "할당 안됨", Toast.LENGTH_LONG).show();
+//                        } else {
+//                            resultPhotoBitmap[image_num] = resizeImage(rotateImage(bitmap,exifDegree));
+//                            cameraImage[image_num].setImageBitmap(resultPhotoBitmap[image_num]);
 //                        }
 //                    }
 //                }
 //            }
 //    );
-
-    //endregion
-
-    //region 카메라
-    private void TakePicture() {
-        try {
-            if (file == null) {
-                file = createFile();
-            }else{
-                file.delete();
-            }
-
-            file.createNewFile();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        if(Build.VERSION.SDK_INT >= 24) {
-            fileUri = FileProvider.getUriForFile(getApplicationContext(), "org.techtown.caps.fileprovider", file);
-        }else{
-            fileUri = Uri.fromFile(file);
-        }
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,fileUri);
-
-        startActivityResult.launch(intent);
-    }
-
-    private File createFile() {
-        String filename = "capture.jpg";
-
-        File storageDir = getApplicationContext().getExternalCacheDir();
-        File outFile = null;
-        try {
-            outFile = File.createTempFile("android_upload", ".jpg", storageDir);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return outFile;
-    }
-
-    private String createFilename() {
-        Date curDate = new Date();
-        String curDateStr = String.valueOf(curDate.getTime());
-
-        return curDateStr;
-    }
-
-    ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        BitmapFactory.Options options = new BitmapFactory.Options();
-                        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-
-                        ExifInterface exif = null;
-                        try {
-                            exif = new ExifInterface(file.getAbsolutePath());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        int exifOrientation;
-                        int exifDegree;
-
-                        if (exif != null) {
-                            exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
-                            exifDegree = exifOrientationToDegrees(exifOrientation);
-                        } else {
-                            exifDegree = 0;
-                        }
-
-                        if (bitmap == null) {
-//                            Toast.makeText(getApplicationContext(), "할당 안됨", Toast.LENGTH_LONG).show();
-                        } else {
-                            resultPhotoBitmap[image_num] = resizeImage(rotateImage(bitmap,exifDegree));
-                            cameraImage[image_num].setImageBitmap(resultPhotoBitmap[image_num]);
-                        }
-                    }
-                }
-            }
-    );
-
-    private int exifOrientationToDegrees(int exifOrientation) {
-        if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) {
-            return 90;
-        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {
-            return 180;
-        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {
-            return 270;
-        }
-        return 0;
-    }
-    //이미지 회전
-    private Bitmap rotateImage(Bitmap bitmap, float degree) {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(degree);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-    }
-
-    private Bitmap resizeImage(Bitmap bitmap){
-        int width = cameraImage[image_num].getWidth();
-        int height = cameraImage[image_num].getHeight();
-        float bmpWidth = bitmap.getWidth();
-        float bmpHeight = bitmap.getHeight();
-
-        if (bmpWidth > width) {
-            // [원하는 너비보다 클 경우의 설정]
-            float mWidth = bmpWidth / 100;
-            float scale = width/ mWidth;
-            bmpWidth *= (scale / 100);
-            bmpHeight *= (scale / 100);
-        } else if (bmpHeight > height) {
-            // [원하는 높이보다 클 경우의 설정]
-            float mHeight = bmpHeight / 100;
-            float scale = height/ mHeight;
-            bmpWidth *= (scale / 100);
-            bmpHeight *= (scale / 100);
-        }
-
-        return  Bitmap.createScaledBitmap(bitmap, (int) bmpWidth, (int) bmpHeight, true);
-    }
+//
+//    private int exifOrientationToDegrees(int exifOrientation) {
+//        if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) {
+//            return 90;
+//        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {
+//            return 180;
+//        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {
+//            return 270;
+//        }
+//        return 0;
+//    }
+//    //이미지 회전
+//    private Bitmap rotateImage(Bitmap bitmap, float degree) {
+//        Matrix matrix = new Matrix();
+//        matrix.postRotate(degree);
+//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+//    }
+//
+//    private Bitmap resizeImage(Bitmap bitmap){
+//        int width = cameraImage[image_num].getWidth();
+//        int height = cameraImage[image_num].getHeight();
+//        float bmpWidth = bitmap.getWidth();
+//        float bmpHeight = bitmap.getHeight();
+//
+//        if (bmpWidth > width) {
+//            // [원하는 너비보다 클 경우의 설정]
+//            float mWidth = bmpWidth / 100;
+//            float scale = width/ mWidth;
+//            bmpWidth *= (scale / 100);
+//            bmpHeight *= (scale / 100);
+//        } else if (bmpHeight > height) {
+//            // [원하는 높이보다 클 경우의 설정]
+//            float mHeight = bmpHeight / 100;
+//            float scale = height/ mHeight;
+//            bmpWidth *= (scale / 100);
+//            bmpHeight *= (scale / 100);
+//        }
+//
+//        return  Bitmap.createScaledBitmap(bitmap, (int) bmpWidth, (int) bmpHeight, true);
+//    }
     //endregion
 
     //region 내부 DB
@@ -924,6 +856,12 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
             photoFolder.mkdirs();
         }
     }
+    private String createFilename() {
+        Date curDate = new Date();
+        String curDateStr = String.valueOf(curDate.getTime());
+
+        return curDateStr;
+    }
     //endregion
 
     //region 외부 DB
@@ -972,7 +910,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         return bm;
     }
 
-    private void changeProfileImageToDB(String picture0,String picture1,String picture2,String picture3) {
+    private void changeProfileImageToDB() {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -993,44 +931,26 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
             }
         };
 
-        //vollyer를 이용해서 서버에 요청
-        ImageRequest imageRequest = new ImageRequest(UserData.userID,picture0 ,et_food[0].toString(), String.valueOf(moodIndex[0]), et_diary[0].toString(),
-                picture1 ,et_food[1].toString(), String.valueOf(moodIndex[1]), et_diary[1].toString(),
-                picture2,et_food[2].toString(), String.valueOf(moodIndex[2]), et_diary[2].toString(),
-                picture3,et_food[3].toString(), String.valueOf(moodIndex[3]), et_diary[3].toString(),responseListener);
-        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-        queue.add(imageRequest);
-        Log.e(TAG, "외부 DB 연결 성공");
-    }
-
-    private void changeProfileImageToDB(String picture0) {
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    //서버에 로그인 요청을 하면 결과값을 json타입으로 받음
-                    JSONObject jsonObject = new JSONObject(response);
-                    //서버통신 성공여부
-                    boolean success = jsonObject.getBoolean("success");
-                    if (success) {
-                        Log.e(TAG, "외부 DB success");
-                    } else {
-                        Log.e(TAG, "외부 DB failed");
-                        return;
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+        resultPhotoBitmap_request = new String[4];
+            for(int i = 0; i<4; i++){
+                if(resultPhotoBitmap[i] != null){
+                    resultPhotoBitmap[i] = resize(resultPhotoBitmap[i]);
+                    resultPhotoBitmap_request[i] = bitmapToByteArray(resultPhotoBitmap[i]);
+                }else{
+                    resultPhotoBitmap_request[i] = "";
                 }
             }
-        };
 
         //vollyer를 이용해서 서버에 요청
-        ImageRequest2 imageRequest = new ImageRequest2(UserData.userID,picture0,responseListener);
-        Log.e(TAG, UserData.userID + picture0);
+        SaveImageRequest imageRequest = new SaveImageRequest(UserData.userID, resultPhotoBitmap_request[0], et_food[0].toString(),"0",
+                resultPhotoBitmap_request[1] ,et_food[1].toString(), "0",
+                resultPhotoBitmap_request[2],et_food[2].toString(), "0",
+                resultPhotoBitmap_request[3],et_food[3].toString(), "0", responseListener);
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         queue.add(imageRequest);
         Log.e(TAG, "외부 DB 연결 성공");
     }
+
     //endregion
 
     //region 권한 요청
