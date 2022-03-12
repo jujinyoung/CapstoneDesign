@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SettingActivity"
+    android:background="@color/white">
+
+    <!--설정 - 목표 설정하기 (신장, 체중, 목표체중 입력시 일일 권장 칼로리 계산 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/clear"
+            android:drawableTop="@drawable/icon_back" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            style="@style/Montserrat25Pt2"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="65dp"
+            android:text="@string/setup_goal"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        style="@style/Montserrat15Pt2"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="@string/setup_message"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="right"
+            tools:ignore="RtlHardcoded">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cm"
+                style="@style/Montserrat20Pt3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/PVkg"
+                style="@style/Montserrat20Pt3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/FVkg"
+                style="@style/Montserrat20Pt3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp">
+
+
+            <EditText
+                android:id="@+id/et_height"
+                style="@style/Montserrat20Pt2"
+                android:layout_width="200dp"
+                android:layout_height="28dp"
+                android:background="@drawable/sign_et"
+                android:inputType="number"
+                android:gravity="center"
+                android:textColorHint="@color/dark"
+                android:importantForAutofill="no"
+                android:hint="@string/_170"/>
+
+            <EditText
+                android:id="@+id/et_pv"
+                style="@style/Montserrat20Pt2"
+                android:layout_width="200dp"
+                android:layout_height="28dp"
+                android:background="@drawable/sign_et"
+                android:inputType="number"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textColorHint="@color/dark"
+                android:importantForAutofill="no"
+                android:hint="@string/_100"/>
+
+            <EditText
+                android:id="@+id/et_fv"
+                style="@style/Montserrat20Pt2"
+                android:layout_width="200dp"
+                android:layout_height="28dp"
+                android:background="@drawable/sign_et"
+                android:inputType="number"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textColorHint="@color/dark"
+                android:importantForAutofill="no"
+                android:hint="@string/_80"/>
+        </LinearLayout>
+    </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_setup"
+            style="@style/Montserrat20Pt"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@drawable/btn_setting"
+            android:letterSpacing="0"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="@string/setting_goal" />
+
+
+    <FrameLayout
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/box_rectangle"
+        android:layout_gravity="center">
+
+        <!--일일 권장 칼로리(kcal):-->
+        <TextView
+            android:id="@+id/textViewResult_setup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            style="@style/Montserrat20Pt2"
+            android:text=""/>
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
+
+
+</LinearLayout>

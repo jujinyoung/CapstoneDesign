@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:background="@color/white"
     tools:context=".activity.MainActivity">
+
     <Button
         android:id="@+id/btn_back"
         android:layout_width="40dp"
@@ -78,6 +79,8 @@
         android:layout_width="match_parent"
         android:layout_height="550dp">
 
+
+        <!--아침 일기-->
         <LinearLayout
             android:id="@+id/layout_mor"
             android:layout_width="match_parent"
@@ -104,7 +107,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="60dp"
-                    android:layout_marginRight="60dp"
                     android:layout_marginBottom="16dp"
                     android:clickable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -121,7 +123,7 @@
                     style="@style/Montserrat15Pt3"
                     android:layout_width="162dp"
                     android:layout_height="31dp"
-                    android:layout_marginLeft="39dp"
+                    android:layout_marginStart="39dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/btn_login_rectangle"
                     android:fontFamily="@font/montserrat"
@@ -143,7 +145,9 @@
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:textColor="@color/black"
-                    app:backgroundTint="#000000" />
+                    app:backgroundTint="#000000"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"/>
             </LinearLayout>
 
 
@@ -171,6 +175,7 @@
                     app:filledColor="@color/dark"
                     app:rangeCount="5"
                     app:sliderRadiusPercent="0.2" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -228,12 +233,14 @@
                 android:id="@+id/bar_0"
                 android:layout_width="345dp"
                 android:layout_height="79dp"
-                android:layout_marginLeft="39dp"
+                android:layout_marginStart="39dp"
                 android:layout_marginTop="30dp" />
 
 
         </LinearLayout>
 
+
+        <!--점심 일기-->
         <LinearLayout
             android:id="@+id/layout_lun"
             android:layout_width="match_parent"
@@ -260,7 +267,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="60dp"
-                    android:layout_marginRight="60dp"
+                    android:layout_marginStart="60dp"
                     android:layout_marginBottom="16dp"
                     android:clickable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -299,7 +306,9 @@
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:textColor="@color/black"
-                    app:backgroundTint="#000000" />
+                    app:backgroundTint="#000000"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"/>
             </LinearLayout>
 
 
@@ -390,6 +399,7 @@
 
         </LinearLayout>
 
+        <!--저녁 일기-->
         <LinearLayout
             android:id="@+id/layout_di"
             android:layout_width="match_parent"
@@ -416,7 +426,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="60dp"
-                    android:layout_marginRight="60dp"
+                    android:layout_marginStart="60dp"
                     android:layout_marginBottom="16dp"
                     android:clickable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -433,7 +443,7 @@
                     style="@style/Montserrat15Pt3"
                     android:layout_width="162dp"
                     android:layout_height="31dp"
-                    android:layout_marginLeft="39dp"
+                    android:layout_marginStart="39dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/btn_login_rectangle"
                     android:fontFamily="@font/montserrat"
@@ -448,14 +458,16 @@
                     style="@style/Montserrat15Pt"
                     android:layout_width="164dp"
                     android:layout_height="31dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/box_rectangle"
                     android:hint="@string/search_food"
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:textColor="@color/black"
-                    app:backgroundTint="#000000" />
+                    app:backgroundTint="#000000"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
             </LinearLayout>
 
 
@@ -468,15 +480,15 @@
                     style="@style/Montserrat15Pt2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="39dp"
+                    android:layout_marginStart="39dp"
                     android:layout_marginTop="10dp"
-                    android:text="식단 점수" />
+                    android:text="@string/score" />
 
                 <com.github.channguyen.rsv.RangeSliderView
                     android:id="@+id/sliderView_2"
                     android:layout_width="298dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="0dp"
+                    android:layout_marginStart="0dp"
                     android:layout_marginTop="10dp"
                     app:barHeightPercent="0.1"
                     app:emptyColor="@color/very_light_blue"
@@ -488,7 +500,7 @@
             <LinearLayout
                 android:layout_width="298dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="95dp"
+                android:layout_marginStart="95dp"
                 android:layout_marginTop="0dp">
 
                 <ImageView
@@ -529,7 +541,7 @@
                 style="@style/Montserrat15Pt2"
                 android:layout_width="335dp"
                 android:layout_height="80dp"
-                android:layout_marginLeft="39dp"
+                android:layout_marginStart="39dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/box_rectangle"
                 android:inputType="text"
@@ -540,12 +552,14 @@
                 android:id="@+id/bar_2"
                 android:layout_width="345dp"
                 android:layout_height="79dp"
-                android:layout_marginLeft="39dp"
+                android:layout_marginStart="39dp"
                 android:layout_marginTop="30dp" />
 
 
         </LinearLayout>
 
+
+        <!--간식 일기-->
         <LinearLayout
             android:id="@+id/layout_sna"
             android:layout_width="match_parent"
@@ -572,7 +586,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="60dp"
-                    android:layout_marginRight="60dp"
                     android:layout_marginBottom="16dp"
                     android:clickable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -590,7 +603,7 @@
                     style="@style/Montserrat15Pt3"
                     android:layout_width="162dp"
                     android:layout_height="31dp"
-                    android:layout_marginLeft="39dp"
+                    android:layout_marginStart="39dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/btn_login_rectangle"
                     android:fontFamily="@font/montserrat"
@@ -609,7 +622,8 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/box_rectangle"
                     android:hint="@string/search_food"
-                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:textColor="@color/black"
@@ -693,14 +707,12 @@
                 android:inputType="text"
                 android:text="@string/et_diary" />
 
-
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/bar_3"
                 android:layout_width="345dp"
                 android:layout_height="79dp"
                 android:layout_marginStart="39dp"
                 android:layout_marginTop="30dp" />
-
 
         </LinearLayout>
 
