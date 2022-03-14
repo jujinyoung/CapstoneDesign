@@ -28,6 +28,8 @@
         android:usesCleartextTraffic="true"
         android:configChanges="orientation|screenSize">
 
+
+
         <activity
             android:name=".activity.PasswordActivity"
             android:exported="false" />
@@ -49,16 +51,20 @@
             android:exported="false" />
         <activity android:name=".activity.LoginActivity">
 
+        </activity>
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.CalendarActivity" />
+        <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".activity.Setting_goalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.CalendarActivity" />
-        <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".activity.Setting_resetActivity" />
+        <activity android:name=".activity.Setting_editActivity" />
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

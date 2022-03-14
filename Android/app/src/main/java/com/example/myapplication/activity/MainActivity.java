@@ -942,7 +942,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
             }
 
         //vollyer를 이용해서 서버에 요청
-        SaveImageRequest imageRequest = new SaveImageRequest(UserData.userID, resultPhotoBitmap_request[0], et_food[0].toString(),"0",
+        SaveImageRequest imageRequest = new SaveImageRequest(UserData.read("user_id",""), resultPhotoBitmap_request[0], et_food[0].toString(),"0",
                 resultPhotoBitmap_request[1] ,et_food[1].toString(), "0",
                 resultPhotoBitmap_request[2],et_food[2].toString(), "0",
                 resultPhotoBitmap_request[3],et_food[3].toString(), "0", responseListener);

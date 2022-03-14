@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity."
+    tools:context=".activity.StatActivity"
     android:background="@color/white">
 
     <!--통계 xml 추이 그래프 페이지 -->

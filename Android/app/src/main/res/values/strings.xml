@@ -78,5 +78,8 @@
     <string name="_80">80</string>
     <string name="change_kg"><![CDATA[<체중 변화>]]></string>
     <string name="setting_edit">회원정보 수정하기</string>
+    <string name="goal_day">목표 날짜</string>
+    <string name="gender">성별</string>
+
 
 </resources>

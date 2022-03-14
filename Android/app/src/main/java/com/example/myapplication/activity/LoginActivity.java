@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //id,password 값저장
-                UserData.userID = et_id.getText().toString();
+                UserData.write("user_id",et_id.getText().toString());
                 String userPass = et_pass.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 };
                 //vollyer를 이용해서 서버에 요청
-                LoginRequest loginRequest = new LoginRequest(UserData.userID,userPass,responseListener);
+                LoginRequest loginRequest = new LoginRequest(UserData.read("user_id",""),userPass,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                 queue.add(loginRequest);
             }
