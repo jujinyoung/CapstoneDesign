@@ -109,14 +109,14 @@
                     android:id="@+id/man"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="남자" />
+                    android:text="@string/man" />
 
                 <RadioButton
                     android:id="@+id/woman"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="여자" />
+                    android:layout_marginStart="30dp"
+                    android:text="@string/woman" />
             </RadioGroup>
 
 
