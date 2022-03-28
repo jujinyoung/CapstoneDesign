@@ -80,6 +80,13 @@
     <string name="setting_edit">회원정보 수정하기</string>
     <string name="goal_day">목표 날짜</string>
     <string name="gender">성별</string>
+    <string name="reset_data">데이터 초기화</string>
+    <string name="woman">여자</string>
+    <string name="man">남자</string>
+    <string name="unshare">비공유</string>
+    <string name="share">공유</string>
+    <string name="setting_password">비밀번호 재설정</string>
+    <string name="reset_pass">비밀번호 재설정</string>
 
 
 </resources>

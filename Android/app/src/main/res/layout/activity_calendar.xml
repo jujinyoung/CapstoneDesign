@@ -36,7 +36,6 @@
                 android:layout_weight="1"
                 android:layout_marginTop="30dp"
                 android:hint="GOAL(D-day,-3kg)"
-                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
