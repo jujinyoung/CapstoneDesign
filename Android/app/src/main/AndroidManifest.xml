@@ -36,7 +36,7 @@
         <activity
             android:name=".activity.BoardActivity"
             android:exported="false" />
-        <activity android:name=".activity.MainActivity_search"/>
+        <activity android:name=".activity.DiaryActivity_search"/>
         <activity
             android:name=".activity.SettingActivity"
             android:exported="false" />
@@ -47,23 +47,26 @@
             android:name=".MainActivity_camera"
             android:exported="false" />
         <activity
-            android:name=".activity.MainActivity_loadc"
-            android:exported="false" />
+            android:name=".activity.DiaryActivity_loadc">
+        </activity>
         <activity android:name=".activity.LoginActivity">
-
         </activity>
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.CalendarActivity" />
-        <activity android:name=".activity.MainActivity"></activity>
-        <activity android:name=".activity.Setting_goalActivity">
+        <activity android:name=".activity.CalendarActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.DiaryActivity"></activity>
+        <activity android:name=".activity.Setting_goalActivity">
+
+        </activity>
         <activity android:name=".activity.Setting_resetActivity" />
         <activity android:name=".activity.Setting_editActivity" />
+        <activity android:name=".activity.StatActivity" >
+        </activity>
 
 
         <provider

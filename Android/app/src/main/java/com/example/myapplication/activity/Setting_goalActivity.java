@@ -9,16 +9,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.UserData;
+import com.example.myapplication.utils.UserData;
 
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -56,6 +53,7 @@ public class Setting_goalActivity extends AppCompatActivity {
                     UserData.write("user_weight",et_pv.getText().toString());
                     UserData.write("goal_weight",et_fv.getText().toString());
                     UserData.write("goal_day",goal_day.getText().toString());
+                    finish();
                 }catch (NumberFormatException e){
                     Log.e(TAG,e + "");
                 }
@@ -99,7 +97,7 @@ public class Setting_goalActivity extends AppCompatActivity {
                     mMonth = monthOfYear;
                     mDay = dayOfMonth;
 
-                    goal_day.setText(mMonth + "월 " + mDay + "일");
+                    goal_day.setText(mMonth+1 + "월 " + mDay + "일");
                 }
 
     };

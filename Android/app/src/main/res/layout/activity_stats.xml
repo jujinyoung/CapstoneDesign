@@ -42,7 +42,7 @@
         <!-- 일일 섭취 칼로리 표시 x축(일~토) 또는 주간 섭취 칼로리 표시 x축 3월 첫째주 ~ 마지막주 -->
         <com.github.mikephil.charting.charts.LineChart
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
             android:id="@+id/chart_weekly_cal" />
 
         <TextView
@@ -55,7 +55,7 @@
         <!-- 주간 체중 변화 그래프 x축 ((1~7) ,~~ (29~30)-->
         <com.github.mikephil.charting.charts.LineChart
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
             android:id="@+id/chart_weekly_kg"
             android:layout_marginTop="20dp"/>
 

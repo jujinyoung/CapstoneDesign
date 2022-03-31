@@ -33,7 +33,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
-import com.example.myapplication.UserData;
+import com.example.myapplication.utils.UserData;
 import com.example.myapplication.database.DBHelper;
 import com.example.myapplication.database.Diary;
 import com.example.myapplication.request.SaveImageRequest;
@@ -51,7 +51,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements AutoPermissionsListener{
+public class DiaryActivity extends AppCompatActivity implements AutoPermissionsListener{
     private static final String TAG = "MainActivity";
 
     public static String FOLDER_PHOTO;
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_diary);
 
         //Title
         Intent intent = getIntent();
@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                 @Override
                 public void onClick(View v) {
                     food_num = num;
-                    Intent intent = new Intent(getApplicationContext(), MainActivity_search.class);
+                    Intent intent = new Intent(getApplicationContext(), DiaryActivity_search.class);
                     intent.putExtra("num_i",food_num);
                     if(resultPhotoBitmap[food_num] != null){
                         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -527,7 +527,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                             // 갤러리(포토) 결과 획득
                             Uri uri = result.getData().getData();
                             if (uri != null) {
-                                resultPhotoBitmap[image_num] = BitmapUtils.getBitmapFromUri(MainActivity.this, uri);
+                                resultPhotoBitmap[image_num] = BitmapUtils.getBitmapFromUri(DiaryActivity.this, uri);
                             }
                         }
                         cameraImage[image_num].setImageBitmap(resultPhotoBitmap[image_num]);
@@ -827,7 +827,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
             return "";
         }
 
-        File photoFolder = new File(MainActivity.FOLDER_PHOTO);
+        File photoFolder = new File(DiaryActivity.FOLDER_PHOTO);
 
         if(!photoFolder.isDirectory()) {
             photoFolder.mkdirs();
@@ -946,7 +946,7 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                 resultPhotoBitmap_request[1] ,et_food[1].toString(), "0",
                 resultPhotoBitmap_request[2],et_food[2].toString(), "0",
                 resultPhotoBitmap_request[3],et_food[3].toString(), "0", responseListener);
-        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+        RequestQueue queue = Volley.newRequestQueue(DiaryActivity.this);
         queue.add(imageRequest);
         Log.e(TAG, "외부 DB 연결 성공");
     }

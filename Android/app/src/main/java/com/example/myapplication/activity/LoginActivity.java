@@ -14,7 +14,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
-import com.example.myapplication.UserData;
+import com.example.myapplication.utils.UserData;
 import com.example.myapplication.request.LoginRequest;
 
 import org.json.JSONException;
@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        UserData.init(getApplicationContext());
 
         et_id = findViewById(R.id.et_id);
         et_pass = findViewById(R.id.et_pass);
@@ -43,8 +44,9 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String id = et_id.toString();
                 //id,password 값저장
-                UserData.write("user_id",et_id.getText().toString());
+                UserData.write("user_id",id);
                 String userPass = et_pass.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -60,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
 //                                String userPass = jsonObject.getString("userPassword");
 //                                Toast.makeText(getApplicationContext(), "로그인에 성공하였습니다", Toast.LENGTH_SHORT).show();
                                 //메인화면으로 이동
-                                Intent intent = new Intent(LoginActivity.this, CalendarActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, SettingActivity.class);
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(getApplicationContext(), "로그인에 실패하였습니다", Toast.LENGTH_SHORT).show();

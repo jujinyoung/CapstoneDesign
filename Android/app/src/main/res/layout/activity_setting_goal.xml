@@ -86,6 +86,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:text="@string/et_age"
+                style="@style/Montserrat20Pt3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="@string/goal_day"
                 style="@style/Montserrat20Pt3" />
 
@@ -146,6 +153,18 @@
 
             <EditText
                 android:id="@+id/et_fv"
+                style="@style/Montserrat20Pt2"
+                android:layout_width="200dp"
+                android:layout_height="28dp"
+                android:background="@drawable/sign_et"
+                android:inputType="number"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textColorHint="@color/dark"
+                android:importantForAutofill="no" />
+
+            <EditText
+                android:id="@+id/et_age"
                 style="@style/Montserrat20Pt2"
                 android:layout_width="200dp"
                 android:layout_height="28dp"

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity_loadc">
+    tools:context=".activity.DiaryActivity_loadc">
 
     <!--로드셀 프로그레스 페이지-->
 
@@ -44,5 +44,18 @@
         android:layout_height="wrap_content"
         android:text="@string/loading"
         android:layout_marginTop="515dp"/>
+
+    <Button
+        android:id="@+id/button123"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </LinearLayout>

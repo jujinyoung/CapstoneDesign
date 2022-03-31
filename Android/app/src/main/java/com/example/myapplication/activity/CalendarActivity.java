@@ -1,46 +1,30 @@
 package com.example.myapplication.activity;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.ExifInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.R;
-import com.example.myapplication.UserData;
 import com.example.myapplication.calendar.CalendarAdapter;
-import com.example.myapplication.calendar.CalendarViewHolder;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -61,7 +45,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     private int[] colorArray;
 
     //하단바 버튼
-    private Button btn_setting;
+    private Button btn_setting,btn_graph;
 
     //목표
     TextView goal;
@@ -87,6 +71,15 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         //막대차트
         barChart = (HorizontalBarChart) findViewById(R.id.bar_chart);
         SetBarChart(barChart);
+
+        btn_graph = findViewById(R.id.btn_graph);
+        btn_graph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CalendarActivity.this,StatActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btn_setting = findViewById(R.id.btn_setting);
         btn_setting.setOnClickListener(new View.OnClickListener() {
@@ -204,7 +197,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     {
         if(!dayText.equals(""))
         {
-            Intent intent = new Intent(CalendarActivity.this, MainActivity.class);
+            Intent intent = new Intent(CalendarActivity.this, DiaryActivity.class);
             String message = monthYearFromDate(selectedDate) + " " + dayText;
             intent.putExtra("날짜",message);
             startActivity(intent);

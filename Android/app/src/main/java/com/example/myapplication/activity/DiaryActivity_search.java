@@ -25,7 +25,7 @@ import com.example.myapplication.utils.NameUtils;
 
 import java.util.Map;
 
-public class MainActivity_search extends AppCompatActivity {
+public class DiaryActivity_search extends AppCompatActivity {
 
     EditText editTextSearch;
     Button buttonSearch,save_food,btn_cancel;
@@ -41,7 +41,7 @@ public class MainActivity_search extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_search);
+        setContentView(R.layout.activity_diary_search);
 
         //이미지 받아오기
         Intent intent = getIntent();
