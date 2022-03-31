@@ -729,7 +729,7 @@
             style="@style/Montserrat15Pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="39dp"
+            android:layout_marginStart="39dp"
             android:layout_marginTop="17dp"
             android:switchMinWidth="78dp"
             android:thumb="@drawable/btn_switch_thumb"
@@ -741,17 +741,17 @@
             style="@style/Montserrat15Pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="65dp"
+            android:layout_marginStart="65dp"
             android:layout_marginTop="20dp"
-            android:text="비공유" />
+            android:text="@string/unshare" />
 
         <TextView
             android:id="@+id/share_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
-            android:text="공유"
+            android:text="@string/share"
             android:visibility="invisible"
             style="@style/Montserrat15Pt"
             android:textColor="@color/white" />
@@ -761,7 +761,7 @@
             style="@style/Montserrat15Pt3"
             android:layout_width="256dp"
             android:layout_height="31dp"
-            android:layout_marginLeft="124dp"
+            android:layout_marginStart="124dp"
             android:layout_marginTop="17dp"
             android:background="@drawable/btn_save_rectangle"
             android:fontFamily="@font/montserrat"
