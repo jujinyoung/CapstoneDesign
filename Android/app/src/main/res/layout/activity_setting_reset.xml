@@ -48,6 +48,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:backgroundTint="@drawable/btn_setting"
+        android:textColor="@color/dark"
         android:letterSpacing="0"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
