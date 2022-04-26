@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--로드셀 프로그레스 페이지-->
+
+        <ImageView
+            android:id="@+id/progress_loadc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            app:srcCompat="@drawable/icon_loadc"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar_loadc"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:layout_marginLeft="140dp"
+            android:progressDrawable="@drawable/progessbar" />
+
+        <TextView
+            android:id="@+id/loading_percent"
+            style="@style/Montserrat15Pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/percent" />
+
+        <TextView
+            android:id="@+id/loading"
+            style="@style/Montserrat15Pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading"
+            android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/receive_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:freezesText="true"
+        android:gravity="bottom"
+        android:scrollbars="vertical"
+        android:enabled="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <View
+        android:layout_width="match_parent"
+        android:background="?android:attr/listDivider"
+        android:layout_height="2dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/send_text"
+            android:enabled="false"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="text|textNoSuggestions"
+            android:text="측정하기"
+            android:textSize="25sp"
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+

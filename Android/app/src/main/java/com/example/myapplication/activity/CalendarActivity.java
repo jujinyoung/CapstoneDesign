@@ -12,9 +12,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myapplication.CalBMR;
 import com.example.myapplication.R;
 import com.example.myapplication.calendar.CalendarAdapter;
+import com.example.myapplication.utils.UserData;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;
@@ -25,10 +28,14 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class CalendarActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener {
@@ -45,13 +52,23 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     private int[] colorArray;
 
     //하단바 버튼
-    private Button btn_setting,btn_graph;
+    private Button btn_setting,btn_graph,btn_diary;
+
+    long diffDays;
+    double calTotalRemoveCalorie,recommentCal;
 
     //목표
     TextView goal;
 
+    //성분
+    TextView tan_txt,dan_txt,gi_txt;
+    float bmr = 0;
+
     //게시판
     Button btn_search;
+
+    //권장 칼로리
+    TextView recommend_cal,diet_cal,left_cal;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -63,14 +80,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         //현재날짜
         selectedDate = LocalDate.now();
         setMonthView();
-
-        //파이차트
-        pieChart = findViewById(R.id.pie_chart);
-        SetPieChart(pieChart);
-
-        //막대차트
-        barChart = (HorizontalBarChart) findViewById(R.id.bar_chart);
-        SetBarChart(barChart);
+        UserData.init(getApplicationContext());
 
         btn_graph = findViewById(R.id.btn_graph);
         btn_graph.setOnClickListener(new View.OnClickListener() {
@@ -92,17 +102,41 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 
         //목표
         goal = findViewById(R.id.goal);
-        goal.setHint("목표를 설정해주세요");
+        diffDays = 0;
+        if(UserData.read("goal_day","") == null){
+            goal.setHint("목표를 설정해주세요");
+        } else {
+            CalBMR calBMR = new CalBMR();
+            String goal_day = UserData.read("goal_day","");
+            LocalDate now = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            String formatedNow = now.format(formatter);
+            try {
+                Date format1 = new SimpleDateFormat("yyyy/MM/dd").parse(goal_day);
+                Date format2 = new SimpleDateFormat("yyyy/MM/dd").parse(formatedNow);
+                long diffSec = (format1.getTime() - format2.getTime()) / 1000;
+                diffDays = diffSec / (24*60*60); //일자 계산
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String user_weight = UserData.read("user_weight","");
+            String goal_weight = UserData.read("goal_weight","");
+            calTotalRemoveCalorie = calBMR.CalTotalRemoveCalorie(Integer.parseInt(user_weight),Integer.parseInt(goal_weight));
+            int weight = Integer.parseInt(goal_weight) - Integer.parseInt(user_weight);
+            if(diffDays == 0){
+                goal.setHint("GOAL(" + "D-day,-" + weight + "kg)");
+            }else {
+                goal.setHint("GOAL(" + "D-" + diffDays+ "," + weight + "kg)");
+            }
+        }
         goal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //목표 설정 인텐트 이동
+                Intent intent = new Intent(CalendarActivity.this,Setting_goalActivity.class);
+                startActivity(intent);
             }
         });
-        //내부 DB조회 후 목표 확인 후 있으면
-//        if(goal.toString() == ""){
-//            goal.setHint("GOAL(" + UserData.goal_day +"-day," + UserData.goal_weight+ "kg)");
-//        }
 
         //게시판
         btn_search = findViewById(R.id.btn_search);
@@ -113,6 +147,28 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
                 startActivity(intent);
             }
         });
+
+        btn_diary = findViewById(R.id.btn_diary);
+        btn_diary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocalDate now = LocalDate.now();
+                int dayOfMonth = now.getDayOfMonth();
+                Intent intent = new Intent(CalendarActivity.this, DiaryActivity.class);
+                String message = monthYearFromDate(selectedDate) + " " + dayOfMonth;
+                intent.putExtra("날짜",message);
+                startActivity(intent);
+            }
+        });
+
+        //막대차트
+        barChart = (HorizontalBarChart) findViewById(R.id.bar_chart);
+        SetBarChart(barChart);
+
+        //파이차트
+        pieChart = findViewById(R.id.pie_chart);
+        SetPieChart(pieChart);
+
     }
 
     //region 캘린더
@@ -208,6 +264,15 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 
     //region 파이차트
     public void SetPieChart(PieChart pieChart) {
+
+        recommend_cal = findViewById(R.id.recommend_cal);
+        diet_cal = findViewById(R.id.diet_cal);
+        left_cal = findViewById(R.id.left_cal);
+        recommend_cal.setText((int)bmr +"kcal");
+        diet_cal.setText((int)recommentCal +"kcal");
+        left_cal.setText("");
+
+
         //파이차트 밸류 색상
         colorArray = new int[]{Color.parseColor("#263545")};
 
@@ -234,7 +299,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(0,0,0,0);
         //유저에 맞는 칼로리 넣기
-        pieChart.setCenterText("2500kcal");
+        pieChart.setCenterText((int)bmr+"kcal");
         //중앙 텍스트 크기
         pieChart.setCenterTextSize(12f);
         //하단 라벨 제거
@@ -245,13 +310,33 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     }
     //endregion
 
-    //region 막대차트(텍스트 데이터 전부 추가해서 다시 만들기)
+    //region 막대차트
     public void SetBarChart(HorizontalBarChart barChart){
+        CalBMR calBMR = new CalBMR();
+        Float height = Float.parseFloat(UserData.read("user_height",""));
+        Float weight = Float.parseFloat(UserData.read("user_weight",""));
+        int age = UserData.readInt("user_age",0);
+        if(UserData.readInt("user_gender",0) == 0) {
+            bmr = (float) calBMR.CalBmr(0, height, weight, age);
+        }else{
+            bmr = (float) calBMR.CalBmr(1, height, weight, age);
+        }
+        recommentCal = calBMR.CalDietRecommendedIntake(bmr,calTotalRemoveCalorie,(int)diffDays);
+        double gi = (int)recommentCal * 0.15;
+        double dan = (int)recommentCal * 0.25;
+        double tan = (int)recommentCal * 0.6;
+        tan_txt = findViewById(R.id.tan);
+        tan_txt.setText((int)tan + "kcal");
+        dan_txt = findViewById(R.id.dan);
+        dan_txt.setText((int)dan + "kcal");
+        gi_txt = findViewById(R.id.gi);
+        gi_txt.setText((int)gi + "kcal");
+
         //내부 데이터
         ArrayList<BarEntry> dataValue = new ArrayList<>();
-        dataValue.add(new BarEntry(0,375));
-        dataValue.add(new BarEntry(1,625));
-        dataValue.add(new BarEntry(2,1500));
+        dataValue.add(new BarEntry(0,(int)gi));
+        dataValue.add(new BarEntry(1,(int)dan));
+        dataValue.add(new BarEntry(2,(int)tan));
 
 
         //라벨 데이터
@@ -259,6 +344,8 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 //        getXAxisValues.add("탄수화물");
 //        getXAxisValues.add("단백질");
 //        getXAxisValues.add("지방");
+
+        colorArray = new int[]{Color.parseColor("#263545")};
 
         BarDataSet barDataSet = new BarDataSet(dataValue,"");
         barDataSet.setColors(colorArray);

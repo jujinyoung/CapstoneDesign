@@ -22,7 +22,7 @@ import java.util.GregorianCalendar;
 public class Setting_goalActivity extends AppCompatActivity {
     public static String TAG = "Setting_goalActivity";
 
-    EditText et_height,et_pv,et_fv;
+    EditText et_height,et_pv,et_fv,et_age;
     Button btn_setup,goal_day;
     RadioGroup goal_radioGroup;
     RadioButton man,woman;
@@ -38,6 +38,7 @@ public class Setting_goalActivity extends AppCompatActivity {
         et_height = findViewById(R.id.et_height);
         et_pv = findViewById(R.id.et_pv);
         et_fv = findViewById(R.id.et_fv);
+        et_age = findViewById(R.id.et_age);
 
         Calendar cal = new GregorianCalendar();
         mYear = cal.get(Calendar.YEAR);
@@ -52,6 +53,7 @@ public class Setting_goalActivity extends AppCompatActivity {
                     UserData.write("user_height",et_height.getText().toString());
                     UserData.write("user_weight",et_pv.getText().toString());
                     UserData.write("goal_weight",et_fv.getText().toString());
+                    UserData.writeInt("user_age",Integer.parseInt(et_age.getText().toString()));
                     UserData.write("goal_day",goal_day.getText().toString());
                     finish();
                 }catch (NumberFormatException e){
@@ -97,7 +99,7 @@ public class Setting_goalActivity extends AppCompatActivity {
                     mMonth = monthOfYear;
                     mDay = dayOfMonth;
 
-                    goal_day.setText(mMonth+1 + "월 " + mDay + "일");
+                    goal_day.setText(mYear + "/" + (mMonth+1) + "/" + mDay);
                 }
 
     };
@@ -112,6 +114,7 @@ public class Setting_goalActivity extends AppCompatActivity {
             et_height.setText(UserData.read("user_height","").toString());
             et_pv.setText(UserData.read("user_weight","").toString());
             et_fv.setText(UserData.read("goal_weight","").toString());
+            et_age.setText(UserData.readInt("user_age",0).toString());
             goal_day.setText(UserData.read("goal_day","").toString());
         }catch (Exception e){
             Log.e(TAG,e + "");

@@ -71,6 +71,7 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
     EditText[] et_diary;
     ImageView[] cameraImage;
     TextView[] et_food;
+    Button[] btn_measure;
 
     //카메라 기능
     File file;
@@ -200,6 +201,19 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
                 }
             }
         });
+
+        btn_measure = new Button[4];
+        for(int i = 0;i<btn_measure.length;i++){
+            String btn_measure_id = "btn_measure_"+i;
+            btn_measure[i] = findViewById(getResources().getIdentifier(btn_measure_id,"id",getPackageName()));
+            btn_measure[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(DiaryActivity.this,DiaryActivity_loadc.class);
+                    startActivity(intent);
+                }
+            });
+        }
 
         et_food = new TextView[4];
         for(int i = 0;i<et_food.length;i++){

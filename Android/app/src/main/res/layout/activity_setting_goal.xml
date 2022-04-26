@@ -202,32 +202,6 @@
             android:text="@string/setting_goal" />
 
 
-    <FrameLayout
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/box_rectangle"
-        android:layout_gravity="center">
-
-        <!--일일 권장 칼로리(kcal):-->
-        <TextView
-            android:id="@+id/textViewResult_setup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            style="@style/Montserrat20Pt2"
-            android:text=""/>
-
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:layout_gravity="center" />
-
-    </FrameLayout>
 
 
 </LinearLayout>

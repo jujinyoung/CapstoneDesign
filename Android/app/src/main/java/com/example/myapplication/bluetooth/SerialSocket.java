@@ -8,8 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import com.github.channguyen.rsv.BuildConfig;
-
 import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.util.Arrays;
@@ -18,8 +16,7 @@ import java.util.concurrent.Executors;
 
 class SerialSocket implements Runnable {
 
-    static final String INTENT_ACTION_DISCONNECT = BuildConfig.APPLICATION_ID + ".Disconnect";
-    public static final UUID BLUETOOTH_SPP = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    private static final UUID BLUETOOTH_SPP = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     private final BroadcastReceiver disconnectBroadcastReceiver;
 
@@ -53,7 +50,7 @@ class SerialSocket implements Runnable {
      */
     void connect(SerialListener listener) throws IOException {
         this.listener = listener;
-        context.registerReceiver(disconnectBroadcastReceiver, new IntentFilter(INTENT_ACTION_DISCONNECT));
+        context.registerReceiver(disconnectBroadcastReceiver, new IntentFilter(Constants.INTENT_ACTION_DISCONNECT));
         Executors.newSingleThreadExecutor().submit(this);
     }
 

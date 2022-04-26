@@ -2,6 +2,8 @@ package com.example.myapplication.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,9 +46,10 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = et_id.toString();
+                String id = et_id.getText().toString();
                 //id,password 값저장
                 UserData.write("user_id",id);
+//                String userID = et_id.getText().toString();
                 String userPass = et_pass.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -62,8 +65,15 @@ public class LoginActivity extends AppCompatActivity {
 //                                String userPass = jsonObject.getString("userPassword");
 //                                Toast.makeText(getApplicationContext(), "로그인에 성공하였습니다", Toast.LENGTH_SHORT).show();
                                 //메인화면으로 이동
-                                Intent intent = new Intent(LoginActivity.this, SettingActivity.class);
-                                startActivity(intent);
+                                String userheight = UserData.read("user_height","");
+                                Toast.makeText(getApplicationContext(),userheight,Toast.LENGTH_SHORT).show();
+                                if(UserData.read("user_height","") == ""){
+                                    Intent intent = new Intent(LoginActivity.this, Setting_goalActivity.class);
+                                    startActivity(intent);
+                                }else{
+                                    Intent intent = new Intent(LoginActivity.this, CalendarActivity.class);
+                                    startActivity(intent);
+                                }
                             } else {
                                 Toast.makeText(getApplicationContext(), "로그인에 실패하였습니다", Toast.LENGTH_SHORT).show();
                                 return;
@@ -72,13 +82,11 @@ public class LoginActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-//
-//                Intent intent = new Intent(LoginActivity.this, CalendarActivity.class);
-//                startActivity(intent);
-
                 };
+
                 //vollyer를 이용해서 서버에 요청
                 LoginRequest loginRequest = new LoginRequest(UserData.read("user_id",""),userPass,responseListener);
+//                LoginRequest loginRequest = new LoginRequest(userID,userPass,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                 queue.add(loginRequest);
             }
