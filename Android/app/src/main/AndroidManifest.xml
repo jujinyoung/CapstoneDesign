@@ -52,12 +52,12 @@
             android:exported="false" />
         <activity
             android:name=".activity.DiaryActivity_loadc">
+        </activity>
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".activity.LoginActivity">
         </activity>
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.CalendarActivity" >

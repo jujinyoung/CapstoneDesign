@@ -2,6 +2,7 @@ package com.example.myapplication.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -54,8 +55,6 @@ public class PasswordActivity extends AppCompatActivity {
                                 //메일을 보내주는 쓰레드
                                 MailTread mailTread = new MailTread();
                                 mailTread.start();
-                                Toast.makeText(getApplicationContext(), "이메일 전송 완료",Toast.LENGTH_SHORT).show();
-                                finish();
                             }else{
                                 Toast.makeText(getApplicationContext(),"등록되지 않은 이메일입니다.",Toast.LENGTH_SHORT).show();
                                 return;
@@ -85,6 +84,13 @@ public class PasswordActivity extends AppCompatActivity {
             GmailCode=gMailSender.getEmailCode();
             try {
                 gMailSender.sendMail("다이어트 플랜A 비밀번호 변경", "변경된 비밀번호는 "+GmailCode +" 입니다.\n로그인 후 설정창에서 비밀번호를 재설정해 주세요." , et_id_password.getText().toString());
+
+                Toast.makeText(getApplicationContext(), "이메일 전송 완료",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),Setting_editActivity.class);
+                intent.putExtra("user_id",et_id_password.getText().toString());
+                intent.putExtra("mailcode",GmailCode);
+                startActivity(intent);
+                finish();
             } catch (SendFailedException e) {
 
             } catch (MessagingException e) {

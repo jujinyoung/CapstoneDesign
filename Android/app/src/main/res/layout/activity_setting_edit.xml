@@ -15,7 +15,9 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="58dp"
         android:background="@color/clear"
-        android:drawableTop="@drawable/icon_back" />
+        android:drawableTop="@drawable/icon_back"
+        tools:ignore="SpeakableTextPresentCheck" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,14 +32,14 @@
         android:text="@string/setup_pw" />
 
     <EditText
-        android:id="@+id/et_id_password"
+        android:id="@+id/mailcode"
         style="@style/Montserrat15Pt2"
         android:layout_width="315dp"
         android:layout_height="60dp"
         android:layout_marginStart="49dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/sign_et"
-        android:hint="@string/email"
+        android:hint="@string/mailcode"
         android:inputType="textEmailAddress"
         android:paddingStart="60dp"
         android:paddingEnd="60dp"
@@ -48,55 +50,70 @@
         android:layout_height="15dp"
         android:layout_marginStart="74dp"
         android:layout_marginTop="-37dp"
-        app:srcCompat="@drawable/icon_mail" />
+        app:srcCompat="@drawable/icon_padlock" />
 
-    <Button
-        android:id="@+id/btn_sendEmail"
-        style="@style/Montserrat20Pt"
+    <EditText
+        android:id="@+id/et_id_pass_edit"
+        style="@style/Montserrat15Pt2"
         android:layout_width="315dp"
         android:layout_height="60dp"
-        android:background="@drawable/btn_login_rectangle"
-        android:letterSpacing="0"
-        android:text="@string/send_email"
-        android:textAllCaps="false"
-        app:backgroundTint="@color/dark"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="49dp"/>
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/sign_et"
+        android:hint="@string/et_pass"
+        android:inputType="textEmailAddress"
+        android:paddingStart="60dp"
+        android:paddingEnd="60dp"
+        android:textColorHint="@color/dark" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="-37dp"
+        app:srcCompat="@drawable/icon_padlock" />
+
+    <EditText
+        android:id="@+id/et_id_pass_check"
+        style="@style/Montserrat15Pt2"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/sign_et"
+        android:hint="@string/et_pass"
+        android:inputType="textEmailAddress"
+        android:paddingStart="60dp"
+        android:paddingEnd="60dp"
+        android:textColorHint="@color/dark" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="-37dp"
+        app:srcCompat="@drawable/icon_padlock" />
+
 
     <View
         android:layout_width="355dp"
-        android:layout_height="170dp"
-        android:background="@drawable/box_login"
+        android:layout_height="289dp"
         android:layout_marginStart="28.5dp"
-        android:layout_marginTop="-155dp"/>
+        android:layout_marginTop="-240dp"
+        android:background="@drawable/box_login" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <Button
+        android:id="@+id/btn_editpass"
+        style="@style/Montserrat20Pt"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/btn_login_rectangle"
+        android:letterSpacing="0"
+        android:text="@string/setting_password"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/dark" />
 
-        <EditText
-            android:id="@+id/et_password"
-            style="@style/Montserrat15Pt2"
-            android:layout_width="315dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="49dp"
-            android:layout_marginTop="36dp"
-            android:background="@drawable/sign_et"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:paddingStart="60dp"
-            android:paddingEnd="60dp"
-            android:textColorHint="@color/dark" />
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="15dp"
-            android:layout_marginStart="74dp"
-            android:layout_marginTop="-37dp"
-            app:srcCompat="@drawable/icon_mail" />
-
-
-    </LinearLayout>
 
 </LinearLayout>

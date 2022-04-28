@@ -32,7 +32,7 @@ public class SettingActivity extends AppCompatActivity {
         setting_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SettingActivity.this,Setting_editActivity.class);
+                Intent intent = new Intent(SettingActivity.this,PasswordActivity.class);
                 startActivity(intent);
             }
         });

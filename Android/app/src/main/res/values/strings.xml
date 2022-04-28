@@ -87,8 +87,8 @@
     <string name="unshare">비공유</string>
     <string name="share">공유</string>
     <string name="setting_password">비밀번호 재설정</string>
-    <string name="reset_pass">비밀번호 재설정</string>
     <string name="et_age">나이</string>
+    <string name="mailcode">EmailCode</string>
 
 
     <string name="app_name1">Simple Bluetooth Terminal</string>
