@@ -43,10 +43,12 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
+import com.example.myapplication.activity.DiaryActivity;
 import com.example.myapplication.bluetooth.Constants;
 import com.example.myapplication.bluetooth.SerialListener;
 import com.example.myapplication.bluetooth.SerialService;
 import com.example.myapplication.bluetooth.SerialSocket;
+import com.example.myapplication.utils.UserData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.BufferedWriter;
@@ -349,39 +351,39 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
                     error = false;
                     switch (cmd)
                     {
-//                        case Constants.PSENSOR_CLEAN_PRODUCT_MODE: {
-//                            if (result == 1) {
-//                                Toast.makeText(service, "clean product mode success", Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                Toast.makeText(service, "clean product mode failed.", Toast.LENGTH_SHORT).show();
-//                            }
-//                            break;
-//                        }
+                        case Constants.PSENSOR_CLEAN_PRODUCT_MODE: {
+                            if (result == 1) {
+                                Toast.makeText(service, "clean product mode success", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(service, "clean product mode failed.", Toast.LENGTH_SHORT).show();
+                            }
+                            break;
+                        }
 
-//                        case Constants.PSENSOR_SET_PRODUCT_MODE: {
-//                            if (result == 1) {
-//                                Toast.makeText(service, "set product mode success", Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                Toast.makeText(service, "set product mode failed.", Toast.LENGTH_SHORT).show();
-//                            }
-//                            break;
-//                        }
+                        case Constants.PSENSOR_SET_PRODUCT_MODE: {
+                            if (result == 1) {
+                                Toast.makeText(service, "set product mode success", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(service, "set product mode failed.", Toast.LENGTH_SHORT).show();
+                            }
+                            break;
+                        }
 
-//                        case Constants.PSENSOR_CHECK_PRODUCT_MODE: {
-//                            boolean customer_ui =  ((result >> Constants.CUSTOMER_UI_INDEX) & 0x1) == 1;
-//                            boolean product_mode = ((result >> Constants.CUSTOMER_PRODUCT_INDEX) & 0x1) == 1;
-//
-//                            if (!customer_ui && product_mode) {
-//                                Toast.makeText(service, "product mode", Toast.LENGTH_SHORT).show();
-//                            } else if (customer_ui && !product_mode) {
-//                                Toast.makeText(service, "user mode", Toast.LENGTH_SHORT).show();
-//                            }
-//                            else
-//                            {
-//                                Toast.makeText(service, "earphone error", Toast.LENGTH_SHORT).show();
-//                            }
-//                            break;
-//                        }
+                        case Constants.PSENSOR_CHECK_PRODUCT_MODE: {
+                            boolean customer_ui =  ((result >> Constants.CUSTOMER_UI_INDEX) & 0x1) == 1;
+                            boolean product_mode = ((result >> Constants.CUSTOMER_PRODUCT_INDEX) & 0x1) == 1;
+
+                            if (!customer_ui && product_mode) {
+                                Toast.makeText(service, "product mode", Toast.LENGTH_SHORT).show();
+                            } else if (customer_ui && !product_mode) {
+                                Toast.makeText(service, "user mode", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                Toast.makeText(service, "earphone error", Toast.LENGTH_SHORT).show();
+                            }
+                            break;
+                        }
                         case Constants.PSENSOR_GET_CALI_DATA: {
                             psensor_cali_data left_value;
                             psensor_cali_data right_value;
@@ -648,7 +650,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
                 String str = new String(data);
 //                receiveText.append(str);
                 Toast.makeText(getActivity(),str,Toast.LENGTH_SHORT).show();
-
+//                UserData.write("food_g",str);
             }
         }
 
@@ -659,34 +661,34 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     }
 
 
-//    private void receive(byte[] data) {
-//        if(hexEnabled) {
-//            receiveText.append(TextUtil.toHexString(data) + '\n');
-//            Toast.makeText(getActivity(),"hexenabled1",Toast.LENGTH_SHORT).show();
-//        } else {
-//            Toast.makeText(getActivity(),"hexenabled3",Toast.LENGTH_SHORT).show();
-//            String msg = new String(data);
-//            if(newline.equals(TextUtil.newline_crlf) && msg.length() > 0) {
-//                // don't show CR as ^M if directly before LF
-//                msg = msg.replace(TextUtil.newline_crlf, TextUtil.newline_lf);
-//                // special handling if CR and LF come in separate fragments
-//                if (pendingNewline && msg.charAt(0) == '\n') {
-//                    Editable edt = receiveText.getEditableText();
-//                    if (edt != null && edt.length() > 1)
-//                        edt.replace(edt.length() - 2, edt.length(), "");
-//                }
-//                pendingNewline = msg.charAt(msg.length() - 1) == '\r';
-//            }
-//            receiveText.append(TextUtil.toCaretString(msg, newline.length() != 0));
-//            Toast.makeText(getActivity(),"hexenabled2",Toast.LENGTH_SHORT).show();
-//        }
-//    }
+    private void receive(byte[] data) {
+        if(hexEnabled) {
+            receiveText.append(TextUtil.toHexString(data) + '\n');
+            Toast.makeText(getActivity(),"hexenabled1",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getActivity(),"hexenabled3",Toast.LENGTH_SHORT).show();
+            String msg = new String(data);
+            if(newline.equals(TextUtil.newline_crlf) && msg.length() > 0) {
+                // don't show CR as ^M if directly before LF
+                msg = msg.replace(TextUtil.newline_crlf, TextUtil.newline_lf);
+                // special handling if CR and LF come in separate fragments
+                if (pendingNewline && msg.charAt(0) == '\n') {
+                    Editable edt = receiveText.getEditableText();
+                    if (edt != null && edt.length() > 1)
+                        edt.replace(edt.length() - 2, edt.length(), "");
+                }
+                pendingNewline = msg.charAt(msg.length() - 1) == '\r';
+            }
+            receiveText.append(TextUtil.toCaretString(msg, newline.length() != 0));
+            Toast.makeText(getActivity(),"hexenabled2",Toast.LENGTH_SHORT).show();
+        }
+    }
 
-//    private void status(String str) {
-//        SpannableStringBuilder spn = new SpannableStringBuilder(str + '\n');
-////        spn.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorStatusText)), 0, spn.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        receiveText.append(spn);
-//    }
+    private void status(String str) {
+        SpannableStringBuilder spn = new SpannableStringBuilder(str + '\n');
+//        spn.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorStatusText)), 0, spn.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        receiveText.append(spn);
+    }
 
     /*
      * SerialListener

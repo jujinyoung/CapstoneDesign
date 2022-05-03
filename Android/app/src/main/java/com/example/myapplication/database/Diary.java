@@ -18,13 +18,17 @@ public class Diary {
     String food3;
     String mood3;
     String comment3;
+    String tan;
+    String dan;
+    String gi;
+    String kcal;
 
     public Diary(){
 
     }
 
 
-    public Diary(String _id, String picture0, String food0, String mood0, String comment0, String picture1, String food1, String mood1, String comment1, String picture2, String food2, String mood2, String comment2, String picture3, String food3, String mood3, String comment3){
+    public Diary(String _id, String picture0, String food0, String mood0, String comment0, String picture1, String food1, String mood1, String comment1, String picture2, String food2, String mood2, String comment2, String picture3, String food3, String mood3, String comment3,String tan,String dan,String gi,String kcal){
         this._id = _id;
         this.picture0 = picture0;
         this.food0 = food0;
@@ -42,6 +46,10 @@ public class Diary {
         this.food3 = food3;
         this.mood3 = mood3;
         this.comment3 = comment3;
+        this.tan = tan;
+        this.dan = dan;
+        this.gi = gi;
+        this.kcal = kcal;
     }
 
     public String get_id() {
@@ -112,6 +120,14 @@ public class Diary {
         return comment3;
     }
 
+    public String getTan(){return tan;}
+
+    public String getDan(){return dan;}
+
+    public String getGi(){return gi;}
+
+    public String getKcal(){return kcal;}
+
     public void set_id(String _id) {
         this._id = _id;
     }
@@ -179,4 +195,12 @@ public class Diary {
     public void setComment3(String comment3) {
         this.comment3 = comment3;
     }
+
+    public void setTan(String tan){this.tan = tan;}
+
+    public void setDan(String dan){this.dan = dan;}
+
+    public void setGi(String gi){this.gi = gi;}
+
+    public void setKcal(String kcal){this.kcal = kcal;}
 }

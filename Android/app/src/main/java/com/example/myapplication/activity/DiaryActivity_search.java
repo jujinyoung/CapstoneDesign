@@ -5,11 +5,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -23,6 +27,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.ml.FoodModel;
 import com.example.myapplication.utils.NameUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class DiaryActivity_search extends AppCompatActivity {
@@ -32,7 +38,12 @@ public class DiaryActivity_search extends AppCompatActivity {
     TextView textViewResult,textViewIdentifiedFood;
     ProgressBar progressBar;
     ImageView search_image;
-    String foodname1;
+    double tan,dan,gi,kcal;
+    String servingsize,foodname;
+//    ListView food_list;
+    public static ArrayList<String> items = new ArrayList<String>();
+//    View View_image,View_search;
+
 
     private final MutableLiveData<Bitmap> image = new MutableLiveData<>();
 
@@ -43,15 +54,28 @@ public class DiaryActivity_search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_search);
 
+
+
+//        View_image = findViewById(R.id.View_image);
+//        View_search = findViewById(R.id.View_search);
+
         //이미지 받아오기
         Intent intent = getIntent();
         int num = intent.getIntExtra("num_i",0);
+        search_image = findViewById(R.id.search_image);
         if(getIntent().getByteArrayExtra("image") != null){
             byte[] byteArray = getIntent().getByteArrayExtra("image");
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             image.setValue(bitmap);
-            search_image = findViewById(R.id.search_image);
             search_image.setImageBitmap(bitmap);
+        } else{
+            search_image.setVisibility(View.INVISIBLE);
+//            food_list.setOnClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    String data = (String) parent.getItemAtPosition(position);
+//                }
+//            });
         }
 
         // 위젯을 가져온다
@@ -81,6 +105,12 @@ public class DiaryActivity_search extends AppCompatActivity {
                     runOnUiThread(() -> {
                         if (food != null) {
                             textViewResult.setText(food.toString());
+                            tan = food.getCarbohydrate();
+                            dan = food.getProtein();
+                            gi = food.getFat();
+                            kcal = food.getCalories();
+                            servingsize = food.getServingSize().replace("g","");
+                            foodname = food.getName();
                         } else {
                             textViewResult.setText("검색된 결과가 없습니다.");
                         }
@@ -95,9 +125,14 @@ public class DiaryActivity_search extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                String foodName = editTextSearch.getText().toString();
-                intent.putExtra("foodName",foodname1);
+                intent.putExtra("foodName",foodname);
                 intent.putExtra("num",num);
+                intent.putExtra("tan",tan);
+                intent.putExtra("dan",dan);
+                intent.putExtra("gi",gi);
+                intent.putExtra("kcal",kcal);
+                intent.putExtra("servingsize",servingsize);
+
 
                 setResult(RESULT_OK, intent);
                 finish();
@@ -108,7 +143,7 @@ public class DiaryActivity_search extends AppCompatActivity {
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonSearch.setText(null);
+                editTextSearch.setText(null);
                 textViewResult.setText(null);
             }
         });
@@ -130,7 +165,6 @@ public class DiaryActivity_search extends AppCompatActivity {
             // 판별된 음식 이름을 텍스트뷰에 띄운다
             foodName.observe(this, name -> {
                 String str = "판별값: " + name;
-                foodname1 = name;
                 textViewIdentifiedFood.setText(str);
             });
 
@@ -138,6 +172,12 @@ public class DiaryActivity_search extends AppCompatActivity {
             food.observe(this, foodValue -> {
                 if (foodValue != null) {
                     textViewResult.setText(foodValue.toString());
+                    tan = foodValue.getCarbohydrate();
+                    dan = foodValue.getProtein();
+                    gi = foodValue.getFat();
+                    kcal = foodValue.getCalories();
+                    servingsize = foodValue.getServingSize();
+                    foodname = foodValue.getName();
                 } else {
                     textViewResult.setText("등록되지 않은 음식입니다");
                 }
@@ -149,7 +189,6 @@ public class DiaryActivity_search extends AppCompatActivity {
         //endregion
 
     }
-
 
 
 }

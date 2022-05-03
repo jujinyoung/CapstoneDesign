@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,18 +81,25 @@ public class PasswordActivity extends AppCompatActivity {
             GMailSender gMailSender = new GMailSender("jujinyoung1838@gmail.com", "jujinyoung8!");
             //GMailSender.sendMail(제목, 본문내용, 받는사람);
 
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(), "이메일 전송 완료",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(PasswordActivity.this,Setting_editActivity.class);
+                    intent.putExtra("user_id",et_id_password.getText().toString());
+                    intent.putExtra("mailcode",GmailCode);
+                    Toast.makeText(getApplicationContext(), GmailCode,Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                    finish();
+                }
+            },0);
 
             //인증코드
             GmailCode=gMailSender.getEmailCode();
             try {
                 gMailSender.sendMail("다이어트 플랜A 비밀번호 변경", "변경된 비밀번호는 "+GmailCode +" 입니다.\n로그인 후 설정창에서 비밀번호를 재설정해 주세요." , et_id_password.getText().toString());
 
-                Toast.makeText(getApplicationContext(), "이메일 전송 완료",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),Setting_editActivity.class);
-                intent.putExtra("user_id",et_id_password.getText().toString());
-                intent.putExtra("mailcode",GmailCode);
-                startActivity(intent);
-                finish();
             } catch (SendFailedException e) {
 
             } catch (MessagingException e) {

@@ -6,9 +6,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,6 +20,8 @@ import android.widget.Toast;
 import com.example.myapplication.CalBMR;
 import com.example.myapplication.R;
 import com.example.myapplication.calendar.CalendarAdapter;
+import com.example.myapplication.database.DBHelper;
+import com.example.myapplication.database.Diary;
 import com.example.myapplication.utils.UserData;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -31,6 +36,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -57,6 +63,9 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     long diffDays;
     double calTotalRemoveCalorie,recommentCal;
 
+    //월 변경 화살표
+    TextView left_arrow,right_arrow;
+
     //목표
     TextView goal;
 
@@ -70,6 +79,9 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     //권장 칼로리
     TextView recommend_cal,diet_cal,left_cal;
 
+    //DB
+    public static DBHelper mDatabase = null;
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -77,6 +89,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         initWidgets();
+        openDatabase();
         //현재날짜
         selectedDate = LocalDate.now();
         setMonthView();
@@ -158,6 +171,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
                 String message = monthYearFromDate(selectedDate) + " " + dayOfMonth;
                 intent.putExtra("날짜",message);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -168,6 +182,31 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         //파이차트
         pieChart = findViewById(R.id.pie_chart);
         SetPieChart(pieChart);
+
+        left_arrow = findViewById(R.id.left_arrow);
+        left_arrow.setText("<-");
+        left_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                previousMonthAction(v);
+            }
+        });
+
+        right_arrow = findViewById(R.id.right_arrow);
+        right_arrow.setText("->");
+        right_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextMonthAction(v);
+            }
+        });
+
+        Diary diary = getTableData();
+        if(diary != null){
+            int leftkcal = (int)bmr - Integer.parseInt(diary.getKcal().replace("kcal",""));
+            left_cal = findViewById(R.id.left_cal);
+            left_cal.setText(leftkcal+"kcal");
+        }
 
     }
 
@@ -232,19 +271,19 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         return date.format(formatter);
     }
     //달 전환 버튼
-//    @RequiresApi(api = Build.VERSION_CODES.O)
-//    public void previousMonthAction(View view)
-//    {
-//        selectedDate = selectedDate.minusMonths(1);
-//        setMonthView();
-//    }
-//
-//    @RequiresApi(api = Build.VERSION_CODES.O)
-//    public void nextMonthAction(View view)
-//    {
-//        selectedDate = selectedDate.plusMonths(1);
-//        setMonthView();
-//    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void previousMonthAction(View view)
+    {
+        selectedDate = selectedDate.minusMonths(1);
+        setMonthView();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void nextMonthAction(View view)
+    {
+        selectedDate = selectedDate.plusMonths(1);
+        setMonthView();
+    }
 
     //클릭할 시  구현
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -270,7 +309,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         left_cal = findViewById(R.id.left_cal);
         recommend_cal.setText((int)bmr +"kcal");
         diet_cal.setText((int)recommentCal +"kcal");
-        left_cal.setText("");
+        left_cal.setText((int)bmr+"kcal");
 
 
         //파이차트 밸류 색상
@@ -354,12 +393,12 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         barDataSet.setDrawValues(true);
 //        //경계선
 //        barDataSet.setBarBorderWidth(2f);
-        barDataSet.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                return (String.valueOf((int) value)) + "kcal";
-            }
-        });
+//        barDataSet.setValueFormatter(new ValueFormatter() {
+//            @Override
+//            public String getFormattedValue(float value) {
+//                return (String.valueOf((int) value)) + "kcal";
+//            }
+//        });
 
         BarData barData = new BarData(barDataSet);
 
@@ -375,8 +414,8 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         barChart.getAxisLeft().setEnabled(false);
         barChart.getAxisRight().setEnabled(false);
         //최대,최소,차트 개수
-        barChart.getAxisLeft().setAxisMaximum(1500);
-        barChart.getAxisLeft().setAxisMinimum(0);
+//        barChart.getAxisLeft().setAxisMaximum(1500);
+//        barChart.getAxisLeft().setAxisMinimum(0);
         barChart.setMaxVisibleValueCount(3);
         //간격
 //        barChart.setExtraOffsets(0f,0f,0f,0f);
@@ -398,6 +437,83 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         barChart.invalidate();
 
 
+    }
+    //endregion
+
+    //region DB
+    public  void openDatabase() {
+        // open database
+        if (mDatabase != null) {
+            mDatabase.close();
+            mDatabase = null;
+        }
+
+        mDatabase = DBHelper.getInstance(this);
+        boolean isOpen = mDatabase.open();
+        if (isOpen) {
+
+        } else {
+
+        }
+    }
+
+    private Diary getTableData(){
+        try {
+            LocalDateTime now = LocalDateTime.now();
+            String today_date = TodayDate(now);
+            mDatabase.db = mDatabase.Readdb();
+            String sql = "SELECT * FROM " + DBHelper.TABLE_NAME + " WHERE _id='" + today_date.replace(" ","") +"'";
+
+            Diary diary = null;
+
+            if(mDatabase.db != null){
+                Cursor mCur = mDatabase.db.rawQuery(sql,null);
+
+                int count = mCur.getCount();
+
+                for(int i = 0; i<count; i++){
+                    mCur.moveToNext();
+
+                    diary = new Diary();
+
+                    diary.set_id(mCur.getString(0));
+                    diary.setPicture0(mCur.getString(1));
+                    diary.setFood0(mCur.getString(2));
+                    diary.setMood0(mCur.getString(3));
+                    diary.setComment0(mCur.getString(4));
+                    diary.setPicture1(mCur.getString(5));
+                    diary.setFood1(mCur.getString(6));
+                    diary.setMood1(mCur.getString(7));
+                    diary.setComment1(mCur.getString(8));
+                    diary.setPicture2(mCur.getString(9));
+                    diary.setFood2(mCur.getString(10));
+                    diary.setMood2(mCur.getString(11));
+                    diary.setComment2(mCur.getString(12));
+                    diary.setPicture3(mCur.getString(13));
+                    diary.setFood3(mCur.getString(14));
+                    diary.setMood3(mCur.getString(15));
+                    diary.setComment3(mCur.getString(16));
+                    diary.setTan(mCur.getString(17));
+                    diary.setDan(mCur.getString(18));
+                    diary.setGi(mCur.getString(19));
+                    diary.setKcal(mCur.getString(20));
+
+//                    Toast.makeText(getApplicationContext(),"레코드 #" + i + " : " + diary.get_id(),Toast.LENGTH_SHORT).show();
+                }
+            }
+            return diary;
+        }
+        catch (SQLException mSQlException)
+        {
+            throw mSQlException;
+        }
+    }
+
+    private String TodayDate(LocalDateTime date)
+    {
+        //언어 설정
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d").withLocale(Locale.forLanguageTag("En"));
+        return date.format(formatter);
     }
     //endregion
 }

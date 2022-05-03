@@ -30,7 +30,7 @@
     <string name="left_cal">남은 칼로리</string>
     <string name="consumed_cal">소비한 칼로리</string>
     <string name="recommend_cal">일일 권장</string>
-    <string name="diet_cal">다이어트 권장</string>
+    <string name="diet_cal">목표 권장</string>
     <string name="cancel">취소</string>
     <string name="save_food">음식 저장하기</string>
     <string name="fri">FRI</string>

@@ -2,11 +2,14 @@ package com.example.myapplication.food;
 
 import android.util.Xml;
 
+import com.example.myapplication.activity.DiaryActivity_search;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class FoodXmlParser {
 
@@ -68,6 +71,7 @@ public class FoodXmlParser {
             switch (tag) {
                 case "DESC_KOR":
                     name = readText(parser);
+                    DiaryActivity_search.items.add(name);
                     break;
                 case "SERVING_SIZE":
                     servingSize = readText(parser);

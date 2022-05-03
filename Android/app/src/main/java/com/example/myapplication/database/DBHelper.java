@@ -161,7 +161,11 @@ public class DBHelper {
                     + "  PICTURE3 TEXT DEFAULT '', "
                     + "  FOOD3 TEXT DEFAULT '', "
                     + "  MOOD3 TEXT , "
-                    + "  COMMENT3 TEXT DEFAULT '' "
+                    + "  COMMENT3 TEXT DEFAULT '', "
+                    + "  TAN TEXT DEFAULT '', "
+                    + "  DAN TEXT DEFAULT '', "
+                    + "  GI TEXT DEFAULT '', "
+                    + "  KCAL TEXT DEFAULT '' "
                     + ")";
             try {
                 db.execSQL(CREATE_SQL);

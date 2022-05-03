@@ -1,12 +1,15 @@
 package com.example.myapplication.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -39,6 +43,11 @@ import com.example.myapplication.database.Diary;
 import com.example.myapplication.request.SaveImageRequest;
 import com.example.myapplication.utils.BitmapUtils;
 import com.github.channguyen.rsv.RangeSliderView;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
@@ -49,7 +58,12 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
+import java.util.Random;
 
 public class DiaryActivity extends AppCompatActivity implements AutoPermissionsListener{
     private static final String TAG = "MainActivity";
@@ -72,10 +86,10 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
     ImageView[] cameraImage;
     TextView[] et_food;
     Button[] btn_measure;
+    int kcal;
+//    public static int weight;
 
     //카메라 기능
-    File file;
-    Uri fileUri;
     Bitmap[] resultPhotoBitmap = new Bitmap[4];
     int image_num,food_num;
 
@@ -99,6 +113,16 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
 
     //외부DB
     String[] resultPhotoBitmap_request;
+
+    //그래프
+    BarChart bar_chart_diary;
+    TextView tan_diary,dan_diary,gi_diary;
+    int tan = 0;
+    int dan = 0;
+    int gi = 0;
+    private int[] colorArray;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,34 +233,86 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
             btn_measure[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(dbMode == MODE_INSERT){
+                        saveNote();
+                    } else if(dbMode == MODE_MODIFY){
+                        modifyNote();
+                    }
                     Intent intent = new Intent(DiaryActivity.this,DiaryActivity_loadc.class);
                     startActivity(intent);
+
                 }
             });
         }
 
         et_food = new TextView[4];
-        for(int i = 0;i<et_food.length;i++){
+        for(int i = 0;i<et_food.length;i++) {
             int num = i;
-            String et_food_id = "et_food_"+i;
-            et_food[i] = findViewById(getResources().getIdentifier(et_food_id,"id",getPackageName()));
+            String et_food_id = "et_food_" + i;
+            et_food[i] = findViewById(getResources().getIdentifier(et_food_id, "id", getPackageName()));
             et_food[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    food_num = num;
-                    Intent intent = new Intent(getApplicationContext(), DiaryActivity_search.class);
-                    intent.putExtra("num_i",food_num);
-                    if(resultPhotoBitmap[food_num] != null){
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                        Bitmap bitmap = ((BitmapDrawable)cameraImage[food_num].getDrawable()).getBitmap();
-                        resultPhotoBitmap[food_num].compress(Bitmap.CompressFormat.JPEG,100,stream);
-                        byte[] byteArray = stream.toByteArray();
-                        intent.putExtra("image",byteArray);
-                    }
-                    foodNameResult.launch(intent);
+//                    food_num = num;
+//                    Intent intent = new Intent(getApplicationContext(), DiaryActivity_search.class);
+//                    intent.putExtra("num_i",food_num);
+//                    if(resultPhotoBitmap[food_num] != null){
+//                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+////                        Bitmap bitmap = ((BitmapDrawable)cameraImage[food_num].getDrawable()).getBitmap();
+//                        resultPhotoBitmap[food_num].compress(Bitmap.CompressFormat.JPEG,100,stream);
+//                        byte[] byteArray = stream.toByteArray();
+//                        intent.putExtra("image",byteArray);
+//                    }
+//                    foodNameResult.launch(intent);
+
+                    String[] words = new String[]{"이미지로 검색하기","이름으로 검색하기"};
+                    final int[] count = new int[1];
+
+                    // 대화상자 생성 //
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this);
+
+                    builder.setTitle("음식 검색하기");            //setTitle -> 제목설정
+                    builder.setIcon(R.mipmap.ic_launcher);        //setIcon -> 아이콘 설정
+
+                    //  setPositiveButton -> "OK"버튼  //
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            food_num = num;
+                            Intent intent = new Intent(getApplicationContext(), DiaryActivity_search.class);
+                            intent.putExtra("num_i",food_num);
+                            if(count[0] == 0){
+                                if(resultPhotoBitmap[food_num] != null){
+                                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                    resultPhotoBitmap[food_num].compress(Bitmap.CompressFormat.JPEG,100,stream);
+                                    byte[] byteArray = stream.toByteArray();
+                                    intent.putExtra("image",byteArray);
+                                } else{
+                                    Toast.makeText(DiaryActivity.this,"이미지를 등록해주세요.",Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                            }else{
+
+                            }
+
+                            foodNameResult.launch(intent);
+                        }
+                    });
+
+                    //  setSingleChoiceItems -> 라디오버튼 목록 출력  //
+                    builder.setSingleChoiceItems(words, 0, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            count[0] = i;
+                        }
+                    });
+
+                    builder.show();      //대화상자(dialog)화면 출력
                 }
             });
         }
+
 
         et_diary = new EditText[4];
         for(int i = 0; i<et_diary.length; i++){
@@ -317,6 +393,13 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
         moodSlider[2].setInitialIndex(2);
         moodSlider[3].setOnSlideListener(listener3);
         moodSlider[3].setInitialIndex(2);
+
+        bar_chart_diary = findViewById(R.id.bar_chart_diary);
+        tan_diary = findViewById(R.id.tan_diary);
+        dan_diary  = findViewById(R.id.dan_diary);
+        gi_diary = findViewById(R.id.gi_diary);
+        CreatebarChart(bar_chart_diary);
+
     }
 
     ActivityResultLauncher<Intent> foodNameResult = registerForActivityResult(
@@ -326,14 +409,35 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
                 public void onActivityResult(ActivityResult result) {
                     if(result.getResultCode() == Activity.RESULT_OK){
                         String foodName = result.getData().getStringExtra("foodName");
+                        double tan_dou = result.getData().getDoubleExtra("tan",0);
+                        double dan_dou = result.getData().getDoubleExtra("dan",0);
+                        double gi_dou = result.getData().getDoubleExtra("gi",0);
                         int num = result.getData().getIntExtra("num",0);
+                        kcal = kcal + (int)result.getData().getDoubleExtra("kcal",0);
+//                        int servingsize = Integer.parseInt(result.getData().getStringExtra("servingsize"));
+//                        if (UserData.read("food_g","") != null){
+//                            weight = Integer.parseInt(UserData.read("food_g",""));
+//                            weight = weight/servingsize;
+//                        }
                         if(foodName != null){
                             et_food[num].setText(foodName);
+                            tan = tan + (int)tan_dou;
+                            dan = dan + (int)dan_dou;
+                            gi = gi + (int)gi_dou;
+//                            if(weight !=0){
+//                                tan = tan * weight;
+//                                dan = dan * weight;
+//                                gi = gi * weight;
+//                                kcal = kcal * weight;
+//                                weight = 0;
+//                            }
+                            CreatebarChart(bar_chart_diary);
                         }
                     }
                 }
             }
     );
+
 
     public void setPicture0(String picturePath, int sampleSize){
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -435,6 +539,14 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
         et_diary[3].setText(data);
     }
 
+    public void setTan(String data){tan = Integer.parseInt(data);}
+
+    public void setDan(String data){dan = Integer.parseInt(data);}
+
+    public void setGi(String data){gi = Integer.parseInt(data);}
+
+    public void setKcal(String data){kcal = Integer.parseInt(data);}
+
     public void setItem(Diary item){
         this.item = item;
     }
@@ -488,6 +600,13 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
             setComment1(item.getComment1());
             setComment2(item.getComment2());
             setComment3(item.getComment3());
+
+            setTan(item.getTan());
+            setDan(item.getDan());
+            setGi(item.getGi());
+            setKcal(item.getKcal());
+
+            CreatebarChart(bar_chart_diary);
         }else{
 
 //            Toast.makeText(getApplicationContext(),"item null",Toast.LENGTH_SHORT).show();
@@ -512,10 +631,88 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
             setComment1("");
             setComment2("");
             setComment3("");
+
+            tan = 0;
+            dan = 0;
+            gi = 0;
+
+            CreatebarChart(bar_chart_diary);
+
         }
     }
 
     //endregion
+
+    private void CreatebarChart(BarChart barChart){
+        //내부 데이터
+        ArrayList<BarEntry> dataValue = new ArrayList<>();
+        dataValue.add(new BarEntry(0,gi));
+        dataValue.add(new BarEntry(1,dan));
+        dataValue.add(new BarEntry(2,tan));
+        tan_diary.setText(tan+"g");
+        dan_diary.setText(dan+"g");
+        gi_diary.setText(gi+"g");
+
+
+        //라벨 데이터
+//        ArrayList<String> getXAxisValues = new ArrayList<>();
+//        getXAxisValues.add("탄수화물");
+//        getXAxisValues.add("단백질");
+//        getXAxisValues.add("지방");
+
+        colorArray = new int[]{Color.parseColor("#263545")};
+
+        BarDataSet barDataSet = new BarDataSet(dataValue,"");
+        barDataSet.setColors(colorArray);
+        barDataSet.setValueTextColor(Color.BLACK);
+        barDataSet.setValueTextSize(12f);
+        barDataSet.setDrawValues(true);
+//        //경계선
+//        barDataSet.setBarBorderWidth(2f);
+        barDataSet.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return (String.valueOf((int) value)) + "kcal";
+            }
+        });
+
+        BarData barData = new BarData(barDataSet);
+
+//        //데이터 값 넓이 설정
+        barData.setBarWidth(0.7f);
+//        barData.setValueTextSize(12);
+
+//        barChart.setFitBars(true);
+        barChart.setData(barData);
+        barChart.getDescription().setEnabled(false);
+        //격자 선 제거
+        barChart.getXAxis().setEnabled(false);
+        barChart.getAxisLeft().setEnabled(false);
+        barChart.getAxisRight().setEnabled(false);
+        //최대,최소,차트 개수
+//        barChart.getAxisLeft().setAxisMaximum(1500);
+//        barChart.getAxisLeft().setAxisMinimum(0);
+        barChart.setMaxVisibleValueCount(3);
+        //간격
+//        barChart.setExtraOffsets(0f,0f,0f,0f);
+        //상호작용 제거
+        barChart.setScaleEnabled(false);
+        barChart.setPinchZoom(false);
+        barChart.setTouchEnabled(false);
+
+//        //세로축 이름
+//        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(getXAxisValues));
+
+        //데이터 내부에 표시
+//        barChart.setDrawValueAboveBar(true);
+
+        // Hide graph legend
+        barChart.getLegend().setEnabled(false);
+
+        //적용
+        barChart.invalidate();
+
+    }
 
     //region Dialog
     private void showImageDialog() {
@@ -681,7 +878,7 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
         }
     }
 
-    public void openDatabase() {
+    public  void openDatabase() {
         // open database
         if (mDatabase != null) {
             mDatabase.close();
@@ -707,7 +904,7 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
         }
 
         String sql = "insert into " + DBHelper.TABLE_NAME +
-                "(_id, PICTURE0, FOOD0, MOOD0, COMMENT0, PICTURE1, FOOD1, MOOD1, COMMENT1, PICTURE2, FOOD2, MOOD2, COMMENT2, PICTURE3, FOOD3, MOOD3, COMMENT3) values(" +
+                "(_id, PICTURE0, FOOD0, MOOD0, COMMENT0, PICTURE1, FOOD1, MOOD1, COMMENT1, PICTURE2, FOOD2, MOOD2, COMMENT2, PICTURE3, FOOD3, MOOD3, COMMENT3, TAN, DAN, GI, KCAL) values(" +
                 "'"+ today_date.replace(" ","")  + "', " +
                 "'"+ savePicture(0) + "', " +
                 "'"+ foodName[0] + "', " +
@@ -724,10 +921,16 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
                 "'"+ savePicture(3) + "', " +
                 "'"+ foodName[3] + "', " +
                 "'"+ moodIndex[3] + "', " +
-                "'"+ comment[3] + "')";
+                "'"+ comment[3] + "', " +
+                "'"+ tan + "', "+
+                "'"+ dan + "', "+
+                "'"+ gi + "', " +
+                "'"+ kcal + "')";
 
         DBHelper database = DBHelper.getInstance(getApplicationContext());
         database.execSQL(sql);
+        Intent intent = new Intent(DiaryActivity.this,CalendarActivity.class);
+        startActivity(intent);
         finish();
 
 //        Toast.makeText(getApplicationContext(),"DB저장 완료",Toast.LENGTH_SHORT).show();
@@ -737,6 +940,8 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
         mDatabase.db = mDatabase.Writedb();
         String[] foodName = new String[4];
         String[] comment = new String[4];
+
+        kcal = (int)Math.random();
 
         for(int i = 0; i < 4; i++){
             foodName[i] = et_food[i].getText().toString();
@@ -763,13 +968,19 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
                     "   ,FOOD3 = '" + foodName[3] + "'" +
                     "   ,MOOD3 = '" + moodIndex[3] + "'" +
                     "   ,COMMENT3 = '" + comment[3] + "'" +
+                    "   ,TAN = '" + tan + "'" +
+                    "   ,DAN = '" + dan + "'" +
+                    "   ,GI = '" + gi + "'" +
+                    "   ,KCAL = '" + kcal + "'" +
                     " where " +
                     "   _id " + "like '" + today_date.replace(" ","") + "'";
 
             DBHelper database = DBHelper.getInstance(getApplicationContext());
             database.execSQL(sql);
+            Intent intent = new Intent(DiaryActivity.this,CalendarActivity.class);
+            startActivity(intent);
             finish();
-//            Toast.makeText(getApplicationContext(),"DB저장 변경",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"DB저장 변경",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -822,6 +1033,10 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
                     diary.setFood3(mCur.getString(14));
                     diary.setMood3(mCur.getString(15));
                     diary.setComment3(mCur.getString(16));
+                    diary.setTan(mCur.getString(17));
+                    diary.setDan(mCur.getString(18));
+                    diary.setGi(mCur.getString(19));
+                    diary.setKcal(mCur.getString(20));
 
 //                    Toast.makeText(getApplicationContext(),"레코드 #" + i + " : " + diary.get_id(),Toast.LENGTH_SHORT).show();
                 }

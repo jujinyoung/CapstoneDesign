@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class SaveImageRequest extends StringRequest {
     //서버 URl 설정
-    final static private String URL = "http://121.127.86.101:80/test02.php";
+    final static private String URL = "http://121.127.86.101:90/test02.php";
     private Map<String,String> map;
 
     public SaveImageRequest(String _id, String picture0, String food0, String kcal0,

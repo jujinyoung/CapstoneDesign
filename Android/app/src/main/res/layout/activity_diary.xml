@@ -77,7 +77,7 @@
     <FrameLayout
         android:id="@+id/mainfragment"
         android:layout_width="match_parent"
-        android:layout_height="550dp">
+        android:layout_height="450dp">
 
 
         <!--아침 일기-->
@@ -229,14 +229,6 @@
                 android:text="@string/et_diary" />
 
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/bar_0"
-                android:layout_width="345dp"
-                android:layout_height="79dp"
-                android:layout_marginStart="39dp"
-                android:layout_marginTop="30dp" />
-
-
         </LinearLayout>
 
 
@@ -244,7 +236,7 @@
         <LinearLayout
             android:id="@+id/layout_lun"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="450dp"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -389,21 +381,13 @@
                 android:text="@string/et_diary" />
 
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/bar_1"
-                android:layout_width="345dp"
-                android:layout_height="79dp"
-                android:layout_marginStart="39dp"
-                android:layout_marginTop="30dp" />
-
-
         </LinearLayout>
 
         <!--저녁 일기-->
         <LinearLayout
             android:id="@+id/layout_di"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="450dp"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -425,8 +409,8 @@
                     android:id="@+id/fabTakePicture2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="60dp"
                     android:layout_marginStart="60dp"
+                    android:layout_marginEnd="60dp"
                     android:layout_marginBottom="16dp"
                     android:clickable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -464,10 +448,10 @@
                     android:hint="@string/search_food"
                     android:importantForAutofill="no"
                     android:inputType="text"
-                    android:textColor="@color/black"
-                    app:backgroundTint="#000000"
                     android:paddingStart="10dp"
-                    android:paddingEnd="10dp" />
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/black"
+                    app:backgroundTint="#000000" />
             </LinearLayout>
 
 
@@ -548,14 +532,6 @@
                 android:text="@string/et_diary" />
 
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/bar_2"
-                android:layout_width="345dp"
-                android:layout_height="79dp"
-                android:layout_marginStart="39dp"
-                android:layout_marginTop="30dp" />
-
-
         </LinearLayout>
 
 
@@ -563,7 +539,7 @@
         <LinearLayout
             android:id="@+id/layout_sna"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="450dp"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -622,10 +598,10 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/box_rectangle"
                     android:hint="@string/search_food"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
                     android:importantForAutofill="no"
                     android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:textColor="@color/black"
                     app:backgroundTint="#000000" />
             </LinearLayout>
@@ -707,21 +683,91 @@
                 android:inputType="text"
                 android:text="@string/et_diary" />
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/bar_3"
-                android:layout_width="345dp"
-                android:layout_height="79dp"
-                android:layout_marginStart="39dp"
-                android:layout_marginTop="30dp" />
-
         </LinearLayout>
 
     </FrameLayout>
 
+    <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="17dp"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Montserrat15Pt2"
+            android:layout_marginTop="5dp"
+            android:text="@string/tansuwhamul" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Montserrat15Pt2"
+            android:layout_marginTop="5dp"
+            android:text="@string/danbakjil" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Montserrat15Pt2"
+            android:layout_marginTop="5dp"
+            android:text="@string/jibang" />
+    </LinearLayout>
+
+    <com.github.mikephil.charting.charts.HorizontalBarChart
+        android:layout_marginTop="10dp"
+        android:id="@+id/bar_chart_diary"
+        android:layout_width="213dp"
+        android:layout_height="110dp"
+        android:layout_marginEnd="3dp"
+        tools:ignore="MissingConstraints"></com.github.mikephil.charting.charts.HorizontalBarChart>
+
+    <LinearLayout
+        android:layout_width="90dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tan_diary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Montserrat15Pt2"
+            android:layout_marginTop="5dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/dan_diary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Montserrat15Pt2"
+            android:layout_marginTop="5dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/gi_diary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Montserrat15Pt2"
+            android:layout_marginTop="5dp"
+            android:text="" />
+    </LinearLayout>
+</LinearLayout>
+
     <!--스위치 내 문구 추가할 예정(공유/비공유)-->
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
 
 
         <Switch

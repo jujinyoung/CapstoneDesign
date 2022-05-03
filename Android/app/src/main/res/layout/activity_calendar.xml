@@ -19,10 +19,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/left_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textSize="30sp"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/right_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:textSize="30sp"/>
+        </LinearLayout>
         <!--헤더-->
         <LinearLayout
             android:layout_width="378dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="17dp"
             android:animateLayoutChanges="true"
             android:background="@color/clear"
@@ -34,7 +56,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginTop="30dp"
                 android:hint="GOAL(D-day,-3kg)"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
@@ -45,7 +66,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginTop="30dp"
                 android:text="march"
                 android:gravity="end"
                 android:textColor="@color/black"
@@ -257,9 +277,10 @@
             </LinearLayout>
 
             <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:layout_marginTop="10dp"
                 android:id="@+id/bar_chart"
                 android:layout_width="213dp"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:layout_marginEnd="3dp"
                 tools:ignore="MissingConstraints"></com.github.mikephil.charting.charts.HorizontalBarChart>
 
