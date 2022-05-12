@@ -112,8 +112,8 @@ public class DiaryActivity_search extends AppCompatActivity {
                             dan = food.getProtein();
                             gi = food.getFat();
                             kcal = food.getCalories();
-                            servingsize = food.getServingSize().substring(6,9);
-                            Log.e("g길이 체크",servingsize+"");
+//                            servingsize = food.getServingSize().substring(6,9);
+//                            Log.e("g길이 체크",servingsize+"");
                             foodname = food.getName();
                         } else {
                             textViewResult.setText("검색된 결과가 없습니다.");
