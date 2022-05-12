@@ -51,6 +51,16 @@
         android:scrollbars="vertical"
         android:enabled="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    <TextView
+        android:id="@+id/send_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:freezesText="true"
+        android:gravity="bottom"
+        android:scrollbars="vertical"
+        android:enabled="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <View
         android:layout_width="match_parent"
@@ -63,12 +73,11 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/send_text"
+            android:id="@+id/send_btn"
             android:enabled="false"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:inputType="text|textNoSuggestions"
             android:text="측정하기"
             android:textSize="25sp"
             android:singleLine="true" />

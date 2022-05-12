@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -37,11 +38,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
-import com.example.myapplication.utils.UserData;
 import com.example.myapplication.database.DBHelper;
 import com.example.myapplication.database.Diary;
 import com.example.myapplication.request.SaveImageRequest;
+import com.example.myapplication.request.imagetest;
 import com.example.myapplication.utils.BitmapUtils;
+import com.example.myapplication.utils.UserData;
 import com.github.channguyen.rsv.RangeSliderView;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -58,12 +60,9 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
-import java.util.Random;
 
 public class DiaryActivity extends AppCompatActivity implements AutoPermissionsListener{
     private static final String TAG = "MainActivity";
@@ -86,7 +85,9 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
     ImageView[] cameraImage;
     TextView[] et_food;
     Button[] btn_measure;
-    int kcal;
+    int[] kcal = new int[4];
+    int tot_kcal;
+    TextView tot_kcal_tv;
 //    public static int weight;
 
     //카메라 기능
@@ -132,6 +133,7 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
         //Title
         Intent intent = getIntent();
         today_date = intent.getStringExtra("날짜");
+//        today_date = "May 28";
         date = findViewById(R.id.date);
         date.setText(today_date);
 
@@ -213,6 +215,8 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
         noshare_text = findViewById(R.id.noshare_text);
         share_text = findViewById(R.id.share_Text);
         btn_share = findViewById(R.id.btn_share);
+        tot_kcal_tv = findViewById(R.id.tot_kcal);
+
         btn_share.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -233,13 +237,42 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
             btn_measure[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(dbMode == MODE_INSERT){
-                        saveNote();
-                    } else if(dbMode == MODE_MODIFY){
-                        modifyNote();
-                    }
-                    Intent intent = new Intent(DiaryActivity.this,DiaryActivity_loadc.class);
-                    startActivity(intent);
+//                    if(dbMode == MODE_INSERT){
+//                        saveNote();
+//                    } else if(dbMode == MODE_MODIFY){
+//                        modifyNote();
+//                    }
+                    String[] words = new String[]{"로드셀로 측정하기","1인분으로 측정하기"};
+                    final int[] count = new int[1];
+
+                    // 대화상자 생성 //
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this);
+
+                    builder.setTitle("무게 측정하기");            //setTitle -> 제목설정
+                    builder.setIcon(R.mipmap.ic_launcher);        //setIcon -> 아이콘 설정
+
+                    //  setPositiveButton -> "OK"버튼  //
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            if(count[0] == 0) {
+                                Intent intent = new Intent(getApplicationContext(), DiaryActivity_loadc.class);
+                                startActivity(intent);
+                            }else {
+                                DiaryActivity_loadc.kcal_g = 0.0;
+                            }
+                        }
+                    });
+
+                    //  setSingleChoiceItems -> 라디오버튼 목록 출력  //
+                    builder.setSingleChoiceItems(words, 0, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            count[0] = i;
+                        }
+                    });
+
+                    builder.show();      //대화상자(dialog)화면 출력
 
                 }
             });
@@ -413,30 +446,48 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
                         double dan_dou = result.getData().getDoubleExtra("dan",0);
                         double gi_dou = result.getData().getDoubleExtra("gi",0);
                         int num = result.getData().getIntExtra("num",0);
-                        kcal = kcal + (int)result.getData().getDoubleExtra("kcal",0);
+                        kcal[num] = (int)result.getData().getDoubleExtra("kcal",0);
 //                        int servingsize = Integer.parseInt(result.getData().getStringExtra("servingsize"));
-//                        if (UserData.read("food_g","") != null){
-//                            weight = Integer.parseInt(UserData.read("food_g",""));
-//                            weight = weight/servingsize;
-//                        }
-                        if(foodName != null){
+//                        Toast.makeText(getApplicationContext(), servingsize, Toast.LENGTH_SHORT).show();
+
+                        if(DiaryActivity_loadc.kcal_g != 0.0){
+                            Double realkcal = DiaryActivity_loadc.kcal_g/100;
+                            Log.e("리얼 칼",realkcal+"");
                             et_food[num].setText(foodName);
-                            tan = tan + (int)tan_dou;
-                            dan = dan + (int)dan_dou;
-                            gi = gi + (int)gi_dou;
-//                            if(weight !=0){
-//                                tan = tan * weight;
-//                                dan = dan * weight;
-//                                gi = gi * weight;
-//                                kcal = kcal * weight;
-//                                weight = 0;
-//                            }
-                            CreatebarChart(bar_chart_diary);
+                            tot_kcal = (int) (tot_kcal + kcal[num]*realkcal);
+                            tot_kcal_tv.setText(tot_kcal + "Kcal");
+                            tan = (int) (tan + (int)tan_dou*realkcal);
+                            dan = (int) (dan + (int)dan_dou*realkcal);
+                            gi = (int) (gi + (int)gi_dou*realkcal);
+                        }else{
+//                            int servingsize = result.getData().getIntExtra("servingsize",0);
+//                            Double realkcal = DiaryActivity_loadc.kcal_g/servingsize;
+//                            Log.e("리얼 칼2",realkcal+"");
+                            et_food[num].setText(foodName);
+                            tot_kcal = (tot_kcal + kcal[num]);
+                            tot_kcal_tv.setText(tot_kcal + "Kcal");
+                            tan = (tan + (int)tan_dou);
+                            dan = (dan + (int)dan_dou);
+                            gi =  (gi + (int)gi_dou);
                         }
+                        CreatebarChart(bar_chart_diary);
                     }
                 }
             }
     );
+
+//    ActivityResultLauncher<Intent> loadcResult = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            new ActivityResultCallback<ActivityResult>() {
+//                @Override
+//                public void onActivityResult(ActivityResult result) {
+//                    if(result.getResultCode() == Activity.RESULT_OK){
+//                        int kcal_g = result.getData().getIntExtra("kcal_g",0);
+//
+//                    }
+//                }
+//            }
+//    );
 
 
     public void setPicture0(String picturePath, int sampleSize){
@@ -545,7 +596,7 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
 
     public void setGi(String data){gi = Integer.parseInt(data);}
 
-    public void setKcal(String data){kcal = Integer.parseInt(data);}
+    public void setKcal(String data){tot_kcal = Integer.parseInt(data);}
 
     public void setItem(Diary item){
         this.item = item;
@@ -606,6 +657,8 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
             setGi(item.getGi());
             setKcal(item.getKcal());
 
+            tot_kcal_tv.setText(tot_kcal+ "Kcal");
+
             CreatebarChart(bar_chart_diary);
         }else{
 
@@ -635,6 +688,7 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
             tan = 0;
             dan = 0;
             gi = 0;
+            tot_kcal_tv.setText("0Kcal");
 
             CreatebarChart(bar_chart_diary);
 
@@ -751,121 +805,6 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
 
     //endregion
 
-    //region 카메라
-//    private void TakePicture() {
-//        try {
-//            if (file == null) {
-//                file = createFile();
-//            }else{
-//                file.delete();
-//            }
-//
-//            file.createNewFile();
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        if(Build.VERSION.SDK_INT >= 24) {
-//            fileUri = FileProvider.getUriForFile(getApplicationContext(), "org.techtown.caps.fileprovider", file);
-//        }else{
-//            fileUri = Uri.fromFile(file);
-//        }
-//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        intent.putExtra(MediaStore.EXTRA_OUTPUT,fileUri);
-//
-//        startActivityResult.launch(intent);
-//    }
-//
-//    private File createFile() {
-//        String filename = "capture.jpg";
-//
-//        File storageDir = getApplicationContext().getExternalCacheDir();
-//        File outFile = null;
-//        try {
-//            outFile = File.createTempFile("android_upload", ".jpg", storageDir);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return outFile;
-//    }
-//
-//
-//    ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(
-//            new ActivityResultContracts.StartActivityForResult(),
-//            new ActivityResultCallback<ActivityResult>() {
-//                @Override
-//                public void onActivityResult(ActivityResult result) {
-//                    if(result.getResultCode() == Activity.RESULT_OK){
-//                        BitmapFactory.Options options = new BitmapFactory.Options();
-//                        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-//
-//                        ExifInterface exif = null;
-//                        try {
-//                            exif = new ExifInterface(file.getAbsolutePath());
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                        int exifOrientation;
-//                        int exifDegree;
-//
-//                        if (exif != null) {
-//                            exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
-//                            exifDegree = exifOrientationToDegrees(exifOrientation);
-//                        } else {
-//                            exifDegree = 0;
-//                        }
-//
-//                        if (bitmap == null) {
-////                            Toast.makeText(getApplicationContext(), "할당 안됨", Toast.LENGTH_LONG).show();
-//                        } else {
-//                            resultPhotoBitmap[image_num] = resizeImage(rotateImage(bitmap,exifDegree));
-//                            cameraImage[image_num].setImageBitmap(resultPhotoBitmap[image_num]);
-//                        }
-//                    }
-//                }
-//            }
-//    );
-//
-//    private int exifOrientationToDegrees(int exifOrientation) {
-//        if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) {
-//            return 90;
-//        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {
-//            return 180;
-//        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {
-//            return 270;
-//        }
-//        return 0;
-//    }
-//    //이미지 회전
-//    private Bitmap rotateImage(Bitmap bitmap, float degree) {
-//        Matrix matrix = new Matrix();
-//        matrix.postRotate(degree);
-//        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-//    }
-//
-//    private Bitmap resizeImage(Bitmap bitmap){
-//        int width = cameraImage[image_num].getWidth();
-//        int height = cameraImage[image_num].getHeight();
-//        float bmpWidth = bitmap.getWidth();
-//        float bmpHeight = bitmap.getHeight();
-//
-//        if (bmpWidth > width) {
-//            // [원하는 너비보다 클 경우의 설정]
-//            float mWidth = bmpWidth / 100;
-//            float scale = width/ mWidth;
-//            bmpWidth *= (scale / 100);
-//            bmpHeight *= (scale / 100);
-//        } else if (bmpHeight > height) {
-//            // [원하는 높이보다 클 경우의 설정]
-//            float mHeight = bmpHeight / 100;
-//            float scale = height/ mHeight;
-//            bmpWidth *= (scale / 100);
-//            bmpHeight *= (scale / 100);
-//        }
-//
-//        return  Bitmap.createScaledBitmap(bitmap, (int) bmpWidth, (int) bmpHeight, true);
-//    }
-    //endregion
 
     //region 내부 DB
     @Override
@@ -925,7 +864,7 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
                 "'"+ tan + "', "+
                 "'"+ dan + "', "+
                 "'"+ gi + "', " +
-                "'"+ kcal + "')";
+                "'"+ tot_kcal + "')";
 
         DBHelper database = DBHelper.getInstance(getApplicationContext());
         database.execSQL(sql);
@@ -941,7 +880,6 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
         String[] foodName = new String[4];
         String[] comment = new String[4];
 
-        kcal = (int)Math.random();
 
         for(int i = 0; i < 4; i++){
             foodName[i] = et_food[i].getText().toString();
@@ -971,7 +909,7 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
                     "   ,TAN = '" + tan + "'" +
                     "   ,DAN = '" + dan + "'" +
                     "   ,GI = '" + gi + "'" +
-                    "   ,KCAL = '" + kcal + "'" +
+                    "   ,KCAL = '" + tot_kcal + "'" +
                     " where " +
                     "   _id " + "like '" + today_date.replace(" ","") + "'";
 
@@ -1100,7 +1038,7 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
         ByteArrayOutputStream stream = new ByteArrayOutputStream() ;
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream) ;
         byte[] byteArray = stream.toByteArray() ;
-        image = "&image=" + byteArrayToBinaryString(byteArray);
+        image = byteArrayToBinaryString(byteArray);
         return image;
     }
 
@@ -1122,6 +1060,29 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
             }
         }
         return sb.toString();
+    }
+
+    /**
+     * bitmap을 string으로
+     * @param bitmap
+     * @return
+     */
+    public String BitMapToString(Bitmap bitmap){
+        String temp = "";
+
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);	//bitmap compress
+        byte [] arr=baos.toByteArray();
+        String image= Base64.encodeToString(arr, Base64.DEFAULT);
+
+
+        try{
+            temp=URLEncoder.encode(image,"utf-8");
+        }catch (Exception e){
+            Log.e("exception",e.toString());
+        }
+
+        return temp;
     }
 
     private Bitmap resize(Bitmap bm){
@@ -1161,23 +1122,29 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
         };
 
         resultPhotoBitmap_request = new String[4];
-            for(int i = 0; i<4; i++){
-                if(resultPhotoBitmap[i] != null){
-                    resultPhotoBitmap[i] = resize(resultPhotoBitmap[i]);
-                    resultPhotoBitmap_request[i] = bitmapToByteArray(resultPhotoBitmap[i]);
-                }else{
-                    resultPhotoBitmap_request[i] = "";
-                }
-            }
+        for(int i = 0; i<4; i++){
+            if(resultPhotoBitmap[i] != null){
+                resultPhotoBitmap[i] = resize(resultPhotoBitmap[i]);
+//                resultPhotoBitmap_request[i] = bitmapToByteArray(resultPhotoBitmap[i]);
+                resultPhotoBitmap_request[i] = BitMapToString(resultPhotoBitmap[i]);
 
+            }else{
+                resultPhotoBitmap_request[i] = "";
+            }
+            if(et_food[i] == null){
+                et_food[i].setText("");
+            }
+        }
         //vollyer를 이용해서 서버에 요청
-        SaveImageRequest imageRequest = new SaveImageRequest(UserData.read("user_id",""), resultPhotoBitmap_request[0], et_food[0].toString(),"0",
-                resultPhotoBitmap_request[1] ,et_food[1].toString(), "0",
-                resultPhotoBitmap_request[2],et_food[2].toString(), "0",
-                resultPhotoBitmap_request[3],et_food[3].toString(), "0", responseListener);
+        SaveImageRequest imageRequest = new SaveImageRequest(UserData.read("user_id",""), resultPhotoBitmap_request[0], et_food[0].getText().toString(),
+                resultPhotoBitmap_request[1] ,et_food[1].getText().toString(),
+                resultPhotoBitmap_request[2],et_food[2].getText().toString(),
+                resultPhotoBitmap_request[3],et_food[3].getText().toString(), tot_kcal_tv.getText().toString(), responseListener);
+//        imagetest imagetest1 = new imagetest(resultPhotoBitmap_request[0],responseListener);
         RequestQueue queue = Volley.newRequestQueue(DiaryActivity.this);
         queue.add(imageRequest);
         Log.e(TAG, "외부 DB 연결 성공");
+        Log.e(TAG, resultPhotoBitmap_request[0]);
     }
 
     //endregion

@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".activity.BoardActivity_detail">
 
     <!--게시판 세부 페이지 -->
 
@@ -48,11 +50,20 @@
                 android:text="@string/morning"
                 style="@style/Montserrat20Pt3"
                 android:layout_gravity="center" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/mor_kcal"-->
+<!--                android:text="@string/kcal"-->
+<!--                style="@style/Montserrat20Pt3"-->
+<!--                android:layout_gravity="center"/>-->
 
             <ImageView
+                android:id="@+id/mor_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_gravity="center"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,8 +72,16 @@
                 android:text="@string/lunch"
                 style="@style/Montserrat20Pt3"
                 android:layout_gravity="center" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/lun_kcal"-->
+<!--                android:text="@string/kcal"-->
+<!--                style="@style/Montserrat20Pt3"-->
+<!--                android:layout_gravity="center"/>-->
 
             <ImageView
+                android:id="@+id/lun_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_gravity="center"/>
@@ -74,8 +93,16 @@
                 android:text="@string/dinner"
                 style="@style/Montserrat20Pt3"
                 android:layout_gravity="center" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/di_kcal"-->
+<!--                android:text="@string/kcal"-->
+<!--                style="@style/Montserrat20Pt3"-->
+<!--                android:layout_gravity="center"/>-->
 
             <ImageView
+                android:id="@+id/di_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_gravity="center"/>
@@ -88,8 +115,16 @@
                 android:text="@string/snack"
                 style="@style/Montserrat20Pt3"
                 android:layout_gravity="center" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/sna_kcal"-->
+<!--                android:text="@string/kcal"-->
+<!--                style="@style/Montserrat20Pt3"-->
+<!--                android:layout_gravity="center"/>-->
 
             <ImageView
+                android:id="@+id/sna_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_gravity="center" />
@@ -102,6 +137,13 @@
                 style="@style/Montserrat20Pt3"
                 android:text="@string/total"
                 android:layout_gravity="center"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="삭제하기"
+                android:enabled="false"/>
 
         </LinearLayout>
 

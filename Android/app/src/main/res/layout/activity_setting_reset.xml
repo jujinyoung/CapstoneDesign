@@ -7,7 +7,7 @@
     tools:context=".activity.Setting_resetActivity"
     android:background="@color/white">
 
-    <!--설정-초기화 -->
+<!--    &lt;!&ndash;설정-초기화 &ndash;&gt;-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
         android:layout_marginTop="20dp"/>
 
     <Button
-        android:id="@+id/btn_reset"
+        android:id="@+id/btn_resetButton"
         style="@style/Montserrat20Pt"
         android:layout_width="300dp"
         android:layout_height="50dp"

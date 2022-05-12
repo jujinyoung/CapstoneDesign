@@ -126,6 +126,7 @@ public class DevicesFragment extends ListFragment {
         fragment.setArguments(args);
         getParentFragmentManager().beginTransaction().replace(R.id.fragment1,fragment,"terminal").addToBackStack(null).commit();
 //        getChildFragmentManager().beginTransaction().replace(R.id.fragment1, fragment, "terminal").addToBackStack(null).commit();
+//        getChildFragmentManager().beginTransaction().add(R.id.fragment1,fragment,"terminal").addToBackStack(null).commit();
     }
 
     /**

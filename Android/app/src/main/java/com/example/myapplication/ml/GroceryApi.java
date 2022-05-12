@@ -1,13 +1,17 @@
 package com.example.myapplication.ml;
 
+import android.os.Debug;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.WorkerThread;
 
+import com.example.myapplication.activity.DiaryActivity_loadc;
 import com.example.myapplication.food.Food;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -16,12 +20,70 @@ public class GroceryApi {
 
     public static final String URL_FORMAT = "https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/%EC%9D%BC%EB%B0%98%EB%AA%85/{GROCERY}";
     public static final String ARG_GROCERY = "{GROCERY}";
+    static String g_num;
 
 
     @WorkerThread
     public static Food get(String grocery) {
 
         String url = URL_FORMAT.replace(ARG_GROCERY, grocery);
+
+        if(DiaryActivity_loadc.kcal_g == 0.0){
+            try {
+                Document document = Jsoup.connect(url).get();
+
+//            Elements contents = document.getElementsByTag("a");
+
+//            Elements contents = document.getElementsByAttributeValue("class","borderBottom");
+                Elements contents = document.select("td[class=borderBottom]").select("a");
+
+                for(Element content:contents) {
+                    if(content.text().equals("1 인분")){
+                        g_num = content.attr("href");
+                    }
+                }
+
+//                if (text.equals("100g")) {
+//                    g_num = nextText;
+//                    Log.e("gnum",g_num);
+//                }
+
+
+                url = "https://www.fatsecret.kr" + g_num;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            try {
+                Document document = Jsoup.connect(url).get();
+
+//            Elements contents = document.getElementsByTag("a");
+
+//            Elements contents = document.getElementsByAttributeValue("class","borderBottom");
+                Elements contents = document.select("td[class=borderBottom]").select("a");
+
+                for(Element content:contents) {
+                    if(content.text().equals("100 g")){
+                        g_num = content.attr("href");
+                    }
+                }
+
+//                if (text.equals("100g")) {
+//                    g_num = nextText;
+//                    Log.e("gnum",g_num);
+//                }
+
+
+                url = "https://www.fatsecret.kr" + g_num;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         try {
             Document document = Jsoup.connect(url).get();
@@ -74,6 +136,7 @@ public class GroceryApi {
                     transFat = Double.parseDouble(strTransFat);
                 }
             }
+
 
             return new Food(grocery, servingSize, calories, carbohydrate, protein, fat,
                     sugar, sodium, cholesterol, saturatedFat, transFat);

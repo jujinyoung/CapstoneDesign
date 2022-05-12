@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -20,6 +21,8 @@ public class DiaryActivity_loadc extends AppCompatActivity implements FragmentMa
 //    private TextView mTextView;
 //    private ProgressBar mProgressBar;
 
+    public static Double kcal_g = 0.0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,7 @@ public class DiaryActivity_loadc extends AppCompatActivity implements FragmentMa
 
     @Override
     public void onBackStackChanged() {
+
     }
 
     @Override

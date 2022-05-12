@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -68,6 +69,7 @@ public class DiaryActivity_search extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             image.setValue(bitmap);
             search_image.setImageBitmap(bitmap);
+            start();
         } else{
             search_image.setVisibility(View.INVISIBLE);
 //            food_list.setOnClickListener(new AdapterView.OnItemClickListener() {
@@ -99,7 +101,8 @@ public class DiaryActivity_search extends AppCompatActivity {
 
                 // API 를 이용한 검색을 실행한다
                 new Thread(() -> {
-                    Food food = FoodApi.get(foodName);
+//                    Food food = FoodApi.get(foodName);
+                    Food food = GroceryApi.get(foodName);
 
                     // 결과를 출력한다
                     runOnUiThread(() -> {
@@ -109,7 +112,8 @@ public class DiaryActivity_search extends AppCompatActivity {
                             dan = food.getProtein();
                             gi = food.getFat();
                             kcal = food.getCalories();
-                            servingsize = food.getServingSize().replace("g","");
+                            servingsize = food.getServingSize().substring(6,9);
+                            Log.e("g길이 체크",servingsize+"");
                             foodname = food.getName();
                         } else {
                             textViewResult.setText("검색된 결과가 없습니다.");
@@ -131,7 +135,10 @@ public class DiaryActivity_search extends AppCompatActivity {
                 intent.putExtra("dan",dan);
                 intent.putExtra("gi",gi);
                 intent.putExtra("kcal",kcal);
-                intent.putExtra("servingsize",servingsize);
+//                if(DiaryActivity_loadc.kcal_g == 0.0){
+//                    intent.putExtra("servingsize",Integer.parseInt(servingsize));
+//                }
+//                intent.putExtra("servingsize",Integer.parseInt(servingsize));
 
 
                 setResult(RESULT_OK, intent);
@@ -148,6 +155,10 @@ public class DiaryActivity_search extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    void start(){
         //region 이미지 분석
         try {
             LiveData<String> foodName = Transformations.map(image, bitmap1 -> {
@@ -187,7 +198,6 @@ public class DiaryActivity_search extends AppCompatActivity {
         }
 
         //endregion
-
     }
 
 

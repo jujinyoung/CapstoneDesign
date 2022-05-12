@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/numberImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="160dp"
+        android:layout_height="100dp" />
 
     <TextView
         android:id="@+id/numberText"
@@ -17,5 +17,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Number"
-        android:textSize="25sp" />
+        android:textSize="10sp" />
 </LinearLayout>

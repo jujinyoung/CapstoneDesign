@@ -1,6 +1,7 @@
 package com.example.myapplication.gallery;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,9 @@ public class ImageAdapter extends BaseAdapter {
     Context context;
     LayoutInflater inflater;
     String[] arrNumberWord;
-    int[] arrNumberImage;
+    Bitmap[] arrNumberImage;
 
-    public ImageAdapter(Context context, String[] arrNumberWord, int[] arrNumberImage) {
+    public ImageAdapter(Context context, String[] arrNumberWord, Bitmap[] arrNumberImage) {
 
         this.context = context;
         this.arrNumberWord = arrNumberWord;
@@ -55,7 +56,7 @@ public class ImageAdapter extends BaseAdapter {
         ImageView numberImage =  view.findViewById(R.id.numberImage);
         TextView numberWord = view.findViewById(R.id.numberText);
 
-        numberImage.setImageResource(arrNumberImage[position]);
+        numberImage.setImageBitmap(arrNumberImage[position]);
         numberWord.setText(arrNumberWord[position]);
 
         return view;

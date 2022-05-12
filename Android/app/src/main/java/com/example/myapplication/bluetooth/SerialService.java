@@ -29,8 +29,8 @@ import java.util.Queue;
  */
 public class SerialService extends Service implements SerialListener {
 
-    public class SerialBinder extends Binder {
-        public SerialService getService() { return SerialService.this; }
+    class SerialBinder extends Binder {
+        SerialService getService() { return SerialService.this; }
     }
 
     private enum QueueType {Connect, ConnectError, Read, IoError}
@@ -101,7 +101,7 @@ public class SerialService extends Service implements SerialListener {
     public void attach(SerialListener listener) {
         if(Looper.getMainLooper().getThread() != Thread.currentThread())
             throw new IllegalArgumentException("not in main thread");
-//        cancelNotification();
+        cancelNotification();
         // use synchronized() to prevent new items in queue2
         // new items will not be added to queue1 because mainLooper.post and attach() run in main thread
         synchronized (this) {
@@ -153,7 +153,7 @@ public class SerialService extends Service implements SerialListener {
         PendingIntent restartPendingIntent = PendingIntent.getActivity(this, 1, restartIntent,  PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, Constants.NOTIFICATION_CHANNEL)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setColor(getResources().getColor(R.color.colorPrimary,getTheme()))
+                .setColor(getResources().getColor(R.color.colorPrimary))
                 .setContentTitle(getResources().getString(R.string.app_name))
                 .setContentText(socket != null ? "Connected to "+socket.getName() : "Background Service")
                 .setContentIntent(restartPendingIntent)

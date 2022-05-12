@@ -1,5 +1,6 @@
 package com.example.myapplication.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.CalBMR;
@@ -56,17 +58,34 @@ public class StatActivity extends AppCompatActivity {
         ave_bmr = new int[7];
 
         LocalDateTime now = LocalDateTime.now();
-        for(int i = 0; i<7; i++){
-            String message = monthYearFromDate(now.minusDays(i));
-            Diary diary = getTableData(message);
-            ave_bmr[i] = Integer.parseInt(diary.getKcal());
+
+        try {
+            for(int i = 0; i<7; i++){
+                String message = monthYearFromDate(now.minusDays(i));
+                Diary diary = getTableData(message);
+                ave_bmr[i] = Integer.parseInt(diary.getKcal());
+
+                chart_weekly_cal = findViewById(R.id.chart_weekly_cal);
+                SetCalLineChart();
+
+                chart_weekly_kg = findViewById(R.id.chart_weekly_kg);
+                SetKgLineChart();
+            }
+        }catch (Exception e){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("일주일간의 기록");
+            builder.setMessage("일기장을 작성해주세요.");
+            builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            builder.show();
+
+            e.printStackTrace();
         }
 
-        chart_weekly_cal = findViewById(R.id.chart_weekly_cal);
-        SetCalLineChart();
-
-        chart_weekly_kg = findViewById(R.id.chart_weekly_kg);
-        SetKgLineChart();
 
     }
 

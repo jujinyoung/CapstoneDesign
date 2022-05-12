@@ -43,6 +43,18 @@
         android:stretchMode="columnWidth">
 
     </GridView>
+<!--    <ImageView-->
+<!--        android:id="@+id/testimg"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:src="@drawable/bulgogi"/>-->
+<!--    <TextView-->
+<!--        android:id="@+id/foodna"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="음식"/>-->
+
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -9,7 +9,7 @@
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/drawable/box_rectangle.xml" value="0.403125" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/font/montserrat.xml" value="0.2838541666666667" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/activity_board.xml" value="0.28229166666666666" />
-        <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/activity_board_detail.xml" value="0.38697916666666665" />
+        <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/activity_board_detail.xml" value="0.262780269058296" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/activity_calendar.xml" value="0.4" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/activity_diary.xml" value="0.38697916666666665" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/activity_diary_loadc.xml" value="0.38697916666666665" />
@@ -25,6 +25,7 @@
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/activity_setting.xml" value="0.38697916666666665" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/activity_setting_edit.xml" value="0.264" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/activity_setting_goal.xml" value="0.38697916666666665" />
+        <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/activity_setting_reset.xml" value="0.38697916666666665" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/activity_stats.xml" value="0.38697916666666665" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/calendar_cell.xml" value="0.38697916666666665" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/device_list_header.xml" value="0.38697916666666665" />
@@ -37,6 +38,8 @@
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/item_gallery.xml" value="0.16302083333333334" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/item_kcal.xml" value="0.38697916666666665" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/item_search.xml" value="0.38697916666666665" />
+        <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/list_iamge.xml" value="0.38697916666666665" />
+        <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/list_image.xml" value="0.38697916666666665" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/main_fragment.xml" value="0.25364583333333335" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/main_fragment_di.xml" value="0.38697916666666665" />
         <entry key="..\:/CapstoneDesign/Android/app/src/main/res/layout/main_fragment_lun.xml" value="0.38697916666666665" />

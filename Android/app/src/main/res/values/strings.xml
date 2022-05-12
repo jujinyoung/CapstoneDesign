@@ -89,6 +89,7 @@
     <string name="setting_password">비밀번호 재설정</string>
     <string name="et_age">나이</string>
     <string name="mailcode">EmailCode</string>
+    <string name="kcal">칼로리 : </string>
 
 
     <string name="app_name1">Simple Bluetooth Terminal</string>

@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:allowBackup="true"
@@ -74,6 +75,9 @@
         <activity android:name=".activity.Setting_editActivity" />
         <activity android:name=".activity.StatActivity" >
         </activity>
+        <activity android:name=".activity.BoardActivity_detail" />
+
+        <service android:name=".bluetooth.SerialService" />
 
 
         <provider
