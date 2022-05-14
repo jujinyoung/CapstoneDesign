@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
 import com.example.myapplication.request.BoardRequestdetail;
+import com.example.myapplication.request.DeleteGallery;
 import com.example.myapplication.request.LoginRequest;
 import com.example.myapplication.utils.UserData;
 
@@ -33,6 +36,9 @@ public class BoardActivity_detail extends AppCompatActivity {
 
     TextView total_kcal;
 
+    Button delete_btn;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +54,8 @@ public class BoardActivity_detail extends AppCompatActivity {
         sna_image = findViewById(R.id.sna_image);
         total_kcal = findViewById(R.id.total_kcal);
 
+        delete_btn = findViewById(R.id.delete_btn);
+
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -58,6 +66,12 @@ public class BoardActivity_detail extends AppCompatActivity {
                     boolean success = jsonObject.getBoolean("success");
                     if (success) {
                         String id = jsonObject.getString("_id");
+                        Log.e("아이디 확인",id);
+                        Log.e("아이디 확인",UserData.read("user_id",""));
+                        if(id.equals(UserData.read("user_id",""))){
+                            delete_btn.setEnabled(true);
+                            Log.e("아이디 확인",id +" "+UserData.read("user_id",""));
+                        }
                         String image0 = jsonObject.getString("picture0");
                         String image1 = jsonObject.getString("picture1");
                         String image2 = jsonObject.getString("picture2");
@@ -90,6 +104,38 @@ public class BoardActivity_detail extends AppCompatActivity {
 //                LoginRequest loginRequest = new LoginRequest(userID,userPass,responseListener);
         RequestQueue queue = Volley.newRequestQueue(BoardActivity_detail.this);
         queue.add(boardRequestdetail);
+
+
+        delete_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Response.Listener<String> deleteresponseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //서버에 로그인 요청을 하면 결과값을 json타입으로 받음
+                            JSONObject jsonObject = new JSONObject(response);
+                            //서버통신 성공여부
+                            boolean success = jsonObject.getBoolean("success");
+                            if (success) {
+                                Log.e("삭제","성공");
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "삭제 통신 실패", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                //vollyer를 이용해서 서버에 요청
+                DeleteGallery deleteGallery = new DeleteGallery(num+"",deleteresponseListener);
+                RequestQueue queue = Volley.newRequestQueue(BoardActivity_detail.this);
+                queue.add(deleteGallery);
+            }
+        });
     }
 
     public static Bitmap StringToBitMap(String image){

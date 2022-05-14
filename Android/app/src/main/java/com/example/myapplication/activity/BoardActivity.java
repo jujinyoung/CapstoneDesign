@@ -6,16 +6,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,18 +22,13 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
 import com.example.myapplication.gallery.ImageAdapter;
-import com.example.myapplication.gallery.listView;
-import com.example.myapplication.request.LoginRequest;
-import com.example.myapplication.utils.UserData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.nio.ByteBuffer;
 
 public class BoardActivity extends AppCompatActivity {
     final static private String URL = "http://121.127.86.101:90/imgdownload00.php";
@@ -52,8 +44,6 @@ public class BoardActivity extends AppCompatActivity {
     ImageView testimg;
 
     TextView foodna;
-
-    static listView list;
 
     static public int list_cnt;
 
@@ -104,6 +94,7 @@ public class BoardActivity extends AppCompatActivity {
                             intent.putExtra("NO",dbnumber[position]);
 //                            Toast.makeText(getApplicationContext(),dbnumber[position]+"",Toast.LENGTH_SHORT).show();
                             startActivity(intent);
+                            finish();
                         }
                     });
                 }

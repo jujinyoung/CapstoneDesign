@@ -98,7 +98,7 @@ public class PasswordActivity extends AppCompatActivity {
             //인증코드
             GmailCode=gMailSender.getEmailCode();
             try {
-                gMailSender.sendMail("다이어트 플랜A 비밀번호 변경", "변경된 비밀번호는 "+GmailCode +" 입니다.\n로그인 후 설정창에서 비밀번호를 재설정해 주세요." , et_id_password.getText().toString());
+                gMailSender.sendMail("다이어트 플랜A 비밀번호 변경", "인증코드는 "+GmailCode +" 입니다.\n비밀번호를 재설정해 주세요." , et_id_password.getText().toString());
 
             } catch (SendFailedException e) {
 

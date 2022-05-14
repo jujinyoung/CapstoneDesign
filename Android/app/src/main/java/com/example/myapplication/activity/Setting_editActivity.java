@@ -54,6 +54,8 @@ public class Setting_editActivity extends AppCompatActivity {
                                     boolean success = jsonObject.getBoolean("success");
                                     if (success) {
                                         Toast.makeText(getApplicationContext(), "비밀번호 변경 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(),CalendarActivity.class);
+                                        startActivity(intent);
                                         finish();
                                     } else {
                                         Toast.makeText(getApplicationContext(), "비밀번호 변경 실패하였습니다.", Toast.LENGTH_SHORT).show();

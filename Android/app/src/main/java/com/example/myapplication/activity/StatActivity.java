@@ -238,8 +238,8 @@ public class StatActivity extends AppCompatActivity {
             float bmr = (float)calBMR.CalBmr(0,height,weight,age);
             int ave_bmr1 = 0;
             for(int i = 1; i<=7; i++){
-                ave_bmr1 = ave_bmr1 + ave_bmr[i-1];
-                cal_kg = (weight) - ((bmr*i) - (ave_bmr1/i))/7200;
+                ave_bmr1 = ave_bmr1 + ave_bmr[7-i];
+                cal_kg = (weight) - (((bmr*i) - ave_bmr1)/7000);
                 values.add(new Entry(i-1, cal_kg));
             }
 

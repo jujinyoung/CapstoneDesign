@@ -92,7 +92,7 @@ public class DiaryActivity_search extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 키워드를 확인한다
-                String foodName = editTextSearch.getText().toString().trim();
+                String foodName = editTextSearch.getText().toString();
                 if (foodName.isEmpty()) {
                     return;
                 }
@@ -102,19 +102,20 @@ public class DiaryActivity_search extends AppCompatActivity {
                 // API 를 이용한 검색을 실행한다
                 new Thread(() -> {
 //                    Food food = FoodApi.get(foodName);
-                    Food food = GroceryApi.get(foodName);
+                    final Food[] food = {GroceryApi.get(foodName)};
 
                     // 결과를 출력한다
                     runOnUiThread(() -> {
-                        if (food != null) {
-                            textViewResult.setText(food.toString());
-                            tan = food.getCarbohydrate();
-                            dan = food.getProtein();
-                            gi = food.getFat();
-                            kcal = food.getCalories();
+                        if (food[0] != null) {
+                            textViewResult.setText(food[0].toString());
+                            tan = food[0].getCarbohydrate();
+                            dan = food[0].getProtein();
+                            gi = food[0].getFat();
+                            kcal = food[0].getCalories();
 //                            servingsize = food.getServingSize().substring(6,9);
 //                            Log.e("g길이 체크",servingsize+"");
-                            foodname = food.getName();
+                            foodname = food[0].getName();
+
                         } else {
                             textViewResult.setText("검색된 결과가 없습니다.");
                         }

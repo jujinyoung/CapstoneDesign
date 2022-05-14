@@ -8,16 +8,16 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class imagetest extends StringRequest {
+public class DeleteGallery extends StringRequest {
     //서버 URl 설정
-    final static private String URL = "http://121.127.86.101:90/imgupload00.php";
+    final static private String URL = "http://121.127.86.101:90/delfile.php";
     private Map<String,String> map;
 
-    public imagetest(String picture0,Response.Listener<String> listener){
+    public DeleteGallery(String no, Response.Listener<String> listener){
         super(Request.Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("IMAGE",picture0);
+        map.put("NO",no);
     }
 
     //서버에서 요청하는 파라미터 전송

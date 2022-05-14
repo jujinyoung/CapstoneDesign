@@ -41,7 +41,6 @@ import com.example.myapplication.R;
 import com.example.myapplication.database.DBHelper;
 import com.example.myapplication.database.Diary;
 import com.example.myapplication.request.SaveImageRequest;
-import com.example.myapplication.request.imagetest;
 import com.example.myapplication.utils.BitmapUtils;
 import com.example.myapplication.utils.UserData;
 import com.github.channguyen.rsv.RangeSliderView;
@@ -922,20 +921,20 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
         }
     }
 
-    private void deleteNote() {
-
-        if (item != null) {
-            // delete note
-            String sql = "delete from " + DBHelper.TABLE_NAME +
-                    " where " +
-                    "   _id = " + today_date.replace(" ","");
-
-            DBHelper database = DBHelper.getInstance(getApplicationContext());
-            database.execSQL(sql);
-
-//            Toast.makeText(getApplicationContext(),"DB삭제",Toast.LENGTH_SHORT).show();
-        }
-    }
+//    private void deleteNote() {
+//
+//        if (item != null) {
+//            // delete note
+//            String sql = "delete from " + DBHelper.TABLE_NAME +
+//                    " where " +
+//                    "   _id = " + today_date.replace(" ","");
+//
+//            DBHelper database = DBHelper.getInstance(getApplicationContext());
+//            database.execSQL(sql);
+//
+////            Toast.makeText(getApplicationContext(),"DB삭제",Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     private Diary getTableData(){
         try {

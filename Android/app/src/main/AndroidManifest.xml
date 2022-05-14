@@ -29,11 +29,6 @@
         android:usesCleartextTraffic="true"
         android:configChanges="orientation|screenSize">
 
-        <activity
-            android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
-        </activity>
-
 
         <activity
             android:name=".activity.PasswordActivity"
@@ -44,12 +39,6 @@
         <activity android:name=".activity.DiaryActivity_search"/>
         <activity
             android:name=".activity.SettingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_gallery"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_camera"
             android:exported="false" />
         <activity
             android:name=".activity.DiaryActivity_loadc">

@@ -15,7 +15,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_back"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="28dp"
@@ -43,7 +42,7 @@
         android:layout_marginTop="20dp"/>
 
     <Button
-        android:id="@+id/btn_resetButton"
+        android:id="@+id/btn_resetButton2"
         style="@style/Montserrat20Pt"
         android:layout_width="300dp"
         android:layout_height="50dp"
