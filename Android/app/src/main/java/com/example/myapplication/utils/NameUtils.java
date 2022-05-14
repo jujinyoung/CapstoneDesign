@@ -34,6 +34,33 @@ public class NameUtils {
         map.put("cucumber", "오이");
         map.put("eggplant", "가지");
 
+        map.put("Americano", "아메리카노");
+        map.put("beefsteak", "쇠고기-스테이크");
+        map.put("BulgogiBurger", "큰-햄버거");
+        map.put("chicken", "치킨");
+        map.put("doenjangstew", "된장찌개");
+        map.put("egg_mari", "계란말이");
+        map.put("Frenchfries", "프렌치-토스트-(냉동)");
+        map.put("fried egg", "계란후라이");
+        map.put("fried rice", "볶음밥");
+        map.put("galbitang", "갈비탕");
+        map.put("Ganjang_gejang", "간장게장");
+        map.put("gimbob", "김밥");
+        map.put("hotdog", "핫도그");
+        map.put("kalgoksu", "칼국수");
+        map.put("kimchistew", "김치찌개");
+        map.put("kongnamul_muchim", "콩나물무침");
+        map.put("lunch box", "도시락");
+        map.put("milk", "우유");
+        map.put("miyukgook", "미역국");
+        map.put("Porkcutlet", "돈까스");
+        map.put("protein shake", "단백질-쉐이크");
+        map.put("ramen", "라면");
+        map.put("salad", "샐러드");
+        map.put("sandwich", "샌드위치");
+        map.put("toast", "식빵-토스트");
+        map.put("tteokbokki", "떡볶이");
+
         return map;
     }
 
