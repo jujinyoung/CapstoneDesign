@@ -233,16 +233,19 @@ public class StatActivity extends AppCompatActivity {
         Float weight = Float.parseFloat(UserData.read("user_weight",""));
         int age = UserData.readInt("user_age",0);
         ArrayList<Entry> values = new ArrayList<>();
+        CalBMR calBMR = new CalBMR();
+        float bmr = 0;
         if(UserData.readInt("user_gender",0) == 0){
-            CalBMR calBMR = new CalBMR();
-            float bmr = (float)calBMR.CalBmr(0,height,weight,age);
-            int ave_bmr1 = 0;
-            for(int i = 1; i<=7; i++){
-                ave_bmr1 = ave_bmr1 + ave_bmr[7-i];
-                cal_kg = (weight) - (((bmr*i) - ave_bmr1)/7000);
-                values.add(new Entry(i-1, cal_kg));
-            }
+            bmr = (float)calBMR.CalBmr(0,height,weight,age);
+        }else{
+            bmr = (float)calBMR.CalBmr(1,height,weight,age);
+        }
 
+        int ave_bmr1 = 0;
+        for(int i = 1; i<=7; i++){
+            ave_bmr1 = ave_bmr1 + ave_bmr[7-i];
+            cal_kg = (weight) - (((bmr*i) - ave_bmr1)/7000);
+            values.add(new Entry(i-1, cal_kg));
         }
 
 

@@ -34,10 +34,10 @@ public class Setting_resetActivity extends AppCompatActivity {
         btn_resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                LocalDateTime now = LocalDateTime.now();
-//                String message = monthYearFromDate(now);
-//                diary = getTableData(message);
-//                deleteNote(message);
+                LocalDateTime now = LocalDateTime.now();
+                String message = monthYearFromDate(now);
+                diary = getTableData(message);
+                deleteNote(message);
             }
         });
     }
