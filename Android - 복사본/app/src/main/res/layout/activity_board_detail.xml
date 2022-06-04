@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".activity.BoardActivity_detail">
+
+    <!--게시판 세부 페이지 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/clear"
+            android:drawableTop="@drawable/icon_back" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            style="@style/Montserrat20Pt3"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="100dp"
+            android:text="@string/board"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/morning"
+                android:text="@string/morning"
+                style="@style/Montserrat20Pt3"
+                android:layout_gravity="center" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/mor_kcal"-->
+<!--                android:text="@string/kcal"-->
+<!--                style="@style/Montserrat20Pt3"-->
+<!--                android:layout_gravity="center"/>-->
+
+            <ImageView
+                android:id="@+id/mor_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lunch"
+                android:text="@string/lunch"
+                style="@style/Montserrat20Pt3"
+                android:layout_gravity="center" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/lun_kcal"-->
+<!--                android:text="@string/kcal"-->
+<!--                style="@style/Montserrat20Pt3"-->
+<!--                android:layout_gravity="center"/>-->
+
+            <ImageView
+                android:id="@+id/lun_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dinner"
+                android:text="@string/dinner"
+                style="@style/Montserrat20Pt3"
+                android:layout_gravity="center" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/di_kcal"-->
+<!--                android:text="@string/kcal"-->
+<!--                style="@style/Montserrat20Pt3"-->
+<!--                android:layout_gravity="center"/>-->
+
+            <ImageView
+                android:id="@+id/di_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/snack"
+                android:text="@string/snack"
+                style="@style/Montserrat20Pt3"
+                android:layout_gravity="center" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/sna_kcal"-->
+<!--                android:text="@string/kcal"-->
+<!--                style="@style/Montserrat20Pt3"-->
+<!--                android:layout_gravity="center"/>-->
+
+            <ImageView
+                android:id="@+id/sna_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/total_kcal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                style="@style/Montserrat20Pt3"
+                android:text="@string/total"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:id="@+id/delete_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="삭제하기"
+                android:enabled="false"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

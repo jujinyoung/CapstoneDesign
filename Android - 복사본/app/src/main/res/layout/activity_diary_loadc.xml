@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.DiaryActivity_loadc">
+
+
+    <!--로드셀 프로그레스 페이지-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/progress_loadc"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:contentDescription="@string/todo"-->
+<!--        app:srcCompat="@drawable/icon_loadc"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginStart="147dp"/>-->
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar_loadc"-->
+<!--        style="?android:attr/progressBarStyleHorizontal"-->
+<!--        android:layout_width="121dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:max="100"-->
+<!--        android:progressDrawable="@drawable/progessbar"-->
+<!--        android:layout_marginTop="500dp"-->
+<!--        android:layout_marginStart="-120dp" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/loading_percent"-->
+<!--        style="@style/Montserrat15Pt"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/percent"-->
+<!--        android:layout_marginStart="-100dp"-->
+<!--        android:layout_marginTop="515dp"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/loading"-->
+<!--        style="@style/Montserrat15Pt"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/loading"-->
+<!--        android:layout_marginTop="515dp"/>-->
+
+
+    <RelativeLayout
+        android:id="@+id/fragment1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
