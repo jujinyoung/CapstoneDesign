@@ -87,7 +87,6 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
     int[] kcal = new int[4];
     int tot_kcal;
     TextView tot_kcal_tv;
-//    public static int weight;
 
     //카메라 기능
     Bitmap[] resultPhotoBitmap = new Bitmap[4];
@@ -245,11 +244,6 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
             btn_measure[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    if(dbMode == MODE_INSERT){
-//                        saveNote();
-//                    } else if(dbMode == MODE_MODIFY){
-//                        modifyNote();
-//                    }
                     String[] words = new String[]{"로드셀로 측정하기","1인분으로 측정하기"};
                     final int[] count = new int[1];
 
@@ -269,6 +263,7 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
                             }else {
                                 DiaryActivity_loadc.kcal_g = 0.0;
                             }
+                            DiaryActivity_loadc.loadCheck = true;
                         }
                     });
 
@@ -294,46 +289,57 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
             et_food[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String[] words = new String[]{"이미지로 검색하기","이름으로 검색하기"};
-                    final int[] count = new int[1];
+                    if(!DiaryActivity_loadc.loadCheck){
+                        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(DiaryActivity.this);
+                        builder.setTitle("식사량 측정");
+                        builder.setMessage("식사량을 먼저 측정해주세요.");
+                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) { }
+                        });
+                        builder.show();
+                    }else{
+                        String[] words = new String[]{"이미지로 검색하기","이름으로 검색하기"};
+                        final int[] count = new int[1];
 
-                    // 대화상자 생성 //
-                    AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this);
+                        // 대화상자 생성 //
+                        AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this);
 
-                    builder.setTitle("음식 검색하기");            //setTitle -> 제목설정
-                    builder.setIcon(R.mipmap.ic_launcher);        //setIcon -> 아이콘 설정
+                        builder.setTitle("음식 검색하기");            //setTitle -> 제목설정
+                        builder.setIcon(R.mipmap.ic_launcher);        //setIcon -> 아이콘 설정
 
-                    //  setPositiveButton -> "OK"버튼  //
-                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            food_num = num;
-                            Intent intent = new Intent(getApplicationContext(), DiaryActivity_search.class);
-                            intent.putExtra("num_i",food_num);
-                            if(count[0] == 0){
-                                if(resultPhotoBitmap[food_num] != null){
-                                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                    resultPhotoBitmap[food_num].compress(Bitmap.CompressFormat.JPEG,100,stream);
-                                    byte[] byteArray = stream.toByteArray();
-                                    intent.putExtra("image",byteArray);
-                                } else{
-                                    Toast.makeText(DiaryActivity.this,"이미지를 등록해주세요.",Toast.LENGTH_SHORT).show();
-                                    return;
+                        //  setPositiveButton -> "OK"버튼  //
+                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                food_num = num;
+                                Intent intent = new Intent(getApplicationContext(), DiaryActivity_search.class);
+                                intent.putExtra("num_i",food_num);
+                                if(count[0] == 0){
+                                    if(resultPhotoBitmap[food_num] != null){
+                                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                        resultPhotoBitmap[food_num].compress(Bitmap.CompressFormat.JPEG,100,stream);
+                                        byte[] byteArray = stream.toByteArray();
+                                        intent.putExtra("image",byteArray);
+                                    } else{
+                                        Toast.makeText(DiaryActivity.this,"이미지를 등록해주세요.",Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
                                 }
+                                foodNameResult.launch(intent);
                             }
-                            foodNameResult.launch(intent);
-                        }
-                    });
+                        });
 
-                    //  setSingleChoiceItems -> 라디오버튼 목록 출력  //
-                    builder.setSingleChoiceItems(words, 0, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            count[0] = i;
-                        }
-                    });
+                        //  setSingleChoiceItems -> 라디오버튼 목록 출력  //
+                        builder.setSingleChoiceItems(words, 0, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                count[0] = i;
+                            }
+                        });
 
-                    builder.show();      //대화상자(dialog)화면 출력
+                        builder.show();      //대화상자(dialog)화면 출력
+                    }
                 }
             });
         }
@@ -418,32 +424,40 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    if(result.getResultCode() == Activity.RESULT_OK){
+                    if (result.getResultCode() == Activity.RESULT_OK) {
                         String foodName = result.getData().getStringExtra("foodName");
-                        double tan_dou = result.getData().getDoubleExtra("tan",0);
-                        double dan_dou = result.getData().getDoubleExtra("dan",0);
-                        double gi_dou = result.getData().getDoubleExtra("gi",0);
-                        int num = result.getData().getIntExtra("num",0);
-                        kcal[num] = (int)result.getData().getDoubleExtra("kcal",0);
-
-                        if(DiaryActivity_loadc.kcal_g != 0.0){
-                            Double realkcal = DiaryActivity_loadc.kcal_g/100;
-                            Log.e("리얼 칼",realkcal+"");
-                            et_food[num].setText(foodName);
-                            tot_kcal = (int) (tot_kcal + kcal[num]*realkcal);
+                        double tan_dou = result.getData().getDoubleExtra("tan", 0);
+                        double dan_dou = result.getData().getDoubleExtra("dan", 0);
+                        double gi_dou = result.getData().getDoubleExtra("gi", 0);
+                        int num = result.getData().getIntExtra("num", 0);
+                        kcal[num] = (int) result.getData().getDoubleExtra("kcal", 0);
+                        if (DiaryActivity_loadc.kcal_g != 0.0) {
+                            Double realkcal = DiaryActivity_loadc.kcal_g / 100;
+                            Log.e("리얼 칼", realkcal + "");
+                            if (et_food[num].getText().toString().length() == 0) {
+                                et_food[num].setText(foodName);
+                            } else {
+                                et_food[num].setText(et_food[num].getText().toString() + "," + foodName);
+                            }
+                            tot_kcal = (int) (tot_kcal + kcal[num] * realkcal);
                             tot_kcal_tv.setText(tot_kcal + "Kcal");
-                            tan = (int) (tan + (int)tan_dou*realkcal);
-                            dan = (int) (dan + (int)dan_dou*realkcal);
-                            gi = (int) (gi + (int)gi_dou*realkcal);
-                        }else{
-                            et_food[num].setText(foodName);
+                            tan = (int) (tan + (int) tan_dou * realkcal);
+                            dan = (int) (dan + (int) dan_dou * realkcal);
+                            gi = (int) (gi + (int) gi_dou * realkcal);
+                        } else {
+                            if (et_food[num].getText().toString().length() == 0) {
+                                et_food[num].setText(foodName);
+                            } else {
+                                et_food[num].setText(et_food[num].getText().toString() + "," + foodName);
+                            }
                             tot_kcal = (tot_kcal + kcal[num]);
                             tot_kcal_tv.setText(tot_kcal + "Kcal");
-                            tan = (tan + (int)tan_dou);
-                            dan = (dan + (int)dan_dou);
-                            gi =  (gi + (int)gi_dou);
+                            tan = (tan + (int) tan_dou);
+                            dan = (dan + (int) dan_dou);
+                            gi = (gi + (int) gi_dou);
+                            DiaryActivity_loadc.loadCheck = false;
+                            CreatebarChart(bar_chart_diary);
                         }
-                        CreatebarChart(bar_chart_diary);
                     }
                 }
             }

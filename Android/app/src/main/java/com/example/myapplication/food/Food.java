@@ -6,17 +6,17 @@ import java.util.Locale;
 
 public class Food {
 
-    private final String name;              // 식품이름, DESC_KOR
-    private final String servingSize;       // 총내용량, SERVING_SIZE
-    private final double calories;          // 칼로리(kcal), NUTR_CONT1
-    private final double carbohydrate;      // 탄수화물(g), NUTR_CONT2
-    private final double protein;           // 단백질(g), NUTR_CONT3
-    private final double fat;               // 지방(g), NUTR_CONT4
-    private final double sugar;             // 당류(g), NUTR_CONT5
-    private final double sodium;            // 나트륨(mg), NUTR_CONT6
-    private final double cholesterol;       // 콜레스테롤(mg), NUTR_CONT7
-    private final double sfa;               // 포화지방산(g), NUTR_CONT8
-    private final double transFat;          // 트랜스지방(g), NUTR_CONT9
+    private String name;              // 식품이름, DESC_KOR
+    private String servingSize;       // 총내용량, SERVING_SIZE
+    private double calories;          // 칼로리(kcal), NUTR_CONT1
+    private double carbohydrate;      // 탄수화물(g), NUTR_CONT2
+    private double protein;           // 단백질(g), NUTR_CONT3
+    private double fat;               // 지방(g), NUTR_CONT4
+    private double sugar;             // 당류(g), NUTR_CONT5
+    private double sodium;            // 나트륨(mg), NUTR_CONT6
+    private double cholesterol;       // 콜레스테롤(mg), NUTR_CONT7
+    private double sfa;               // 포화지방산(g), NUTR_CONT8
+    private double transFat;          // 트랜스지방(g), NUTR_CONT9
 
     public Food(String name, String servingSize, double calories, double carbohydrate, double protein, double fat, double sugar, double sodium, double cholesterol, double sfa, double transFat) {
         this.name = name;
@@ -31,7 +31,6 @@ public class Food {
         this.sfa = sfa;
         this.transFat = transFat;
     }
-
     public String getName() {
         return name;
     }
@@ -75,7 +74,6 @@ public class Food {
     public double getTransFat() {
         return transFat;
     }
-
 
     @NonNull
     @Override

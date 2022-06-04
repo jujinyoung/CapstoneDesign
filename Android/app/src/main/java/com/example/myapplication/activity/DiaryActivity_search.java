@@ -6,15 +6,11 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -22,14 +18,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 import com.example.myapplication.food.Food;
-import com.example.myapplication.food.FoodApi;
 import com.example.myapplication.ml.GroceryApi;
 import com.example.myapplication.R;
 import com.example.myapplication.ml.FoodModel;
 import com.example.myapplication.utils.NameUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class DiaryActivity_search extends AppCompatActivity {
@@ -60,7 +53,7 @@ public class DiaryActivity_search extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             image.setValue(bitmap);
             search_image.setImageBitmap(bitmap);
-            start();
+            Start();
         } else {
             search_image.setVisibility(View.INVISIBLE);
         }
@@ -86,7 +79,7 @@ public class DiaryActivity_search extends AppCompatActivity {
 
                 // API 를 이용한 검색을 실행한다
                 new Thread(() -> {
-                    final Food[] food = {GroceryApi.get(foodName)};
+                    Food[] food = {GroceryApi.get(foodName)};
 
                     // 결과를 출력한다
                     runOnUiThread(() -> {
@@ -97,7 +90,6 @@ public class DiaryActivity_search extends AppCompatActivity {
                             gi = food[0].getFat();
                             kcal = food[0].getCalories();
                             foodname = food[0].getName();
-
                         } else {
                             textViewResult.setText("검색된 결과가 없습니다.");
                         }
@@ -136,7 +128,7 @@ public class DiaryActivity_search extends AppCompatActivity {
 
     }
 
-    void start(){
+    void Start(){
         //region 이미지 분석
         try {
             LiveData<String> foodName = Transformations.map(image, bitmap1 -> {

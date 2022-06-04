@@ -19,6 +19,7 @@ public class DiaryActivity_loadc extends AppCompatActivity implements FragmentMa
 
 
     public static Double kcal_g = 0.0;
+    public static boolean loadCheck = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

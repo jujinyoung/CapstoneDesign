@@ -10,6 +10,8 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,9 +43,9 @@ public class BoardActivity extends AppCompatActivity {
 
     int[] dbnumber;
 
-    ImageView testimg;
+    Button board_searchBtn,board_CancelBtn;
 
-    TextView foodna;
+    EditText board_foodName;
 
     static public int list_cnt;
 
@@ -52,10 +54,29 @@ public class BoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
 
-//        testimg = findViewById(R.id.testimg);
-//        foodna = findViewById(R.id.foodna);
+        LoadImage(null);
 
+        board_foodName = findViewById(R.id.board_foodName);
 
+        board_searchBtn = findViewById(R.id.board_searchBtn);
+        board_searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoadImage(board_foodName.getText().toString());
+            }
+        });
+
+        board_CancelBtn = findViewById(R.id.board_CancelBtn);
+        board_CancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                board_foodName.setText(null);
+                LoadImage(null);
+            }
+        });
+    }
+
+    private void LoadImage(String food){
         RequestQueue queue = Volley.newRequestQueue(BoardActivity.this);
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST,URL,null, new Response.Listener<JSONArray>() {
@@ -65,6 +86,7 @@ public class BoardActivity extends AppCompatActivity {
                 numberImage = new Bitmap[list_cnt];
                 numberWord = new String[list_cnt];
                 dbnumber = new int[list_cnt];
+                int cnt = 0;
 
                 for(int i  = 0; i<response.length();i++){
                     try {
@@ -73,9 +95,18 @@ public class BoardActivity extends AppCompatActivity {
                         String foodname = jsonObject.getString("food1");
                         int num = jsonObject.getInt("NO");
                         Log.e("이미지 확인", image.length() + "");
-                        numberImage[i] = StringToBitMap(image);
-                        numberWord[i] = foodname;
-                        dbnumber[i] = num;
+                        if(food != null){
+                            if(food.equals(foodname)) {
+                                numberImage[cnt] = StringToBitMap(image);
+                                numberWord[cnt] = foodname;
+                                dbnumber[cnt] = num;
+                                cnt += 1;
+                            }
+                        }else {
+                            numberImage[i] = StringToBitMap(image);
+                            numberWord[i] = foodname;
+                            dbnumber[i] = num;
+                        }
 
                     }catch (JSONException e){
                         e.printStackTrace();
@@ -89,12 +120,9 @@ public class BoardActivity extends AppCompatActivity {
                     gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
                             Intent intent = new Intent(getApplicationContext(),BoardActivity_detail.class);
                             intent.putExtra("NO",dbnumber[position]);
-//                            Toast.makeText(getApplicationContext(),dbnumber[position]+"",Toast.LENGTH_SHORT).show();
                             startActivity(intent);
-                            finish();
                         }
                     });
                 }
@@ -107,9 +135,6 @@ public class BoardActivity extends AppCompatActivity {
         });
 
         queue.add(jsonArrayRequest);
-
-
-
     }
 
 

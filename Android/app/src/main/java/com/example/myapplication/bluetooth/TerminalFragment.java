@@ -303,12 +303,6 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
     }
 
-//    private void status(String str) {
-//        SpannableStringBuilder spn = new SpannableStringBuilder(str + '\n');
-//        spn.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorStatusText)), 0, spn.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        receiveText.append(spn);
-//    }
-
     /*
      * SerialListener
      */

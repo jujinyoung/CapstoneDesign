@@ -101,7 +101,6 @@ public class BoardActivity_detail extends AppCompatActivity {
 
         //vollyer를 이용해서 서버에 요청
         BoardRequestdetail boardRequestdetail = new BoardRequestdetail(num+"",responseListener);
-//                LoginRequest loginRequest = new LoginRequest(userID,userPass,responseListener);
         RequestQueue queue = Volley.newRequestQueue(BoardActivity_detail.this);
         queue.add(boardRequestdetail);
 
@@ -119,6 +118,9 @@ public class BoardActivity_detail extends AppCompatActivity {
                             boolean success = jsonObject.getBoolean("success");
                             if (success) {
                                 Log.e("삭제","성공");
+                                Intent intent = new Intent(BoardActivity_detail.this,BoardActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
                                 finish();
                             } else {
                                 Toast.makeText(getApplicationContext(), "삭제 통신 실패", Toast.LENGTH_SHORT).show();
@@ -136,6 +138,15 @@ public class BoardActivity_detail extends AppCompatActivity {
                 queue.add(deleteGallery);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(BoardActivity_detail.this,BoardActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
     public static Bitmap StringToBitMap(String image){
