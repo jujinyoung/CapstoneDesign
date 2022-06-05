@@ -25,7 +25,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class Setting_resetActivity extends AppCompatActivity {
-    Button btn_resetButton;
+    Button btn_resetButton,btn_back;
 
     //DB
     public static DBHelper mDatabase = null;
@@ -37,6 +37,14 @@ public class Setting_resetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_reset);
+
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         openDatabase();
 

@@ -23,11 +23,19 @@ import org.json.JSONObject;
 
 public class Setting_editActivity extends AppCompatActivity {
     EditText et_id_pass_edit,et_id_pass_check,mailcode;
-    Button btn_editpass;
+    Button btn_editpass,btn_back_password;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_edit);
+
+        btn_back_password = findViewById(R.id.btn_back_password);
+        btn_back_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         et_id_pass_edit = findViewById(R.id.et_id_pass_edit);
         et_id_pass_check = findViewById(R.id.et_id_pass_check);

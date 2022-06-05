@@ -43,7 +43,7 @@ public class BoardActivity extends AppCompatActivity {
 
     int[] dbnumber;
 
-    Button board_searchBtn,board_CancelBtn;
+    Button board_searchBtn,board_CancelBtn,btn_back;
 
     EditText board_foodName;
 
@@ -55,6 +55,14 @@ public class BoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_board);
 
         LoadImage(null);
+
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         board_foodName = findViewById(R.id.board_foodName);
 

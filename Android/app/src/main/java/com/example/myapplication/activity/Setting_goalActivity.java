@@ -23,7 +23,7 @@ public class Setting_goalActivity extends AppCompatActivity {
     public static String TAG = "Setting_goalActivity";
 
     EditText et_height,et_pv,et_fv,et_age;
-    Button btn_setup,goal_day;
+    Button btn_setup,goal_day,btn_back;
     RadioGroup goal_radioGroup;
     RadioButton man,woman;
 
@@ -34,6 +34,14 @@ public class Setting_goalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_goal);
         UserData.init(getApplicationContext());
+
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         et_height = findViewById(R.id.et_height);
         et_pv = findViewById(R.id.et_pv);

@@ -11,15 +11,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/_100dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="50dp"
+            android:layout_width="@dimen/_48dp"
+            android:layout_height="@dimen/_48dp"
+            android:layout_marginStart="@dimen/_28dp"
+            android:layout_marginTop="@dimen/_50dp"
             android:background="@color/clear"
             android:drawableTop="@drawable/icon_back" />
 
@@ -28,32 +28,21 @@
             android:layout_width="wrap_content"
             style="@style/Montserrat20Pt3"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="100dp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:layout_marginStart="@dimen/_100dp"
             android:text="@string/board"/>
     </LinearLayout>
 
     <GridView
         android:id="@+id/gridview"
-        android:layout_width="380dp"
-        android:layout_height="610dp"
+        android:layout_width="@dimen/_380dp"
+        android:layout_height="@dimen/_610dp"
         android:numColumns="auto_fit"
-        android:columnWidth="100dp"
+        android:columnWidth="@dimen/_100dp"
         android:layout_gravity="center"
         android:stretchMode="columnWidth">
 
     </GridView>
-<!--    <ImageView-->
-<!--        android:id="@+id/testimg"-->
-<!--        android:layout_width="300dp"-->
-<!--        android:layout_height="200dp"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:src="@drawable/bulgogi"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/foodna"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="음식"/>-->
 
 
     <LinearLayout

@@ -36,7 +36,7 @@ public class BoardActivity_detail extends AppCompatActivity {
 
     TextView total_kcal;
 
-    Button delete_btn;
+    Button delete_btn,btn_back;
 
 
     @Override
@@ -47,6 +47,14 @@ public class BoardActivity_detail extends AppCompatActivity {
         Intent intent = getIntent();
         num = intent.getIntExtra("NO",0);
         Log.e("숫자",num+"");
+
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         mor_image = findViewById(R.id.mor_image);
         lun_image = findViewById(R.id.lun_image);

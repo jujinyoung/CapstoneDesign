@@ -27,13 +27,21 @@ import javax.mail.SendFailedException;
 public class PasswordActivity extends AppCompatActivity {
 
     private EditText et_id_password;
-    private Button btn_sendEmail;
+    private Button btn_sendEmail,btn_back_password;
     private String GmailCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
+
+        btn_back_password = findViewById(R.id.btn_back_password);
+        btn_back_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         //이메일
         et_id_password = findViewById(R.id.et_id_password);

@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Color;
+import android.icu.text.UFormat;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -40,6 +43,7 @@ public class StatActivity extends AppCompatActivity {
     private LineChart chart_weekly_cal,chart_weekly_kg;
     int[] ave_bmr;
     float cal_kg;
+    Button btn_back;
 
     //DB
     public static DBHelper mDatabase = null;
@@ -54,6 +58,14 @@ public class StatActivity extends AppCompatActivity {
 
         // 데이터베이스 열기
         openDatabase();
+
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         ave_bmr = new int[7];
 
@@ -245,6 +257,7 @@ public class StatActivity extends AppCompatActivity {
         for(int i = 1; i<=7; i++){
             ave_bmr1 = ave_bmr1 + ave_bmr[7-i];
             cal_kg = (weight) - (((bmr*i) - ave_bmr1)/7000);
+            cal_kg = Float.parseFloat(String.format("%.2f", cal_kg));
             values.add(new Entry(i-1, cal_kg));
         }
 

@@ -21,7 +21,7 @@ import org.json.JSONObject;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText et_id, et_pass,userpass_confirm;
-    private Button btn_register;
+    private Button btn_register,btn_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,14 @@ public class RegisterActivity extends AppCompatActivity {
         et_id = findViewById(R.id.et_id);
         et_pass = findViewById(R.id.et_pass);
         userpass_confirm = findViewById(R.id.et_pass_confirm);
+
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         //회원가입 버튼클릭
         btn_register = findViewById(R.id.btn_login);

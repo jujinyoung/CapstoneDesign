@@ -77,7 +77,7 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
 
     RadioGroup radioGroup;
 
-    Button save_diary;          //저장하기 버튼
+    Button save_diary,btn_back;          //저장하기 버튼
 
     //데이터
     EditText[] et_diary;
@@ -127,6 +127,14 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
+
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         //Title
         Intent intent = getIntent();
@@ -179,6 +187,7 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
         super.onBackPressed();
         Intent intent = new Intent(DiaryActivity.this,CalendarActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        DiaryActivity_loadc.loadCheck = false;
         startActivity(intent);
         finish();
     }
@@ -455,9 +464,9 @@ public class DiaryActivity extends AppCompatActivity implements AutoPermissionsL
                             tan = (tan + (int) tan_dou);
                             dan = (dan + (int) dan_dou);
                             gi = (gi + (int) gi_dou);
-                            DiaryActivity_loadc.loadCheck = false;
-                            CreatebarChart(bar_chart_diary);
                         }
+                        DiaryActivity_loadc.loadCheck = false;
+                        CreatebarChart(bar_chart_diary);
                     }
                 }
             }
