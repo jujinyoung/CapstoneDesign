@@ -6,6 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.myapplication.activity.CalendarActivity;
+import com.example.myapplication.activity.LoginActivity;
+
 public class DBHelper {
     private static final String TAG = "DBHelper";
 
@@ -127,7 +130,8 @@ public class DBHelper {
     private class DatabaseHelper extends SQLiteOpenHelper {
 
         public DatabaseHelper(Context context) {
-            super(context, "diary.db", null, DATABASE_VERSION);
+            //DB이름 여기서 만듬
+            super(context, LoginActivity.user_id+"diary.db", null, DATABASE_VERSION);
         }
 
         public void onCreate(SQLiteDatabase db) {
@@ -169,6 +173,7 @@ public class DBHelper {
                     + ")";
             try {
                 db.execSQL(CREATE_SQL);
+                Log.e("db생성","DB생성완료");
             } catch(Exception ex) {
             }
 

@@ -46,13 +46,13 @@ public class Setting_editActivity extends AppCompatActivity {
         btn_editpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (et_id_pass_edit.getText().toString() == et_id_pass_check.getText().toString()) {
-                    Intent i = getIntent();
-                    String et_id = i.getStringExtra("user_id");
-                    String et_mailcode = i.getStringExtra("mailcode");
-                    Log.d("메일 코드",et_mailcode);
+                Intent i = getIntent();
+                String et_id = i.getStringExtra("user_id");
+                String et_mailcode = i.getStringExtra("mailcode");
+                Log.d("메일 코드", et_mailcode);
 
-//                    if(mailcode.getText().toString() == et_mailcode){
+                if (mailcode.getText().toString().equals(et_mailcode)) {
+                    if(et_id_pass_edit.getText().toString().equals(et_id_pass_check.getText().toString())){
                         Response.Listener<String> responseListener = new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -62,7 +62,7 @@ public class Setting_editActivity extends AppCompatActivity {
                                     boolean success = jsonObject.getBoolean("success");
                                     if (success) {
                                         Toast.makeText(getApplicationContext(), "비밀번호 변경 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(),CalendarActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                         startActivity(intent);
                                         finish();
                                     } else {
@@ -78,15 +78,14 @@ public class Setting_editActivity extends AppCompatActivity {
                         PasswordCheckRequest passwordCheckRequest = new PasswordCheckRequest(et_id, et_id_pass_edit.getText().toString(), responseListener);
                         RequestQueue queue = Volley.newRequestQueue(Setting_editActivity.this);
                         queue.add(passwordCheckRequest);
+                    }else{
+                        Toast.makeText(getApplicationContext(), "비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
                     }
-//                    else{
-//                        Toast.makeText(getApplicationContext(), "이메일 코드가 다릅니다", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//                else {
-//                    Toast.makeText(getApplicationContext(), "비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
-//                }
-//            }
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "이메일 코드가 다릅니다", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
     }
 }

@@ -54,7 +54,6 @@ public class StatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
-        UserData.init(getApplicationContext());
 
         // 데이터베이스 열기
         openDatabase();

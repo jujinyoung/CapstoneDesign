@@ -70,7 +70,7 @@ public class DiaryActivity_search extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 키워드를 확인한다
-                String foodName = editTextSearch.getText().toString();
+                String foodName = editTextSearch.getText().toString().replace(" ","-");
                 if (foodName.isEmpty()) {
                     return;
                 }

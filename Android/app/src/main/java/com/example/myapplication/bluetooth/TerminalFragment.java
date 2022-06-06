@@ -103,7 +103,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
         protected Void doInBackground(Void... voids) {
             for (int i = 0; i <= 100; i++) {
                 try {
-                    Thread.sleep(100);                  //0.1초 간격으로 sleep
+                    Thread.sleep(20);                  //0.1초 간격으로 sleep
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

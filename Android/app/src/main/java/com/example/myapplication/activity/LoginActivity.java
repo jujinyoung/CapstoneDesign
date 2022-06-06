@@ -23,6 +23,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
+    //id
+    static public String user_id;
+
     private EditText et_id, et_pass;    //아이디,패스워드 텍스트
     private TextView btn_register,btn_forgot_pw;
     private Button btn_login;  //로그인
@@ -31,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        UserData.init(getApplicationContext());
 
         et_id = findViewById(R.id.et_id);
         et_pass = findViewById(R.id.et_pass);
@@ -47,6 +49,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String id = et_id.getText().toString();
+                user_id = id;
+                UserData.PREFERENCE_NAME = user_id+"userdata";
+                UserData.init(getApplicationContext());
                 //id,password 값저장
                 UserData.write("user_id",id);
 //                String userID = et_id.getText().toString();

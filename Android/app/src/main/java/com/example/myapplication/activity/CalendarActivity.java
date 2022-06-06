@@ -45,7 +45,6 @@ import java.util.Date;
 import java.util.Locale;
 
 public class CalendarActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener {
-
     //캘린더
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
@@ -93,7 +92,6 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         //현재날짜
         selectedDate = LocalDate.now();
         setMonthView();
-        UserData.init(getApplicationContext());
 
         btn_graph = findViewById(R.id.btn_graph);
         btn_graph.setOnClickListener(new View.OnClickListener() {
@@ -202,11 +200,15 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         });
 
         Diary diary = getTableData();
+        int leftkcal;
         if(diary != null){
-            int leftkcal = (int)bmr - Integer.parseInt(diary.getKcal().replace("kcal",""));
-            left_cal = findViewById(R.id.left_cal);
-            left_cal.setText(leftkcal+"kcal");
+            leftkcal = (int)recommentCal - Integer.parseInt(diary.getKcal().replace("kcal",""));
+            Log.e("남은 칼로리",leftkcal+"");
+        }else{
+            leftkcal = (int)recommentCal;
         }
+        left_cal = findViewById(R.id.left_cal);
+        left_cal.setText(leftkcal+"kcal");
 
     }
 
@@ -216,6 +218,8 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         Intent intent = new Intent(CalendarActivity.this,LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        UserData.PREFERENCE_NAME = null;
+        UserData.del(getApplicationContext());
         finish();
     }
 
@@ -315,10 +319,8 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 
         recommend_cal = findViewById(R.id.recommend_cal);
         diet_cal = findViewById(R.id.diet_cal);
-        left_cal = findViewById(R.id.left_cal);
         recommend_cal.setText((int)bmr +"kcal");
         diet_cal.setText((int)recommentCal +"kcal");
-        left_cal.setText((int)bmr+"kcal");
 
 
         //파이차트 밸류 색상
@@ -460,9 +462,9 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         mDatabase = DBHelper.getInstance(this);
         boolean isOpen = mDatabase.open();
         if (isOpen) {
-
+            Log.d("캘린더", "database is open.");
         } else {
-
+            Log.d("캘린더", "database is not open.");
         }
     }
 
@@ -525,4 +527,5 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         return date.format(formatter);
     }
     //endregion
+
 }

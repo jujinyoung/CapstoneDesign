@@ -2,9 +2,13 @@ package com.example.myapplication.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+
+import com.example.myapplication.activity.CalendarActivity;
+import com.example.myapplication.activity.LoginActivity;
 
 public class UserData {
-    public static final String PREFERENCE_NAME="userdata";
+    public static String PREFERENCE_NAME= null;
     private Context mContext;
     private static SharedPreferences prefs;
     private static SharedPreferences.Editor prefsEditor;
@@ -19,10 +23,17 @@ public class UserData {
         return instance;
     }
 
+    public static synchronized  UserData del(Context context){
+        instance = null;
+        PREFERENCE_NAME= null;
+        return instance;
+    }
+
     private UserData(Context context) {
         mContext = context;
         prefs = mContext.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE );
         prefsEditor = prefs.edit();
+        Log.e("userdata아이디",PREFERENCE_NAME);
     }
 
     public static String read(String key, String defValue) {

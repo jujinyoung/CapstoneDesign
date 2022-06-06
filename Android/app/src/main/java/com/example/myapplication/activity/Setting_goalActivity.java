@@ -1,6 +1,7 @@
 package com.example.myapplication.activity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +34,6 @@ public class Setting_goalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_goal);
-        UserData.init(getApplicationContext());
 
         btn_back = findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +63,9 @@ public class Setting_goalActivity extends AppCompatActivity {
                     UserData.write("goal_weight",et_fv.getText().toString());
                     UserData.writeInt("user_age",Integer.parseInt(et_age.getText().toString()));
                     UserData.write("goal_day",goal_day.getText().toString());
+                    Intent intent = new Intent(Setting_goalActivity.this,CalendarActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
                 }catch (NumberFormatException e){
                     Log.e(TAG,e + "");

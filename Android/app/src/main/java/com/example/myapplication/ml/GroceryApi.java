@@ -34,6 +34,12 @@ public class GroceryApi {
                 for(Element content:contents) {
                     if(content.text().equals("1 인분")){
                         g_num = content.attr("href");
+                    }else if(content.text().equals("1 공기")) {
+                        g_num = content.attr("href");
+                    }else if(content.text().equals("1 개")){
+                        g_num = content.attr("href");
+                    }else if(content.text().equals("1 조각")){
+                        g_num = content.attr("href");
                     }
                 }
                 url = "https://www.fatsecret.kr" + g_num;
