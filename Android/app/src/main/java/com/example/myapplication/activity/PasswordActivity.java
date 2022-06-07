@@ -86,7 +86,7 @@ public class PasswordActivity extends AppCompatActivity {
 
         public void run(){
             //이메일 보내는 계정(추후 새로 생성)
-            GMailSender gMailSender = new GMailSender("jujinyoung1838@gmail.com", "jujinyoung8!");
+            GMailSender gMailSender = new GMailSender("", "");
             //GMailSender.sendMail(제목, 본문내용, 받는사람);
 
             Handler handler = new Handler(Looper.getMainLooper());
